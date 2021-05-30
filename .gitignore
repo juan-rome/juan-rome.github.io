@@ -3,5 +3,8 @@
 # IDEs
 .idea
 
+# Dependencies
+node_modules
+
 # System Files
 package-lock.json
