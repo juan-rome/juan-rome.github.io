@@ -1,6 +1,9 @@
 name: Deploy to GitHub Pages via angular-cli-ghpages
 
-on: [push]
+on:
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build-and-deploy:
@@ -21,7 +24,3 @@ jobs:
       run: |
         npm install
         npm run ng -- deploy --base-href=/juan-rome.github.io/ --name="Portfolio" --email="jjromee05@gmail.com" --no-silent
-        on:
-        pull_request:
-        branches:
-        - master
