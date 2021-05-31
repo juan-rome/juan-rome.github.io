@@ -38,7 +38,7 @@
             "production": {
               "optimization": true,
               "aot": true,
-              "buildOptimizer": :,
+              "buildOptimizer": true,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
