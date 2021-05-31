@@ -98,7 +98,12 @@
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
-          "options": {}
+          "options": {
+            "baseHref": "https://juan-rome.github.io/",
+            "name": "juan-rome",
+            "email": "jjromee05@gmail.com",
+            "noSilent": true
+          }
         }
       }
     }
