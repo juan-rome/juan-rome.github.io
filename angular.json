@@ -102,8 +102,7 @@
             "baseHref": "/juan-rome.github.io/",
             "name": "juan-rome",
             "email": "jjromee05@gmail.com",
-            "noSilent": true,
-            "branch": "master"
+            "noSilent": true
           }
         }
       }
