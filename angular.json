@@ -24,7 +24,8 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "tsconfig.app.json",,
+            "baseHref": "/juan-rome.github.io/",
             "assets": [
               "src/assets"
             ],
@@ -71,7 +72,7 @@
           "options": {
             "browserTarget": "Portfolio:build"
           },
-            "configurations": {
+          "configurations": {
             "production": {
               "browserTarget": "Portfolio:build:production"
             },
@@ -102,6 +103,10 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }
