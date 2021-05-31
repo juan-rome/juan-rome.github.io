@@ -26,4 +26,4 @@ jobs:
     - name: Prepare and deploy
       run: |
         npm install
-        npm run build && ng deploy
+        npm run build -- deploy
