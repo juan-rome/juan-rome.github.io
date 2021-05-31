@@ -21,4 +21,4 @@ jobs:
     - name: Prepare and deploy
       run: |
         npm install
-        npm run build && ng -- deploy --base-href=/juan-rome.github.io/ --name="Portfolio" --email="jjromee05@gmail.com" --no-silent
+        npm run build && ng deploy
