@@ -36,13 +36,9 @@
           },
           "configurations": {
             "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "10mb",
-                  "maximumError": "15mb"
-                }
-              ],
+              "optimization": true,
+              "aot": true,
+              "buildOptimizer": :,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -53,6 +49,7 @@
             },
             "development": {
               "buildOptimizer": false,
+              "aot": false,
               "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
@@ -102,5 +99,16 @@
       }
     }
   },
-  "defaultProject": "Portfolio"
+  "defaultProject": "Portfolio",
+  "schematics": {
+    "@schematics/angular": {
+      "component": {
+        "changeDetection": "OnPush"
+      }
+    },
+    "@schematics/angular:component": {
+      "prefix": "",
+      "style": "scss"
+    }
+  }
 }
