@@ -2,3 +2,14 @@
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 @import '~bootstrap/scss/bootstrap';
+
+
+body {
+  background-color: #eeeeee;
+  font-family: 'Jost', sans-serif;
+  max-width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  display: flex;
+}
+

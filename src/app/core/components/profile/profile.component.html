@@ -1,0 +1,107 @@
+<div class="overlay"></div>
+<div id="profile" class="section d-flex justify-content-center">
+  <div class="row align-content-center">
+    <div class="col-auto">
+      <img class="profile-img" src="../../../../assets/about-me-photo.png"/>
+      <div class="d-flex justify-content-center">
+        <h1 class="typewriter">
+            <span class="typewriter-text intro"
+                  [ngStyle]="{'border-right-color': hideBorder ? 'transparent' : 'white' }">
+              Hi, I'm Juan
+              <span class="wave">👋🏽</span>
+            </span>
+        </h1>
+      </div>
+      <div class="d-flex justify-content-center">
+        <h1 class="typewriter">
+            <span class="typewriter-text delay" (animationend)="hideBorder = true">
+              A Full-Stack Web Developer</span>
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="about-me" class="section" style="border-bottom: 1px solid black">
+  <div class="row pb-4 text-center d-block">
+    <div class="col d-flex justify-content-center d-inline-block text-left">
+      <mat-card [style.max-width]="'1000px'">
+        <mat-card-title>
+          <a class="icon icon-outline nav-item mx-1 pt-1">
+            <icon [icon]="appConstants.USER_CIRCLE_ICON"></icon>
+          </a>
+          <span>About Me</span>
+        </mat-card-title>
+        <mat-card-content>
+          <div class="about-me-info user-select-none">
+            Texas native with 3+ years of professional experience and
+            a high-level proficiency in multiple languages and frameworks. Very familiar with Web Application Architecture
+            and have a strong passion to learn more technologies across the stack.<br>Currently building an internal application with a
+            stack consisting of Angular, Spring Boot, & PostgreSQL.
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row pb-5">
+    <div class="col justify-content-center pb-3">
+      <mat-card>
+        <mat-card-title>
+          <a class="icon icon-outline nav-item mx-1 pt-1">
+            <icon [icon]="appConstants.LANGUAGE_ICON"></icon>
+          </a>
+          <span>Languages</span>
+        </mat-card-title>
+        <mat-card-content>
+          <chip-set>
+            <ng-container *ngFor="let item of languages">
+              <chip>{{ item }}</chip>
+            </ng-container>
+          </chip-set>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- frameworks, libraries,  & tools -->
+    <div class="col justify-content-center pb-3">
+      <mat-card>
+        <mat-card-title>
+          <a class="icon icon-outline nav-item mx-1 pt-1">
+            <icon [icon]="appConstants.CODE_ICON"></icon>
+          </a>
+          <span>Frameworks, Libraries, & Tools</span>
+        </mat-card-title>
+        <mat-card-content>
+          <chip-set>
+            <ng-container *ngFor="let item of skills">
+              <chip>{{ item }}</chip>
+            </ng-container>
+          </chip-set>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <!-- /frameworks, libraries,  & tools -->
+
+
+    <!-- practices -->
+    <div class="col justify-content-center pb-3">
+      <mat-card>
+        <mat-card-title>
+          <a class="icon icon-outline nav-item mx-1 pt-1">
+            <icon [icon]="appConstants.PRACTICE_ICON"></icon>
+          </a>
+          <span>Practices</span>
+        </mat-card-title>
+        <mat-card-content>
+          <chip-set>
+            <ng-container *ngFor="let item of practices">
+              <chip>{{ item }}</chip>
+            </ng-container>
+          </chip-set>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <!-- /practices -->
+  </div>
+</div>

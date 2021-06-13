@@ -1,0 +1,218 @@
+@import "../../../../styles/variables";
+
+.typewriter {
+  display: flex;
+  transition: all .2s ease-in;
+}
+
+.typewriter-text {
+  display: inline-block;
+  font-weight: 700;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid white;
+  padding-right: 0.25rem;
+  user-select: none;
+
+  @media screen and (max-width: 400px) {
+    visibility: visible;
+    animation: none !important;
+    border: none !important;
+
+    &.intro {
+      font-size: 1em;
+    }
+  }
+
+  &:not(.intro) {
+    font-weight: 400;
+    font-size: 30px;
+  }
+
+  &:not(.delay) {
+    animation: typing 1.20s steps(10, end), blink .7s infinite;
+  }
+
+  &.delay {
+    @media screen and (max-width: 400px) {
+      visibility: visible !important;
+      font-size: .5em;
+      border: none !important;
+    }
+    visibility: hidden;
+    animation-delay: 1.3s !important;
+    animation: showMe forwards, typing 2s steps(25, end), blink .7s infinite;
+  }
+}
+
+mat-card-title {
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+h2.subheader {
+  font-size: 1.5rem;
+}
+
+.wave {
+  animation: wave 2.5s infinite;
+  display: inline-block;
+  transform-origin: 70% 70%;
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0.0deg)
+  }
+  10% {
+    transform: rotate(14.0deg)
+  }
+  20% {
+    transform: rotate(-8.0deg)
+  }
+  30% {
+    transform: rotate(14.0deg)
+  }
+  40% {
+    transform: rotate(-4.0deg)
+  }
+  50% {
+    transform: rotate(10.0deg)
+  }
+  60% {
+    transform: rotate(0.0deg)
+  }
+  100% {
+    transform: rotate(0.0deg)
+  }
+}
+
+@keyframes showMe {
+  to {
+    visibility: visible;
+  }
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+#profile {
+  text-align: center;
+  color: white;
+  background: #6dbf69;
+  min-height: calc(100vh - #{$navbar-height});
+  border-bottom: 1px solid black;
+  animation: profile-intro 2s forwards;
+  animation-delay: 3.5s;
+
+  @media screen and (max-width: 400px) {
+    min-height: calc(50vh - #{$navbar-height});
+    animation: none !important;
+
+    &.intro {
+      font-size: 1em;
+    }
+  }
+}
+
+@keyframes profile-intro {
+  to {
+    min-height: calc(50vh - #{$navbar-height});
+  }
+}
+
+.profile-img {
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  animation: fadeIn 3s forwards;
+}
+
+img {
+  display: block;
+  margin: 0 auto 20px;
+  vertical-align: middle;
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+a {
+  pointer-events: none;
+}
+
+.section {
+  padding: 50px;
+}
+
+#about-me {
+  display: block;
+  max-height: calc(100vh - #{$navbar-height});
+  background: #deffdc;
+
+  h2 {
+    color: black;
+  }
+
+  .about-me-info {
+    font-size: 1.05rem;
+    font-weight: 500;
+    @media screen and (max-width: 400px) {
+      font-size: 14px;
+    }
+  }
+}
+
+.skills {
+  font-size: 0.7em;
+}
+
+:host ::ng-deep {
+  .mat-card {
+    border-radius: 1rem;
+  }
+
+  .mat-card-title {
+    user-select: none;
+  }
+}
+
+.overlay {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  z-index: 2;
+  animation: overlay forwards;
+  animation-delay: 3.5s;
+
+  @media screen and (max-width: 400px) {
+    display: none;
+    animation: none !important;
+  }
+
+  @keyframes overlay {
+    to {
+      height: 0;
+    }
+  }
+}
