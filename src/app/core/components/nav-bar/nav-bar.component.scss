@@ -66,6 +66,10 @@
       visibility: visible;
       opacity: 1;
       transform: translate(-50%, 100%);
+
+      @media screen and (max-width: 400px) {
+        visibility: hidden;
+      }
     }
   }
 
@@ -131,6 +135,11 @@
     transform: translate(-50%, 100%);
   }
 
+
+  @media screen and (max-width: 400px) {
+    display: none;
+  }
+
   &.linkedin:after {
     border-bottom: 7px solid $color-linkedin;
   }
@@ -157,6 +166,12 @@
       background: $color-linkedin;
       border: solid 2px $color-linkedin;
       transform: translateY(-0.25em);
+      @media screen and (max-width: 400px) {
+        transform: none !important;
+        color: black !important;
+        background: transparent;
+        border: solid 2px transparent;
+      }
     }
 
     &.github {
@@ -164,6 +179,12 @@
       background: $color-github;
       border: solid 2px $color-github;
       transform: translateY(-0.25em);
+      @media screen and (max-width: 400px) {
+        transform: none !important;
+        color: black !important;
+        background: transparent;
+        border: solid 2px transparent;
+      }
     }
 
     &.email {
@@ -171,6 +192,12 @@
       background: $color-email;
       border: solid 2px $color-email;
       transform: translateY(-0.25em);
+      @media screen and (max-width: 400px) {
+        transform: none !important;
+        color: black !important;
+        background: transparent;
+        border: solid 2px transparent;
+      };
     }
   }
 }
