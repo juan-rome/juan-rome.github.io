@@ -1,0 +1,201 @@
+@import "../../../../styles/variables";
+
+.navbar {
+  font-weight: 700;
+  background-color: $navbar-color;
+  min-height: $navbar-height;
+  border-bottom: 1px solid black;
+
+  a:hover, {
+    &:not(.navbar-brand) {
+      //color: #18bc9c -- dark mode
+      color: white;
+    }
+
+    &.navbar-brand {
+      //color: #18bc9c -- dark mode
+      box-shadow: rgba(64, 248, 46, 0.4) 5px 5px,
+      rgba(65, 240, 46, 0.3) 10px 10px,
+      rgba(52, 240, 46, 0.2) 15px 15px,
+      rgba(52, 240, 46, 0.1) 20px 20px,
+      rgba(240, 46, 170, 0.05) 25px 25px;
+    }
+  }
+}
+
+.fixed-top {
+  padding: 10px 0;
+}
+
+// adjust for mobile view
+@media (min-width: 400px) {
+  .fixed-top.navbar-shrink {
+    padding: 20px 0;
+  }
+}
+
+.navbar-brand {
+  float: left;
+  color: black;
+  font-size: 22px;
+  line-height: 22px;
+  transition: all .5s; // hover Effects
+  user-select: none;
+}
+
+.icon {
+  padding-top: 7px;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 29px;
+  border-radius: 100%;
+  display: inline-block;
+  animation: bounce 2s ease;
+  animation-delay: 5s;
+  box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 2px 6px 2px;
+
+  @media screen and (max-width: 400px) {
+    animation: none;
+  }
+
+  &:hover {
+    .tooltip {
+      visibility: visible;
+      opacity: 1;
+      transform: translate(-50%, 100%);
+    }
+  }
+
+  &.linkedin {
+    .tooltip {
+      background: $color-linkedin;
+      color: white;
+
+      &:after {
+        border-top-color: $color-linkedin;
+      }
+    }
+  }
+
+  &.github {
+    .tooltip {
+      background: $color-github;
+      color: white;
+
+      &:after {
+        border-top-color: $color-github;
+      }
+    }
+  }
+
+  &.email {
+    .tooltip {
+      background: $color-email;
+      color: white;
+
+      &:after {
+        border-top-color: $color-email;
+      }
+    }
+  }
+}
+
+/* Tooltips */
+.tooltip {
+  display: block;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  padding: 0.4rem .75rem;
+  border-radius: 25px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -100%);
+  transition: all 0.5s ease;
+
+  &:after {
+    display: block;
+    position: absolute;
+    bottom: 34px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    content: "";
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    transform: translate(-50%, 100%);
+  }
+
+  &.linkedin:after {
+    border-bottom: 7px solid $color-linkedin;
+  }
+
+  &.email:after {
+    border-bottom: 7px solid $color-email;
+  }
+
+  &.github:after {
+    border-bottom: 7px solid $color-github;
+  }
+}
+
+
+.icon-outline {
+  font-size: 20px;
+  color: #000000;
+  transition: all .5s;
+  border: solid 2px transparent;
+
+  &:hover {
+    &.linkedin {
+      color: #fcfcfc;
+      background: $color-linkedin;
+      border: solid 2px $color-linkedin;
+      transform: translateY(-0.25em);
+    }
+
+    &.github {
+      color: #fcfcfc;
+      background: $color-github;
+      border: solid 2px $color-github;
+      transform: translateY(-0.25em);
+    }
+
+    &.email {
+      color: #fcfcfc;
+      background: $color-email;
+      border: solid 2px $color-email;
+      transform: translateY(-0.25em);
+    }
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(1.1, .9) translateY(0);
+  }
+  30% {
+    transform: scale(.9, 1.1) translateY(-11px);
+  }
+  50% {
+    transform: scale(1.05, .95) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(-7px);
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+
