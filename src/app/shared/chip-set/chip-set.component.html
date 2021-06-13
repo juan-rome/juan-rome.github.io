@@ -1,0 +1,7 @@
+<mat-chip-list>
+  <ng-container *ngFor="let chip of chips">
+    <div @popInOut class="chip d-flex flex-row align-items-center justify-content-center">
+      <mat-chip><span [ngTemplateOutlet]="chip.template"> </span></mat-chip>
+    </div>
+  </ng-container>
+</mat-chip-list>

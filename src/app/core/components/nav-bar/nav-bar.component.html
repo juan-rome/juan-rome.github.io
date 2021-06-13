@@ -1,1 +1,21 @@
-DEPLOY BUILD TEST
+<nav id="navbar-container" class="navbar fixed-top px-1 d-flex navbar-shrink">
+  <div class="mx-3 w-100">
+    <a class="navbar-brand px-1">juan romero</a>
+    <div class="collapse navbar-collapse d-flex" style="flex-basis: auto">
+      <div class="navbar-nav align-items-center ml-auto flex-row">
+        <a [href]="appConstants.LINKED_IN_ROUTE" target="_blank" class="icon linkedin icon-outline nav-item mx-2 pt-1">
+          <icon [icon]="appConstants.LINKED_IN_ICON"></icon>
+          <div class="tooltip linkedin">{{ appConstants.LINKED_IN_LABEL }}</div>
+        </a>
+        <a [href]="appConstants.GITHUB_ROUTE" target="_blank" class="icon github icon-outline mx-2 nav-item pt-1">
+          <icon [icon]="appConstants.GITHUB_ICON"></icon>
+          <div class="tooltip github">{{ appConstants.GITHUB_LABEL }}</div>
+        </a>
+        <a [href]="appConstants.EMAIL_ROUTE" target="_blank" class="icon email icon-outline mx-2 nav-item pt-1">
+          <icon [icon]="appConstants.EMAIL_ICON"></icon>
+          <div class="tooltip email">{{ appConstants.CONTACT_LABEL }}</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
