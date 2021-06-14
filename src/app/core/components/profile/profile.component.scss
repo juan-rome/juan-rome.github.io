@@ -14,7 +14,7 @@
   padding-right: 0.25rem;
   user-select: none;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 450px) {
     visibility: visible;
     animation: none !important;
     border: none !important;
@@ -34,7 +34,7 @@
   }
 
   &.delay {
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 450px) {
       visibility: visible !important;
       font-size: .5em;
       border: none !important;
@@ -117,7 +117,7 @@ h2.subheader {
   animation: profile-intro 2s forwards;
   animation-delay: 3.5s;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 450px) {
     min-height: calc(50vh - #{$navbar-height});
     animation: none !important;
 
@@ -138,8 +138,9 @@ h2.subheader {
   height: 175px;
   border-radius: 50%;
   animation: fadeIn 3s forwards;
+  user-select: none;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 450px) {
     animation: none !important;
 
     &.intro {
@@ -168,7 +169,7 @@ a {
 }
 
 .section {
-  padding: 50px;
+  padding: 3vh;
 }
 
 #about-me {
@@ -182,7 +183,7 @@ a {
   .about-me-info {
     font-size: 1.05rem;
     font-weight: 500;
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 450px) {
       font-size: 14px;
     }
   }
@@ -216,7 +217,7 @@ a {
   animation: overlay forwards;
   animation-delay: 3.5s;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 450px) {
     display: none;
     animation: none !important;
   }
