@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.2.
 
-## Getting STarted
+## Getting Started
 
 Run `ng start` to build the project.
 
