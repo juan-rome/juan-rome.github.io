@@ -1,26 +1,38 @@
 :host ::ng-deep {
-  .mat-chip.mat-standard-chip {
-    background-color: #6dbf69;
-    color: white;
-    font-weight: 400;
-    font-size: 14px;
-    user-select: none;
-    height: 100%;
-    padding-left: 8px;
-    padding-right: 8px;
-  }
-  .mat-chip-list-wrapper {
-    justify-content: center;
+  .mat-chip {
+    .mat-chip-ripple {
+      @media screen and (max-width: 450px) {
+        display: none !important;
+      }
+    }
+
+    &.mat-standard-chip {
+      background-color: #6dbf69;
+      color: white;
+      font-weight: 400;
+      font-size: 14px;
+      user-select: none;
+      height: 100%;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
+    &.mat-standard-chip {
+      transition: all .5s;
+      @media screen and (min-width: 450px) {
+        &:hover {
+          box-shadow: rgb(60 64 67 / 30%) 0 1px 2px 0, rgb(60 64 67 / 15%) 0 2px 6px 2px;
+          transform: translateY(-0.35em);
+        }
+      }
+
+      &:after {
+        background: transparent;
+      }
+    }
   }
 
-  .mat-chip.mat-standard-chip {
-    transition: all .5s;
-    &:hover {
-      box-shadow: rgb(60 64 67 / 30%) 0 1px 2px 0, rgb(60 64 67 / 15%) 0 2px 6px 2px;
-      transform: translateY(-0.35em);
-    }
-    &:after {
-      background: transparent;
-    }
+  .mat-chip-list-wrapper {
+    justify-content: center;
   }
 }
