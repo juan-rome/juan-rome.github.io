@@ -15,7 +15,7 @@ export class ProfileComponent {
   hideBorder = false;
   skills = ['Java', 'Spring', 'Python', 'Git', 'Angular', 'Bootstrap', 'JPA',
     'JDBC', 'Jenkins', 'JUnit', 'Node.js', 'PostgreSQL', 'PrimeNg',
-    'REST', 'RXJS', 'SpringBoot', 'IntelliJ'].sort();
+    'REST', 'RXJS', 'SpringBoot', 'IntelliJ', 'LitElement'].sort();
   languages = ['CSS', 'HTML', 'Java', 'JavaScript', 'TypeScript', 'Python'];
   practices = ['Agile', 'CI/CD', 'Scrum', 'Test Driven Development'];
 }
