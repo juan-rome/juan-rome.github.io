@@ -17,6 +17,7 @@
 
 - [ ] Add a real `public/resume.pdf` — the Resume section's "Download PDF"
       button currently points at `/resume.pdf`, which doesn't exist yet.
+- [ ] Replace `src/app/favicon.ico` — it's still create-next-app's default.
 - [ ] Populate `src/content/ai-lab.ts` with real AI workflow/plugin/CRM
       demos as they're built (planned this week — see project chat).
 - [ ] Lighthouse pass: run against the deployed site and close any gap to
