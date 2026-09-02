@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens — dark mode is the primary, designed-for experience.
+ * Light mode is a straightforward inversion, not a separately art-directed
+ * theme (per the "dark mode first, light mode optional later" brief).
+ */
+:root {
+  --background: #0a0a0c;
+  --background-elevated: #101014;
+  --foreground: #f2f2f5;
+  --muted: #9a9ba3;
+  --muted-foreground: #6b6c74;
+  --border: #202024;
+  --border-strong: #2c2c31;
+  --accent: #4f56e5;
+  --accent-foreground: #ffffff;
+  --focus-ring: #7b81ff;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --container-max: 72rem;
+}
+
+:root[data-theme="light"] {
+  --background: #ffffff;
+  --background-elevated: #f6f6f8;
+  --foreground: #101013;
+  --muted: #55565f;
+  --muted-foreground: #8a8b93;
+  --border: #e6e6ea;
+  --border-strong: #d5d5db;
+  --accent: #4338ca;
+  --accent-foreground: #ffffff;
+  --focus-ring: #4338ca;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-elevated: var(--background-elevated);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --background: #ffffff;
+    --background-elevated: #f6f6f8;
+    --foreground: #101013;
+    --muted: #55565f;
+    --muted-foreground: #8a8b93;
+    --border: #e6e6ea;
+    --border-strong: #d5d5db;
+    --accent: #4338ca;
+    --accent-foreground: #ffffff;
+    --focus-ring: #4338ca;
+  }
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
