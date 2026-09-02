@@ -6,8 +6,8 @@ export const site = {
   location: "United States",
   links: {
     github: "https://github.com/juan-rome",
-    linkedin: "https://www.linkedin.com/in/juanromero",
-    email: "mailto:hello@juanromero.dev",
+    linkedin: "https://www.linkedin.com/in/juan-r-755055214/",
+    email: "mailto:jjromee05@gmail.com",
   },
   resumeHref: "/resume.pdf",
 } as const;
