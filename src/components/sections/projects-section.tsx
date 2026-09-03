@@ -29,7 +29,7 @@ export function ProjectsSection() {
               id={project.slug}
               className="border-border scroll-mt-24 rounded-2xl border p-6 sm:p-10"
             >
-              <p className="text-accent text-xs font-medium">{project.company}</p>
+              <p className="text-accent-text text-xs font-medium">{project.company}</p>
               <h3 className="mt-2 text-2xl font-semibold tracking-tight">
                 {project.title}
               </h3>

@@ -24,7 +24,7 @@ export function EngineeringWorkHighlights() {
                 href={`#${project.slug}`}
                 className="group border-border hover:border-foreground/30 block h-full rounded-2xl border p-6 transition-colors"
               >
-                <p className="text-accent text-xs font-medium">{project.company}</p>
+                <p className="text-accent-text text-xs font-medium">{project.company}</p>
                 <h3 className="text-foreground mt-2 font-semibold">{project.title}</h3>
                 <p className="text-muted mt-2 text-sm text-pretty">{project.impact[0]}</p>
                 <span className="text-muted-foreground group-hover:text-foreground mt-4 inline-block text-sm">

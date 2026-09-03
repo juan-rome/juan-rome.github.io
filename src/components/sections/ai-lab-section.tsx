@@ -48,7 +48,7 @@ export function AiLabSection() {
                       {item.githubUrl ? (
                         <a
                           href={item.githubUrl}
-                          className="text-accent hover:underline"
+                          className="text-accent-text hover:underline"
                           target="_blank"
                           rel="noreferrer"
                         >
@@ -58,7 +58,7 @@ export function AiLabSection() {
                       {item.demoUrl ? (
                         <a
                           href={item.demoUrl}
-                          className="text-accent hover:underline"
+                          className="text-accent-text hover:underline"
                           target="_blank"
                           rel="noreferrer"
                         >

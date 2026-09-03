@@ -8,7 +8,7 @@ export function Hero() {
     <section id="top" className="pt-24 pb-20 sm:pt-32 sm:pb-28">
       <Container>
         <FadeIn>
-          <p className="text-accent text-sm font-medium">{site.role}</p>
+          <p className="text-accent-text text-sm font-medium">{site.role}</p>
         </FadeIn>
         <FadeIn delay={0.05}>
           <h1 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight text-balance sm:text-6xl">

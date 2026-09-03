@@ -18,6 +18,12 @@
   --border-strong: #2c2c31;
   --accent: #4f56e5;
   --accent-foreground: #ffffff;
+  /* Lighter than --accent specifically for text set directly on the page
+     background (eyebrows, labels) — --accent itself only clears WCAG AA
+     (4.5:1) for normal text when it's a solid background under white text,
+     not as foreground text on --background (that combination is ~3.57:1,
+     confirmed failing via an axe-core audit). */
+  --accent-text: #818cf8;
   --focus-ring: #7b81ff;
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
@@ -36,6 +42,8 @@
   --border-strong: #d5d5db;
   --accent: #4338ca;
   --accent-foreground: #ffffff;
+  /* #4338ca on white is already ~7.9:1 — no lighter variant needed here. */
+  --accent-text: #4338ca;
   --focus-ring: #4338ca;
 }
 
@@ -49,6 +57,7 @@
   --color-border-strong: var(--border-strong);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-text: var(--accent-text);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
 }

@@ -16,7 +16,7 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <FadeIn className={cn("max-w-2xl", className)}>
-      {eyebrow ? <p className="text-accent text-sm font-medium">{eyebrow}</p> : null}
+      {eyebrow ? <p className="text-accent-text text-sm font-medium">{eyebrow}</p> : null}
       <h2 className="mt-2 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
         {title}
       </h2>
