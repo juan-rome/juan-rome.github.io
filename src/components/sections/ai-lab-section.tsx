@@ -74,7 +74,7 @@ function AiLabCard({ item }: { item: AiLabItem }) {
               target="_blank"
               rel="noreferrer"
             >
-              Live demo
+              See it in action
             </a>
           ) : null}
         </div>
