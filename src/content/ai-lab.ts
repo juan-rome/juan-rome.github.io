@@ -1,8 +1,12 @@
 export type Audience = "Devs" | "PMs" | "Designers";
 
+/** What kind of Claude Code tool this is — shown as the card's colored badge. */
+export type ToolCategory = "Skill" | "Workflow" | "Agent" | "MCP Server";
+
 export type AiLabItem = {
   slug: string;
   title: string;
+  category: ToolCategory;
   status: "live" | "in-progress" | "planned";
   summary: string;
   stack: string[];
@@ -24,7 +28,8 @@ export type AiLabItem = {
 export const aiLabItems: AiLabItem[] = [
   {
     slug: "a11y-audit-skill",
-    title: "Accessibility Audit Skill",
+    title: "Accessibility Audit",
+    category: "Skill",
     status: "live",
     summary:
       "A Claude Code skill that runs a real axe-core scan and turns raw violations into a prioritized, fix-oriented report. Dogfooded against this site — it found 3 real WCAG issues on the first run, and those exact fixes shipped.",
@@ -35,7 +40,8 @@ export const aiLabItems: AiLabItem[] = [
   },
   {
     slug: "jira-to-pr-workflow",
-    title: "Jira → PR Workflow",
+    title: "Jira → PR",
+    category: "Workflow",
     status: "live",
     summary:
       "A Claude Code workflow that fetches a Jira ticket, refuses to implement it without a real description/AC/testing plan, implements it, and opens a PR with a real embedded screenshot — then closes the loop with an @-mention comment back on the ticket. Run against a real Jira sandbox: one ticket passed the gate and shipped a real PR, one was correctly blocked.",
@@ -47,6 +53,7 @@ export const aiLabItems: AiLabItem[] = [
   {
     slug: "secret-leak-scanner",
     title: "Secret Leak Scanner",
+    category: "Skill",
     status: "live",
     summary:
       "A local, offline Claude Code skill that scans a diff's added lines for AWS/GitHub/Slack tokens, private keys, and high-entropy literals before they're pushed. Dogfooded clean against a real 1,300+ line diff and caught its own false-positive bug (unquoted env references) via a fixture regression test before it shipped.",
@@ -58,6 +65,7 @@ export const aiLabItems: AiLabItem[] = [
   {
     slug: "pm-ticket-readiness-checker",
     title: "PM Ticket Readiness Checker",
+    category: "Skill",
     status: "live",
     summary:
       "A coaching-style repackaging of the Jira → PR workflow's quality gate for PMs: pastes a ticket, scores its Description/AC/Testing Plan, and explains why a thin section costs time downstream instead of just failing silently. Dogfooded against the exact two real tickets from the Jira sandbox run — reproduces the same ready/blocked verdict independently.",

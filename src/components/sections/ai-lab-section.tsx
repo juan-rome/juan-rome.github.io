@@ -1,13 +1,14 @@
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn } from "@/components/ui/fade-in";
-import { aiLabItems, type AiLabItem } from "@/content/ai-lab";
+import { aiLabItems, type AiLabItem, type ToolCategory } from "@/content/ai-lab";
 import { cn } from "@/lib/utils";
 
-const statusBadgeClasses: Record<AiLabItem["status"], string> = {
-  live: "border-green-500/30 bg-green-500/15 text-green-400",
-  "in-progress": "border-border-strong text-muted",
-  planned: "border-border-strong text-muted",
+const categoryBadgeClasses: Record<ToolCategory, string> = {
+  Skill: "border-indigo-500/30 bg-indigo-500/15 text-indigo-400",
+  Workflow: "border-amber-500/30 bg-amber-500/15 text-amber-400",
+  Agent: "border-sky-500/30 bg-sky-500/15 text-sky-400",
+  "MCP Server": "border-fuchsia-500/30 bg-fuchsia-500/15 text-fuchsia-400",
 };
 
 function formatAudiences(audiences: AiLabItem["audiences"]) {
@@ -38,16 +39,23 @@ export function AiLabSection() {
             {aiLabItems.map((item, index) => (
               <FadeIn key={item.slug} delay={index * 0.04}>
                 <div className="border-border h-full rounded-2xl border p-6">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-2">
                     <h3 className="font-semibold">{item.title}</h3>
-                    <span
-                      className={cn(
-                        "rounded-full border px-2 py-0.5 text-xs font-medium capitalize",
-                        statusBadgeClasses[item.status]
-                      )}
-                    >
-                      {item.status.replace("-", " ")}
-                    </span>
+                    <div className="flex shrink-0 items-center gap-2">
+                      {item.status !== "live" ? (
+                        <span className="border-border-strong text-muted rounded-full border px-2 py-0.5 text-xs font-medium capitalize">
+                          {item.status.replace("-", " ")}
+                        </span>
+                      ) : null}
+                      <span
+                        className={cn(
+                          "rounded-full border px-2 py-0.5 text-xs font-medium",
+                          categoryBadgeClasses[item.category]
+                        )}
+                      >
+                        {item.category}
+                      </span>
+                    </div>
                   </div>
                   <p className="text-accent-text mt-2 text-xs font-medium tracking-wide uppercase">
                     For {formatAudiences(item.audiences)}
