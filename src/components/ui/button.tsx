@@ -1,5 +1,4 @@
 import type { ComponentPropsWithoutRef } from "react";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 const baseStyles =
@@ -20,19 +19,25 @@ type ButtonAsButton = ComponentPropsWithoutRef<"button"> & {
   href?: undefined;
 };
 
-type ButtonAsLink = ComponentPropsWithoutRef<typeof Link> & {
+type ButtonAsLink = ComponentPropsWithoutRef<"a"> & {
   variant?: ButtonVariant;
   href: string;
 };
 
 export type ButtonProps = ButtonAsButton | ButtonAsLink;
 
-/** Shared button/CTA styling for both real buttons and navigational links. */
+/**
+ * Shared button/CTA styling for both real buttons and links. Renders link
+ * variants as a plain <a> rather than next/link's Link — every current
+ * href is a same-page hash anchor, mailto:, an external URL, or a static
+ * file, none of which benefit from next/link's client-side route
+ * transitions on this single-route site.
+ */
 export function Button({ variant = "primary", className, ...props }: ButtonProps) {
   const styles = cn(baseStyles, variants[variant], className);
 
   if (props.href !== undefined) {
-    return <Link {...(props as ButtonAsLink)} className={styles} />;
+    return <a {...(props as ButtonAsLink)} className={styles} />;
   }
 
   return <button {...(props as ButtonAsButton)} className={styles} />;
