@@ -22,7 +22,7 @@ function formatAudiences(audiences: AiLabItem["audiences"]) {
 
 function AiLabCard({ item }: { item: AiLabItem }) {
   return (
-    <div className="border-border h-full w-[85vw] max-w-sm shrink-0 snap-start rounded-2xl border p-6 sm:w-80">
+    <div className="border-border h-full w-full rounded-2xl border p-6">
       <div className="flex items-center justify-between gap-2">
         <h3 className="font-semibold">{item.title}</h3>
         <div className="flex shrink-0 items-center gap-2">
@@ -101,7 +101,14 @@ function CategoryRow({
       <div className="mt-4">
         <Carousel ariaLabel={`${category} tools`}>
           {items.map((item, index) => (
-            <FadeIn key={item.slug} delay={index * 0.04} className="shrink-0">
+            <FadeIn
+              key={item.slug}
+              delay={index * 0.04}
+              className={cn(
+                "min-w-[280px] flex-1 snap-start",
+                items.length === 1 ? "max-w-none" : "max-w-md"
+              )}
+            >
               <AiLabCard item={item} />
             </FadeIn>
           ))}

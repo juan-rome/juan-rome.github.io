@@ -64,6 +64,23 @@ test("AI Lab carousel: only overflowing category rows show scroll arrows", async
   ).toHaveCount(0);
 });
 
+test("AI Lab carousel: a lone card fills its row instead of leaving a gap", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const agentRow = page.locator('[role="region"][aria-label="Agent tools"]');
+  const card = agentRow.locator(":scope > div").first();
+
+  const [rowBox, cardBox] = await Promise.all([
+    agentRow.boundingBox(),
+    card.boundingBox(),
+  ]);
+  expect(rowBox).not.toBeNull();
+  expect(cardBox).not.toBeNull();
+  // A couple pixels of slack for borders/rounding, not a meaningful gap.
+  expect(rowBox!.width - cardBox!.width).toBeLessThan(4);
+});
+
 test("AI Lab carousel: right arrow scrolls the row and left arrow scrolls back", async ({
   page,
 }) => {
