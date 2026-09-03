@@ -13,7 +13,16 @@ export const expertiseGroups: ExpertiseGroup[] = [
     title: "Product Engineering",
     description:
       "Shipping customer-facing product surfaces end to end, from architecture to launch.",
-    items: ["React", "Next.js", "TypeScript", "Design Systems", "Storybook"],
+    items: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Angular",
+      "Storyblok CMS",
+      "Design Systems",
+      "Storybook",
+      "Cypress",
+    ],
   },
   {
     title: "Experimentation",
@@ -25,6 +34,8 @@ export const expertiseGroups: ExpertiseGroup[] = [
       "Multi-Armed Bandits",
       "Bucketing & Stickiness",
       "Segment",
+      "Amplitude",
+      "FullStory",
     ],
   },
   {
@@ -36,7 +47,14 @@ export const expertiseGroups: ExpertiseGroup[] = [
     title: "Infrastructure",
     description:
       "Stepping outside typical front-end scope when a platform problem blocks the team.",
-    items: ["nginx", "CI/CD", "Environment Boundary Security", "Next.js Deployment"],
+    items: [
+      "nginx",
+      "AWS",
+      "CI/CD",
+      "PagerDuty",
+      "Environment Boundary Security",
+      "Next.js Deployment",
+    ],
   },
   {
     title: "AI-Assisted Engineering",
@@ -44,6 +62,7 @@ export const expertiseGroups: ExpertiseGroup[] = [
       "Using AI tooling as a force multiplier for production work, not a novelty.",
     items: [
       "Claude Code",
+      "GitHub Copilot",
       "MCP (Figma & Jira)",
       "Prompt Engineering",
       "AI-generated Test Coverage",

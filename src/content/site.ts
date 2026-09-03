@@ -3,7 +3,7 @@ export const site = {
   role: "Senior Software Engineer",
   tagline:
     "I build product experiences and the experimentation infrastructure behind them.",
-  location: "United States",
+  location: "San Diego, CA",
   links: {
     github: "https://github.com/juan-rome",
     linkedin: "https://www.linkedin.com/in/juan-r-755055214/",

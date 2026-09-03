@@ -9,16 +9,18 @@ export type Experience = {
 
 /**
  * Career history, expanded from resume bullets into outcomes + engineering
- * decisions. Sourced from Earnest performance reviews (2024 year-end, 2025
- * year-end, 2026 mid-year) and prior role context — not invented.
+ * decisions. Sourced from the 09/2026 resume and Earnest performance
+ * reviews (2024 year-end, 2025 year-end, 2026 mid-year) — not invented.
+ * Dates/titles here must match the resume exactly; it's the source of
+ * truth for employment history.
  */
 export const experience: Experience[] = [
   {
     company: "Earnest",
     role: "Senior Software Engineer",
-    period: "2023 — Present",
+    period: "Apr 2024 — Present",
     summary:
-      "Own the front-end architecture and experimentation infrastructure behind Earnest's student loan rate-check and application funnels, spanning product delivery, platform infrastructure, and developer experience.",
+      "Own the front-end architecture and experimentation infrastructure behind Earnest's student loan rate-check and application funnels, spanning product delivery, platform infrastructure, and developer experience. Promoted from Software Engineer II in Q3 2025.",
     stack: [
       "React",
       "Next.js",
@@ -31,39 +33,54 @@ export const experience: Experience[] = [
     ],
     highlights: [
       "Led the front-end migration of Earnest's Unified Application Flow (Amount, Citizenship, Address, Primer pages) from a legacy service into a single unified codebase — the critical path that unblocked Phase 1 launch of the new applicant flow.",
+      "Led integration of Verified's phone-based identity verification platform into the refinance rate-check funnel, partnering across internal and external engineering teams to deliver a secure, scalable onboarding experience that increased conversion from rate check start to submission by +17%.",
       "Designed and implemented an nginx routing architecture to run two Next.js applications on the same staging/production server, introducing per-project proxy rules for assets, API routes, and pages where only a single-project setup existed before.",
       "Owned the Primer page multi-armed-bandit experiment end to end — UI, feature-flag setup, event tracking, and a bucketing bug fix — shipping the winning variant to 100% of traffic with a measured +2.46% lift in Rate Check Start conversion.",
       "Took end-to-end ownership (~95%) of a reorder experiment that lifted Rate Check Results Viewed by +3.95%, while building Redis-backed session stickiness that now underpins every experiment run on the platform.",
-      "Led a first-of-kind cross-service integration (AFS ↔ Nexstory) for Earnest's Verified product, cutting the loan application flow from 7 steps to 4 and driving a +9.3% lift in Rate Check Results Viewed.",
-      "Refactored the team's shared `useExperiment` hook to centralize bucketing-ID logic — now the common experimentation substrate every active test on the team builds on.",
-      "Built the Medical Residency program's UI from scratch using an AI-assisted workflow (Claude with Figma and Jira MCPs), pairing rapid page generation with a 10+ page end-to-end automation suite wired into CI from day one.",
+      "Built and scaled shared experimentation infrastructure — a centralized `useExperiment` hook (bucketing-ID logic, Redis-backed sticky bucketing), an Optimizely SDK wrapper, and K6 performance test suites — now relied on by every active experiment across the team.",
+      "Built the Medical Residency program's UI from scratch using an AI-assisted workflow (Claude with Figma and Jira MCPs), pairing rapid page generation with a 10+ page end-to-end automation suite wired into CI from day one; AI-assisted workflows have cut routine implementation time by an estimated 30% without compromising code quality.",
       "Partnered with Security to close an environment-variable boundary risk surfaced by an incident, and led a cross-surface Optimizely bucketing audit that resolved a data-consistency question blocking Data & Analytics.",
-      "Shipped 9+ Optimizely experiments in 2025 alone, including wins of +4.41% (button copy), +18% and +23% (App Submission messaging experiments) — plus additional experiments across 2026.",
-      "Hosted a Storybook workshop that drove component-driven development adoption across teams, and regularly mentors junior engineers and new hires through pairing and onboarding.",
+      "Redesigned refinance calculator experiences for accessibility and usability, raising accessibility scores to 85%+, reducing customer drop-off, and ensuring WCAG 2.1 AA compliance.",
+      "Optimized New Relic and PagerDuty alerting by refining thresholds and consolidating redundant monitoring — reducing alert noise by 80–90% and improving mean-time-to-acknowledge.",
+      "Shipped 9+ Optimizely experiments in 2025 alone, including wins of +4.41% (button copy), +18% and +23% (App Submission messaging experiments).",
     ],
   },
   {
     company: "Capital One",
-    role: "Software Engineer II",
-    period: "2021 — 2023",
+    role: "Senior Software Engineer",
+    period: "May 2022 — Oct 2023",
     summary:
-      "Worked on Auto Navigator, Capital One's car-selection and loan-application experience, focused on turning one-off UI into a reusable design system.",
-    stack: ["React", "TypeScript", "Design Systems", "A/B Testing"],
+      "Led frontend redesigns and integrations across Capital One's micro-frontend applications, working in Lit web components.",
+    stack: ["Lit", "TypeScript", "Micro-Frontends"],
     highlights: [
-      "Refactored feature-specific UI into reusable components contributed back to Capital One's core engineering design system, reducing duplication for teams building on Auto Navigator.",
-      "Got first hands-on exposure to structured A/B testing, building the foundation for the experimentation-heavy work that followed at Earnest.",
+      "Led development of three major integrations and frontend redesigns using Lit web components, improving user adoption by +35% and overall user experience metrics by +65%.",
+      "Partnered cross-functionally with Engineering, QA, and Operations to resolve complex production issues, reducing application errors by 30% and improving platform reliability.",
+      "Architected and delivered solutions for 15+ new and existing features across micro-frontend applications, improving host compatibility and customer experience.",
     ],
   },
   {
     company: "H-E-B",
-    role: "Full Stack Engineer",
-    period: "2018 — 2021",
+    role: "Full Stack Software Engineer II",
+    period: "Apr 2020 — May 2022",
     summary:
-      "Built a modern replacement for Assortment, a legacy internal tool for managing in-store product placement and modeling how shelf position affects sales.",
-    stack: ["Angular", "Java", "Spring", "PostgreSQL"],
+      "Promoted within H-E-B's engineering team; built customer-facing features and owned production reliability for a grocery-retail platform.",
+    stack: ["Angular", "RxJS", "TypeScript"],
     highlights: [
-      "Rebuilt a legacy internal application that let merchandising teams manage product placement and model how eye-level shelf position affected sales and category performance.",
-      "Worked across the full stack — Angular front end, Java/Spring services, and a PostgreSQL data layer — on a tool used directly by merchandising teams to make placement decisions.",
+      "Diagnosed and resolved production issues, sustaining 99% uptime and reducing incident resolution time by 40% through proactive monitoring and alerting.",
+      "Collaborated with designers, stakeholders, and engineers to deliver customer-facing features using Angular, RxJS, TypeScript, HTML, and CSS.",
+      "Streamlined onboarding for junior engineers by creating training materials and running workshops that cut ramp-up time by 50%.",
+    ],
+  },
+  {
+    company: "H-E-B",
+    role: "Full Stack Software Engineer",
+    period: "Jun 2018 — Apr 2020",
+    summary:
+      "Started full-stack, working across customer-facing features and backend batch processing before promotion to Software Engineer II.",
+    stack: ["Spring Boot", "Spring Batch", "Java", "MySQL"],
+    highlights: [
+      "Implemented new application features and resolved complex technical issues, improving user satisfaction and reducing customer-reported defects.",
+      "Developed automated batch processing jobs using Spring Boot, Spring Batch, Java, MySQL, JDBC, and JPA, cutting data processing time by 40%.",
     ],
   },
 ];

@@ -2,6 +2,11 @@ export type Achievement = { stat: string; label: string };
 
 export const achievements: Achievement[] = [
   {
+    stat: "+17%",
+    label:
+      "Conversion lift from rate check start to submission on the Verified identity integration",
+  },
+  {
     stat: "+9.3%",
     label:
       "Lift to Rate Check Results Viewed from a first-of-kind AFS ↔ Nexstory integration",
@@ -15,6 +20,14 @@ export const achievements: Achievement[] = [
     label: "Lift to Rate Check Results Viewed, owned ~95% solo end to end",
   },
   { stat: "9+", label: "Optimizely experiments shipped in 2025 alone" },
+  {
+    stat: "30%",
+    label: "Cut in routine implementation time from AI-assisted (Claude Code) workflows",
+  },
+  {
+    stat: "85%+",
+    label: "Accessibility score on redesigned refinance calculator experiences",
+  },
   {
     stat: "100%",
     label:
