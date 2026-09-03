@@ -86,7 +86,7 @@ story.append(HRFlowable(width="100%", thickness=0.75, color=colors.HexColor("#99
 story.append(Paragraph("Profile", section_style))
 story.append(
     Paragraph(
-        "Senior Full-Stack Software Engineer with 7+ years of experience building "
+        "Senior Full-Stack Software Engineer with 8+ years of experience building "
         "scalable, customer-focused web applications across fintech and enterprise "
         "platforms. Specialized in React, TypeScript, Angular, Spring Boot, "
         "experimentation platforms, and modern frontend architecture, with a strong "

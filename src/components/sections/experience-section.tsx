@@ -8,12 +8,12 @@ export function ExperienceSection() {
     <Section id="experience">
       <SectionHeading
         eyebrow="Experience"
-        title="Seven years, three companies, one thread"
+        title="Eight years, three companies, one thread"
         description="Full-stack generalist to front-end architect to the engineer who owns experimentation infrastructure — each role built directly on the last."
       />
       <div className="mt-14 space-y-14">
         {experience.map((role, index) => (
-          <FadeIn key={role.company} delay={index * 0.05}>
+          <FadeIn key={`${role.company}-${role.period}`} delay={index * 0.05}>
             <div className="border-border grid gap-6 border-t pt-8 sm:grid-cols-[14rem_1fr]">
               <div>
                 <h3 className="text-lg font-semibold">{role.company}</h3>
