@@ -68,8 +68,8 @@ export const aiLabItems: AiLabItem[] = [
     category: "Skill",
     status: "live",
     summary:
-      "A coaching-style repackaging of the Jira → PR workflow's quality gate for PMs: pastes a ticket, scores its Description/AC/Testing Plan, and explains why a thin section costs time downstream instead of just failing silently. Dogfooded against the exact two real tickets from the Jira sandbox run — reproduces the same ready/blocked verdict independently.",
-    stack: ["Claude Code Skill", "Node.js"],
+      "A coaching-style repackaging of the Jira → PR workflow's quality gate for PMs: paste a ticket (or label it claude-ticket-checker in Jira) and it scores Description/AC/Testing Plan, explaining why a thin section costs time downstream instead of just failing silently — then comments the verdict on the ticket and removes the label. Dogfooded against the exact two real tickets from the Jira sandbox run — reproduces the same ready/blocked verdict independently.",
+    stack: ["Claude Code Skill", "Jira REST API", "Node.js"],
     audiences: ["PMs", "Devs"],
     githubUrl: "https://github.com/juan-rome/pm-ticket-readiness-checker",
     demoUrl:
