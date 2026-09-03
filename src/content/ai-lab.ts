@@ -44,4 +44,15 @@ export const aiLabItems: AiLabItem[] = [
     githubUrl: "https://github.com/juan-rome/jira-to-pr-workflow",
     demoUrl: "https://github.com/juan-rome/jira-to-pr-workflow/blob/main/RUNS.md",
   },
+  {
+    slug: "secret-leak-scanner",
+    title: "Secret Leak Scanner",
+    status: "live",
+    summary:
+      "A local, offline Claude Code skill that scans a diff's added lines for AWS/GitHub/Slack tokens, private keys, and high-entropy literals before they're pushed. Dogfooded clean against a real 1,300+ line diff and caught its own false-positive bug (unquoted env references) via a fixture regression test before it shipped.",
+    stack: ["Claude Code Skill", "Node.js", "Shannon Entropy", "Git"],
+    audiences: ["Devs"],
+    githubUrl: "https://github.com/juan-rome/secret-leak-scanner",
+    demoUrl: "https://github.com/juan-rome/secret-leak-scanner/blob/main/README.md",
+  },
 ];

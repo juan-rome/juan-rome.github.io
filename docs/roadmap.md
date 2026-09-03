@@ -26,15 +26,33 @@
       run end to end against a real Jira sandbox (see that repo's
       RUNS.md): one ticket passed the gate and shipped a real PR
       (juan-rome/jira-pr-demo-target#1), one was correctly blocked.
+- [x] AI Lab cards tagged by audience ("For Devs & PMs", etc.) — most of
+      these tools generalize past a pure-engineering audience and the
+      card should say so.
+- [x] AI Lab's third entry: a Secret Leak Scanner
+      (github.com/juan-rome/secret-leak-scanner) — local/offline diff
+      scanner for AWS/GitHub/Slack tokens, private keys, and high-entropy
+      literals. Dogfooded clean against a real 1,300+ line diff and
+      caught its own false-positive bug via a fixture regression test
+      before shipping.
 
 ## Next
 
 - [ ] Replace `src/app/favicon.ico` — it's still create-next-app's default.
-- [ ] One more AI Lab entry planned: an MCP server, leaning toward
-      wrapping Optimizely's API — ties directly to the Experimentation
-      Infrastructure story. See a11y-audit-skill / jira-to-pr-workflow for
-      the pattern to follow (SKILL.md + real tool + dogfooded example,
-      not a toy demo).
+- [ ] Three more AI Lab entries planned, each for a non-engineering
+      audience (explicitly not wrapping Storyblok/Optimizely — those are
+      work-owned IP, not personal sandboxes). See a11y-audit-skill /
+      jira-to-pr-workflow / secret-leak-scanner for the pattern to follow
+      (SKILL.md + real tool + dogfooded example, not a toy demo).
+  - [ ] PM Ticket Readiness Checker — coaching-style repackaging of the
+        jira-to-pr-workflow quality gate, explaining _why_ each section
+        (description/AC/testing plan) matters.
+  - [ ] Design-to-Code Fidelity Checker — screenshot diffing between a
+        design mockup image and a live implementation (no real Figma
+        account required — accepts two arbitrary images).
+  - [ ] Cypress Test Generator — analyzes a git diff/branch to generate
+        Cypress test skeletons for new/changed UI surface; planned to
+        dogfood against jira-pr-demo-target's character counter feature.
 - [ ] Lighthouse pass: run against the deployed site and close any gap to
       100 on Performance/Accessibility/Best Practices/SEO.
 - [ ] Structured data (JSON-LD `Person` schema) for the homepage.
