@@ -87,4 +87,16 @@ export const aiLabItems: AiLabItem[] = [
     githubUrl: "https://github.com/juan-rome/design-fidelity-checker",
     demoUrl: "https://github.com/juan-rome/design-fidelity-checker/blob/main/README.md",
   },
+  {
+    slug: "cypress-test-generator",
+    title: "Cypress Test Generator",
+    category: "Skill",
+    status: "live",
+    summary:
+      "Analyzes a diff's added UI surface (element ids, attributes, event listeners, class toggles) and drafts a Cypress test skeleton — real assertions where the diff proves them, explicit TODOs where business logic knowledge is required. Dogfooded against the exact real diff that added jira-pr-demo-target's character counter: correctly resolves an addEventListener and a classList.toggle back to their selectors across separate lines, with zero unresolved TODOs.",
+    stack: ["Claude Code Skill", "Node.js", "Cypress"],
+    audiences: ["Devs"],
+    githubUrl: "https://github.com/juan-rome/cypress-test-generator",
+    demoUrl: "https://github.com/juan-rome/cypress-test-generator/blob/main/README.md",
+  },
 ];

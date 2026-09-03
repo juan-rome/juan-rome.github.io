@@ -52,19 +52,26 @@
       Figma account required. Dogfooded with real rendered fixtures: 0%
       mismatch on a pixel-identical page, 1.94% on a deliberately
       drifted button, with a diff image isolating exactly that region.
+- [x] AI Lab's sixth entry: a Cypress Test Generator
+      (github.com/juan-rome/cypress-test-generator) — analyzes a diff's
+      added UI surface (ids, attributes, event listeners, class toggles)
+      and drafts a Cypress test skeleton, with explicit TODOs instead of
+      fabricated assertions wherever business logic can't be inferred.
+      Dogfooded against the exact real diff that added
+      jira-pr-demo-target's character counter: correctly resolves an
+      addEventListener and a classList.toggle to their selectors across
+      separate lines, zero unresolved TODOs.
 
 ## Next
 
 - [ ] Replace `src/app/favicon.ico` — it's still create-next-app's default.
-- [ ] One more AI Lab entry planned, for a non-engineering audience
-      (explicitly not wrapping Storyblok/Optimizely — those are
-      work-owned IP, not personal sandboxes). See a11y-audit-skill /
-      jira-to-pr-workflow / secret-leak-scanner / pm-ticket-readiness-checker /
-      design-fidelity-checker for the pattern to follow (SKILL.md + real
-      tool + dogfooded example, not a toy demo).
-  - [ ] Cypress Test Generator — analyzes a git diff/branch to generate
-        Cypress test skeletons for new/changed UI surface; planned to
-        dogfood against jira-pr-demo-target's character counter feature.
+- [ ] An "Agent" AI Lab entry, filling the last empty `ToolCategory`
+      alongside Skill/Workflow: a PR Readiness Agent that runs the
+      existing tools' logic (a11y, secret-scan, design-fidelity) as
+      inputs and makes a single holistic block/approve/advisory judgment
+      call with reasoning — not just another fixed pipeline relabeled as
+      "Agent." Needs a real rubric with genuine tradeoffs to earn the
+      category; scope carefully before starting.
 - [ ] Lighthouse pass: run against the deployed site and close any gap to
       100 on Performance/Accessibility/Best Practices/SEO.
 - [ ] Structured data (JSON-LD `Person` schema) for the homepage.
