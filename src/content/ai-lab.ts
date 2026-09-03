@@ -32,7 +32,7 @@ export const aiLabItems: AiLabItem[] = [
     category: "Skill",
     status: "live",
     summary:
-      "A Claude Code skill that runs a real axe-core scan and turns raw violations into a prioritized, fix-oriented report. Run against this very site — it found 3 real WCAG issues on the first pass, and those exact fixes shipped.",
+      "A Claude Code skill that runs a real axe-core scan and turns raw violations into a prioritized, fix-oriented report. Run against this very site, it found 3 real WCAG issues on the first pass, and those exact fixes shipped.",
     stack: ["Claude Code Skill", "Playwright", "axe-core", "Node.js"],
     audiences: ["Devs", "Designers"],
     githubUrl: "https://github.com/juan-rome/a11y-audit-skill",
@@ -44,7 +44,7 @@ export const aiLabItems: AiLabItem[] = [
     category: "Workflow",
     status: "live",
     summary:
-      "A Claude Code workflow that fetches a Jira ticket, refuses to implement it without a real description/AC/testing plan, implements it, and opens a PR with a real embedded screenshot — then closes the loop with an @-mention comment back on the ticket. Also supports a readiness-only mode (no implementation) with its own trigger label, so a quick 'is this ready' check doesn't require running the full pipeline. Run against a real Jira sandbox: one ticket passed the gate and shipped a real PR, one was correctly blocked.",
+      "A Claude Code workflow that fetches a Jira ticket, refuses to implement it without a real description, AC, and testing plan, then implements it and opens a PR with a real embedded screenshot. It also supports a readiness-only mode for a quick 'is this ready' check without running the full pipeline. Run against a real Jira sandbox: one ticket passed the gate and shipped a real PR, one was correctly blocked.",
     stack: ["Claude Code Skill", "Jira REST API", "Playwright", "GitHub CLI", "Node.js"],
     audiences: ["Devs", "PMs"],
     githubUrl: "https://github.com/juan-rome/jira-to-pr-workflow",
@@ -68,7 +68,7 @@ export const aiLabItems: AiLabItem[] = [
     category: "Skill",
     status: "live",
     summary:
-      "A coaching-style repackaging of the Jira → PR workflow's quality gate for PMs: paste any ticket — Jira, Linear, Asana, a doc — and it scores Description/AC/Testing Plan, explaining why a thin section costs time downstream instead of just failing silently. No API or account needed; live Jira automation on the same rubric lives in the Jira → PR workflow instead, to avoid two repos carrying the same Jira plumbing. Checked against the exact two real tickets from the Jira sandbox run — independently reproduces the same ready/blocked verdict.",
+      "A coaching-style repackaging of the Jira → PR workflow's quality gate for PMs. Paste any ticket from Jira, Linear, Asana, or a doc, and it scores the description, AC, and testing plan, explaining why a thin section costs time downstream. Checked against the exact two real tickets from the Jira sandbox run, and it independently reproduces the same ready/blocked verdict.",
     stack: ["Claude Code Skill", "Node.js"],
     audiences: ["PMs", "Devs"],
     githubUrl: "https://github.com/juan-rome/pm-ticket-readiness-checker",
@@ -81,7 +81,7 @@ export const aiLabItems: AiLabItem[] = [
     category: "Skill",
     status: "live",
     summary:
-      "Pixel-level diffing between a design mockup and a live implementation — no Figma account required, just two same-size PNGs (or a URL, captured automatically). Verified with real rendered fixtures: a pixel-identical page reports 0% mismatch, and a deliberately drifted button (wrong color + padding) fails the tool's own default gate at 1.94%, with a diff image highlighting exactly that region.",
+      "Pixel-level diffing between a design mockup and a live implementation. No Figma account required, just two same-size PNGs or a URL, captured automatically. Verified with real rendered fixtures: a pixel-identical page reports 0% mismatch, and a deliberately drifted button fails the tool's own default gate at 1.94%, with a diff image highlighting exactly that region.",
     stack: ["Claude Code Skill", "Playwright", "pixelmatch", "Node.js"],
     audiences: ["Designers", "Devs"],
     githubUrl: "https://github.com/juan-rome/design-fidelity-checker",
@@ -93,7 +93,7 @@ export const aiLabItems: AiLabItem[] = [
     category: "Skill",
     status: "live",
     summary:
-      "Analyzes a diff's added UI surface (element ids, attributes, event listeners, class toggles) and drafts a Cypress test skeleton — real assertions where the diff proves them, explicit TODOs where business logic knowledge is required. Run against the exact real diff that added jira-pr-demo-target's character counter: correctly resolves an addEventListener and a classList.toggle back to their selectors across separate lines, with zero unresolved TODOs.",
+      "Analyzes a diff's added UI surface (element ids, attributes, event listeners, class toggles) and drafts a Cypress test skeleton. Real assertions where the diff proves them, explicit TODOs where business logic knowledge is required. Run against the real diff that added jira-pr-demo-target's character counter, it correctly resolves an event listener and a class toggle back to their selectors across separate lines, with zero unresolved TODOs.",
     stack: ["Claude Code Skill", "Node.js", "Cypress"],
     audiences: ["Devs"],
     githubUrl: "https://github.com/juan-rome/cypress-test-generator",
@@ -105,7 +105,7 @@ export const aiLabItems: AiLabItem[] = [
     category: "Agent",
     status: "live",
     summary:
-      "Reviews a PR's diff by gathering real signals from four sibling tools above — installed as actual git dependencies and imported directly, not reimplemented — then makes one holistic block/advisory/approve judgment call with reasoning, instead of printing a checklist. A high-confidence secret leak is a hard block nothing else can outweigh; everything else is a weighted, capped, compounding score with honest 'not evaluated' handling so an approval never overclaims. Verified against real diffs from this project's own repos, including a real bug the verification caught (a test-file detector that missed .mjs extensions) and fixed before shipping.",
+      "Reviews a PR's diff by gathering real signals from the four sibling tools above, installed as actual git dependencies rather than reimplemented, then makes one holistic block, advisory, or approve call with reasoning. A high-confidence secret leak is a hard block nothing else can outweigh; everything else is a weighted, compounding score with honest 'not evaluated' handling so an approval never overclaims. Verified against real diffs from this project's own repos, including a real bug the verification caught and fixed before shipping.",
     stack: ["Claude Code Agent", "Node.js", "Git"],
     audiences: ["Devs"],
     githubUrl: "https://github.com/juan-rome/pr-readiness-agent",
