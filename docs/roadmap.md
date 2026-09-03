@@ -72,18 +72,27 @@
       required. Also lowered design-fidelity-checker's default
       `--fail-at` from 2% to 1% so its own flagship example (1.94%
       mismatch) actually demonstrates a failing gate without an extra
-      flag.
+      flag. jira-to-pr-workflow's two label triggers are also now gated
+      on a required board status (`claude-ticket-checker` only fires on
+      `To Do`, `claude-implement` only on `In Development`), so a
+      leftover label on a ticket that already moved on can't silently
+      fire the wrong thing.
+- [x] AI Lab's seventh entry: a PR Readiness Agent
+      (github.com/juan-rome/pr-readiness-agent) — the first real "Agent"
+      entry. Installs and imports the four sibling tools above as actual
+      git dependencies (not reimplementations) and makes one holistic
+      block/advisory/approve call: a hard-blocker carve-out for
+      high-confidence secrets, a weighted/capped/compounding score for
+      everything else, and honest "not evaluated" handling so an approval
+      never overclaims. Required refactoring a11y-audit-skill's
+      `scan.mjs` to be importable (it previously ran `main()`
+      unconditionally). Verified against real diffs from this project's
+      own repos — including a real bug the verification caught (a
+      test-file detector that missed `.mjs`) and fixed before shipping.
 
 ## Next
 
 - [ ] Replace `src/app/favicon.ico` — it's still create-next-app's default.
-- [ ] An "Agent" AI Lab entry, filling the last empty `ToolCategory`
-      alongside Skill/Workflow: a PR Readiness Agent that runs the
-      existing tools' logic (a11y, secret-scan, design-fidelity) as
-      inputs and makes a single holistic block/approve/advisory judgment
-      call with reasoning — not just another fixed pipeline relabeled as
-      "Agent." Needs a real rubric with genuine tradeoffs to earn the
-      category; scope carefully before starting.
 - [ ] Lighthouse pass: run against the deployed site and close any gap to
       100 on Performance/Accessibility/Best Practices/SEO.
 - [ ] Structured data (JSON-LD `Person` schema) for the homepage.

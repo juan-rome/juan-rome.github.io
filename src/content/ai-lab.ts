@@ -99,4 +99,16 @@ export const aiLabItems: AiLabItem[] = [
     githubUrl: "https://github.com/juan-rome/cypress-test-generator",
     demoUrl: "https://github.com/juan-rome/cypress-test-generator/blob/main/README.md",
   },
+  {
+    slug: "pr-readiness-agent",
+    title: "PR Readiness Agent",
+    category: "Agent",
+    status: "live",
+    summary:
+      "Reviews a PR's diff by gathering real signals from four sibling tools above — installed as actual git dependencies and imported directly, not reimplemented — then makes one holistic block/advisory/approve judgment call with reasoning, instead of printing a checklist. A high-confidence secret leak is a hard block nothing else can outweigh; everything else is a weighted, capped, compounding score with honest 'not evaluated' handling so an approval never overclaims. Verified against real diffs from this project's own repos, including a real bug the verification caught (a test-file detector that missed .mjs extensions) and fixed before shipping.",
+    stack: ["Claude Code Agent", "Node.js", "Git"],
+    audiences: ["Devs"],
+    githubUrl: "https://github.com/juan-rome/pr-readiness-agent",
+    demoUrl: "https://github.com/juan-rome/pr-readiness-agent/blob/main/README.md",
+  },
 ];
