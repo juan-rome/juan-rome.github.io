@@ -17,12 +17,18 @@
 - [x] Experience/achievements/expertise content reconciled against the
       09/2026 resume (corrected Capital One title and all employment
       dates, added the two separate H-E-B roles, added new stats)
+- [x] AI Lab's first real entry: a Claude Code accessibility-audit skill
+      (github.com/juan-rome/a11y-audit-skill) — dogfooded against this
+      site, which is also how the two accessibility bugs below were found
 
 ## Next
 
 - [ ] Replace `src/app/favicon.ico` — it's still create-next-app's default.
-- [ ] Populate `src/content/ai-lab.ts` with real AI workflow/plugin/CRM
-      demos as they're built (planned this week — see project chat).
+- [ ] Two more AI Lab entries planned: an MCP server (leaning toward
+      wrapping Optimizely's API — ties directly to the Experimentation
+      Infrastructure story) and a design/screenshot-to-component skill.
+      See the a11y-audit-skill repo for the pattern each should follow
+      (SKILL.md + real scanner/tool + dogfooded example, not a toy demo).
 - [ ] Lighthouse pass: run against the deployed site and close any gap to
       100 on Performance/Accessibility/Best Practices/SEO.
 - [ ] Structured data (JSON-LD `Person` schema) for the homepage.
