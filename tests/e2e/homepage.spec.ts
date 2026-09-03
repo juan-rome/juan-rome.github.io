@@ -163,3 +163,33 @@ test("Skill Quality Scorecard page: real page, real interactive wiring", async (
   ).toBeVisible();
   await expect(page.getByRole("button", { name: "octocat/Hello-World" })).toBeVisible();
 });
+
+test("Skill Workflow Builder page: real page, real graph-to-markdown pipeline", async ({
+  page,
+}) => {
+  await page.goto("/tools/workflow-builder/");
+
+  await expect(
+    page.getByRole("heading", { name: "Skill Workflow Builder", level: 1 })
+  ).toBeVisible();
+
+  // The example graph loads by default — its real dependency order should
+  // already be visible in the generated preview without any interaction.
+  const preview = page.getByLabel("Generated SKILL.md preview");
+  await expect(preview).toContainText("flowchart TD");
+  await expect(preview).toContainText("1. **fetch-ticket.mjs**");
+  await expect(preview).toContainText("5. **Open PR**");
+
+  // Adding a step should update the live preview without a page reload.
+  await page.getByRole("button", { name: "+ Add step" }).click();
+  await expect(preview).toContainText("New step");
+
+  // Clearing the canvas still generates a valid SKILL.md (a real empty-
+  // graph placeholder, not an error), which is graph-to-skill-md.mjs's
+  // actual behavior for zero nodes: topoSort([], []) is a real, empty
+  // (not cyclic) order, so it renders the doc's own "no steps yet" line
+  // rather than falling back to this page's separate empty-state message.
+  await page.getByRole("button", { name: "Clear" }).click();
+  await expect(preview).toContainText("No steps yet");
+  await expect(preview).not.toContainText("fetch-ticket.mjs");
+});

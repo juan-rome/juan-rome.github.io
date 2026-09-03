@@ -126,4 +126,16 @@ export const aiLabItems: AiLabItem[] = [
     githubUrl: "https://github.com/juan-rome/skill-quality-scorecard",
     demoUrl: "/tools/scorecard/",
   },
+  {
+    slug: "skill-workflow-builder",
+    title: "Skill Workflow Builder",
+    category: "Tool",
+    status: "live",
+    summary:
+      "Draw steps on a real node-based canvas, connect them, and export a real SKILL.md with a matching mermaid diagram, generated in actual dependency order (a real topological sort, not draw order) rather than hand-maintained. Recreating jira-to-pr-workflow's own real pipeline as a graph reproduces the exact same step order as that repo's hand-written SKILL.md.",
+    stack: ["React Flow", "Mermaid", "Node.js"],
+    audiences: ["Devs", "PMs"],
+    githubUrl: "https://github.com/juan-rome/skill-workflow-builder",
+    demoUrl: "/tools/workflow-builder/",
+  },
 ];

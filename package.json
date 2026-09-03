@@ -31,12 +31,15 @@
     ]
   },
   "dependencies": {
+    "@xyflow/react": "^12.11.6",
     "clsx": "^2.1.1",
     "framer-motion": "^13.1.1",
+    "mermaid": "^11.17.2",
     "next": "^15.5.25",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "skill-quality-scorecard": "github:juan-rome/skill-quality-scorecard",
+    "skill-workflow-builder": "github:juan-rome/skill-workflow-builder",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {

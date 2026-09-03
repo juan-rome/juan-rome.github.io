@@ -119,6 +119,21 @@
       repo, scored 5/100, correctly identified as barebones). Caught a
       real bug during development (a URL-trimming order bug that left a
       trailing `.git` in place) before shipping.
+- [x] AI Lab's ninth entry: the Skill Workflow Builder
+      (github.com/juan-rome/skill-workflow-builder), a real node-based
+      canvas (React Flow) for drawing a workflow as connected steps and
+      exporting a real SKILL.md with a matching mermaid diagram. The
+      actual engineering is the graph algorithm, not the drag-and-drop:
+      a real topological sort (Kahn's algorithm) orders the exported
+      steps by dependency, not draw order, with cycle detection that
+      names exactly which nodes are involved. Dogfooded by recreating
+      jira-to-pr-workflow's real pipeline as a graph, reproducing the
+      exact same step order as that repo's hand-written SKILL.md. Live
+      at `/tools/workflow-builder`. Building this also caught three real
+      accessibility issues before shipping (unlabeled form inputs, a
+      contrast failure in both a Tailwind class and Mermaid's own dark
+      theme against this site's actual background, and a non-focusable
+      scrollable region), all fixed via a11y-audit-skill.
 
 ## Next
 
