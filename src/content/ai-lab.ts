@@ -105,7 +105,7 @@ export const aiLabItems: AiLabItem[] = [
     category: "Agent",
     status: "live",
     summary:
-      "Reviews a PR's diff by gathering real signals from the four sibling tools above, installed as actual git dependencies rather than reimplemented, then makes one holistic block, advisory, or approve call with reasoning. A high-confidence secret leak is a hard block nothing else can outweigh; everything else is a weighted, compounding score with honest 'not evaluated' handling so an approval never overclaims. Verified against real diffs from this project's own repos, including a real bug the verification caught and fixed before shipping.",
+      "Checks a pull request's code changes using the four skills below (secret leaks, accessibility, design fidelity, and test coverage) as real inputs, then gives one clear verdict: block, approve, or flag concerns, with plain-language reasoning. A leaked secret always blocks the PR; everything else is weighed together into a single score, and anything it couldn't check is called out honestly rather than assumed fine.",
     stack: ["Claude Code Agent", "Node.js", "Git"],
     audiences: ["Devs"],
     githubUrl: "https://github.com/juan-rome/pr-readiness-agent",
