@@ -10,6 +10,11 @@ const statusBadgeClasses: Record<AiLabItem["status"], string> = {
   planned: "border-border-strong text-muted",
 };
 
+function formatAudiences(audiences: AiLabItem["audiences"]) {
+  if (audiences.length <= 1) return audiences.join("");
+  return `${audiences.slice(0, -1).join(", ")} & ${audiences[audiences.length - 1]}`;
+}
+
 export function AiLabSection() {
   return (
     <Section id="ai-lab" className="bg-background-elevated/40">
@@ -44,6 +49,9 @@ export function AiLabSection() {
                       {item.status.replace("-", " ")}
                     </span>
                   </div>
+                  <p className="text-accent-text mt-2 text-xs font-medium tracking-wide uppercase">
+                    For {formatAudiences(item.audiences)}
+                  </p>
                   <p className="text-muted mt-2 text-sm text-pretty">{item.summary}</p>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {item.stack.map((tech) => (
