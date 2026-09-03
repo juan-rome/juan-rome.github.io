@@ -134,19 +134,20 @@
       contrast failure in both a Tailwind class and Mermaid's own dark
       theme against this site's actual background, and a non-focusable
       scrollable region), all fixed via a11y-audit-skill.
-- [x] AI Lab's tenth entry: a "Which Skill Should I Build?" wizard at
-      `/tools/wizard` — three yes/no questions mapped to the actual
-      distinguishing traits behind this site's own Skill/Workflow/Agent/
-      MCP Server categories, with a deliberate priority order (protocol
-      need beats judgment-weighing beats system-chaining beats the Skill
-      default), a real reasoning explanation, a link to the closest real
-      example already on this site, and a downloadable starter scaffold
-      per category. Unlike the other two live tools, this one's logic
-      lives directly in the portfolio's own codebase
-      (`src/lib/skill-wizard.ts`) rather than a separate repo, since it's
-      genuinely site-specific content and logic, not a reusable
-      standalone algorithm — covered by real unit tests (Vitest) instead
-      of a separate package's test suite.
+- [x] Built, then removed, a tenth AI Lab entry: a "Which Skill Should I
+      Build?" wizard at `/tools/wizard` (three yes/no questions
+      recommending a Skill/Workflow/Agent/MCP Server category). Cut it
+      after honest review found it didn't earn its place: with only 3
+      binary questions there are exactly 4 possible outcomes, so it's a
+      lookup table dressed as an interactive tool, not something that
+      demonstrates real-time reasoning the way the other two live tools
+      do. It also assumed an audience (someone actively scoping their
+      own Claude Code tool against this project's own, non-standard
+      Skill/Workflow/Agent taxonomy) that's much narrower than "anyone
+      with a GitHub repo" (the Scorecard) or "anyone who wants a
+      workflow diagram" (the Workflow Builder). Recognizing a shipped
+      feature isn't earning its place and cutting it is itself worth
+      recording, not just quietly deleting the evidence it existed.
 
 ## Next
 
