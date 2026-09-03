@@ -1,7 +1,14 @@
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn } from "@/components/ui/fade-in";
-import { aiLabItems } from "@/content/ai-lab";
+import { aiLabItems, type AiLabItem } from "@/content/ai-lab";
+import { cn } from "@/lib/utils";
+
+const statusBadgeClasses: Record<AiLabItem["status"], string> = {
+  live: "border-green-500/30 bg-green-500/15 text-green-400",
+  "in-progress": "border-border-strong text-muted",
+  planned: "border-border-strong text-muted",
+};
 
 export function AiLabSection() {
   return (
@@ -28,7 +35,12 @@ export function AiLabSection() {
                 <div className="border-border h-full rounded-2xl border p-6">
                   <div className="flex items-center justify-between">
                     <h3 className="font-semibold">{item.title}</h3>
-                    <span className="border-border-strong text-muted rounded-full border px-2 py-0.5 text-xs capitalize">
+                    <span
+                      className={cn(
+                        "rounded-full border px-2 py-0.5 text-xs font-medium capitalize",
+                        statusBadgeClasses[item.status]
+                      )}
+                    >
                       {item.status.replace("-", " ")}
                     </span>
                   </div>

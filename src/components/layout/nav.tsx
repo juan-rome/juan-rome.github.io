@@ -20,7 +20,7 @@ export function Nav() {
       <details ref={detailsRef} className="relative sm:hidden">
         <summary
           aria-label="Open navigation menu"
-          className="border-border-strong text-foreground list-none rounded-full border px-3 py-1.5 text-sm [&::-webkit-details-marker]:hidden"
+          className="border-border-strong text-foreground cursor-pointer list-none rounded-full border px-3 py-1.5 text-sm [&::-webkit-details-marker]:hidden"
         >
           Menu
         </summary>
