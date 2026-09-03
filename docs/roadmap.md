@@ -134,6 +134,19 @@
       contrast failure in both a Tailwind class and Mermaid's own dark
       theme against this site's actual background, and a non-focusable
       scrollable region), all fixed via a11y-audit-skill.
+- [x] AI Lab's tenth entry: a "Which Skill Should I Build?" wizard at
+      `/tools/wizard` — three yes/no questions mapped to the actual
+      distinguishing traits behind this site's own Skill/Workflow/Agent/
+      MCP Server categories, with a deliberate priority order (protocol
+      need beats judgment-weighing beats system-chaining beats the Skill
+      default), a real reasoning explanation, a link to the closest real
+      example already on this site, and a downloadable starter scaffold
+      per category. Unlike the other two live tools, this one's logic
+      lives directly in the portfolio's own codebase
+      (`src/lib/skill-wizard.ts`) rather than a separate repo, since it's
+      genuinely site-specific content and logic, not a reusable
+      standalone algorithm — covered by real unit tests (Vitest) instead
+      of a separate package's test suite.
 
 ## Next
 

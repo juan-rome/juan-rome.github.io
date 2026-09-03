@@ -193,3 +193,27 @@ test("Skill Workflow Builder page: real page, real graph-to-markdown pipeline", 
   await expect(preview).toContainText("No steps yet");
   await expect(preview).not.toContainText("fetch-ticket.mjs");
 });
+
+test("Which Skill Should I Build wizard: real decision tree, not hardcoded copy", async ({
+  page,
+}) => {
+  await page.goto("/tools/wizard/");
+
+  await expect(
+    page.getByRole("heading", { name: "Which Skill Should I Build?", level: 1 })
+  ).toBeVisible();
+
+  // Answering "no" to protocol and "yes" to weighing signals should reach
+  // Agent regardless of the third answer — the actual priority order in
+  // src/lib/skill-wizard.ts, not just whatever the last click happened to be.
+  await page.getByRole("button", { name: "No", exact: true }).click();
+  await page.getByRole("button", { name: "Yes", exact: true }).click();
+  await page.getByRole("button", { name: "No", exact: true }).click();
+
+  await expect(page.getByText("Agent", { exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "PR Readiness Agent" })).toBeVisible();
+  await expect(page.getByLabel("Starter scaffold")).toContainText("gather-signals.mjs");
+
+  await page.getByRole("button", { name: "Start over" }).click();
+  await expect(page.getByText("usable by other AI tools")).toBeVisible();
+});

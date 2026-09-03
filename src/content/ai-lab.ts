@@ -138,4 +138,15 @@ export const aiLabItems: AiLabItem[] = [
     githubUrl: "https://github.com/juan-rome/skill-workflow-builder",
     demoUrl: "/tools/workflow-builder/",
   },
+  {
+    slug: "skill-wizard",
+    title: "Which Skill Should I Build?",
+    category: "Tool",
+    status: "live",
+    summary:
+      "Three yes/no questions about what you're actually trying to automate, mapped to the same real distinctions this site's own AI Lab tools are categorized by (does it need an external protocol, does it weigh conflicting signals, does it chain across systems), ending in a recommendation, a why, a link to the closest real example here, and a downloadable starter scaffold. A real decision tree with unit tests, not hardcoded copy per answer.",
+    stack: ["TypeScript", "Vitest"],
+    audiences: ["Devs", "PMs"],
+    demoUrl: "/tools/wizard/",
+  },
 ];
