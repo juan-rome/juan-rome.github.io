@@ -89,6 +89,20 @@
       unconditionally). Verified against real diffs from this project's
       own repos — including a real bug the verification caught (a
       test-file detector that missed `.mjs`) and fixed before shipping.
+- [x] AI Lab cards regrouped into per-category carousels (Agent, Workflow,
+      Skill, MCP Server, in that order) instead of one flat grid — each
+      row's scroll arrows only render when its content actually overflows
+      (Skill's 5 cards do on any realistic viewport; Agent/Workflow's
+      single card doesn't). Verified end-to-end with real Playwright e2e
+      tests rather than the interactive browser pane, after a long false
+      trail: the pane's own rendering state was intermittently reporting
+      a zero-width viewport, which looked like a scroll bug but wasn't —
+      the actual Playwright suite (a real, deterministic browser session)
+      confirmed the arrow-click scroll behavior works correctly on both
+      desktop and mobile viewports. Also caught and fixed a real
+      contrast violation this change introduced (`text-muted-foreground`
+      on the per-category "N tools" label, 3.74:1 against a 4.5:1
+      requirement) via the a11y-audit-skill scan.
 
 ## Next
 

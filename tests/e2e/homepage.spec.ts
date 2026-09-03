@@ -47,6 +47,48 @@ test("nav highlights the section currently in view while scrolling", async ({ pa
   await expect(experienceLink).toHaveAttribute("aria-current", "location");
 });
 
+test("AI Lab carousel: only overflowing category rows show scroll arrows", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const skillRow = page.locator('[role="region"][aria-label="Skill tools"]');
+  const agentRow = page.locator('[role="region"][aria-label="Agent tools"]');
+
+  // Skill has 5 cards and overflows a normal desktop viewport; Agent has 1
+  // and fits without scrolling, so it should render no arrow buttons at all.
+  await expect(
+    skillRow.locator("..").getByRole("button", { name: "Scroll right" })
+  ).toBeVisible();
+  await expect(
+    agentRow.locator("..").getByRole("button", { name: "Scroll right" })
+  ).toHaveCount(0);
+});
+
+test("AI Lab carousel: right arrow scrolls the row and left arrow scrolls back", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const skillRow = page.locator('[role="region"][aria-label="Skill tools"]');
+  const container = skillRow.locator("..");
+  const rightButton = container.getByRole("button", { name: "Scroll right" });
+  const leftButton = container.getByRole("button", { name: "Scroll left" });
+
+  await skillRow.scrollIntoViewIfNeeded();
+  await expect(leftButton).toBeDisabled();
+
+  const initialScrollLeft = await skillRow.evaluate((el) => el.scrollLeft);
+  await rightButton.click();
+  await expect
+    .poll(() => skillRow.evaluate((el) => el.scrollLeft))
+    .toBeGreaterThan(initialScrollLeft);
+  await expect(leftButton).toBeEnabled();
+
+  await leftButton.click();
+  await expect
+    .poll(() => skillRow.evaluate((el) => el.scrollLeft))
+    .toBe(initialScrollLeft);
+});
+
 test("mobile nav menu closes after selecting a link", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto("/");
@@ -57,4 +99,22 @@ test("mobile nav menu closes after selecting a link", async ({ page }) => {
 
   await details.getByRole("link", { name: "Experience" }).click();
   await expect(details).toHaveJSProperty("open", false);
+});
+
+test("AI Lab carousel works at mobile viewport width", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/");
+
+  const skillRow = page.locator('[role="region"][aria-label="Skill tools"]');
+  await skillRow.scrollIntoViewIfNeeded();
+  const rightButton = skillRow
+    .locator("..")
+    .getByRole("button", { name: "Scroll right" });
+  await expect(rightButton).toBeVisible();
+
+  const initialScrollLeft = await skillRow.evaluate((el) => el.scrollLeft);
+  await rightButton.click();
+  await expect
+    .poll(() => skillRow.evaluate((el) => el.scrollLeft))
+    .toBeGreaterThan(initialScrollLeft);
 });
