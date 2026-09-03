@@ -55,4 +55,16 @@ export const aiLabItems: AiLabItem[] = [
     githubUrl: "https://github.com/juan-rome/secret-leak-scanner",
     demoUrl: "https://github.com/juan-rome/secret-leak-scanner/blob/main/README.md",
   },
+  {
+    slug: "pm-ticket-readiness-checker",
+    title: "PM Ticket Readiness Checker",
+    status: "live",
+    summary:
+      "A coaching-style repackaging of the Jira → PR workflow's quality gate for PMs: pastes a ticket, scores its Description/AC/Testing Plan, and explains why a thin section costs time downstream instead of just failing silently. Dogfooded against the exact two real tickets from the Jira sandbox run — reproduces the same ready/blocked verdict independently.",
+    stack: ["Claude Code Skill", "Node.js"],
+    audiences: ["PMs", "Devs"],
+    githubUrl: "https://github.com/juan-rome/pm-ticket-readiness-checker",
+    demoUrl:
+      "https://github.com/juan-rome/pm-ticket-readiness-checker/blob/main/README.md",
+  },
 ];

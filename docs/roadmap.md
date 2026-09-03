@@ -35,18 +35,21 @@
       literals. Dogfooded clean against a real 1,300+ line diff and
       caught its own false-positive bug via a fixture regression test
       before shipping.
+- [x] AI Lab's fourth entry: a PM Ticket Readiness Checker
+      (github.com/juan-rome/pm-ticket-readiness-checker) — coaching-style
+      repackaging of the jira-to-pr-workflow quality gate for PMs.
+      Dogfooded against the exact two real tickets from the Jira sandbox
+      run; independently reproduces the same ready/blocked verdict.
 
 ## Next
 
 - [ ] Replace `src/app/favicon.ico` — it's still create-next-app's default.
-- [ ] Three more AI Lab entries planned, each for a non-engineering
-      audience (explicitly not wrapping Storyblok/Optimizely — those are
+- [ ] Two more AI Lab entries planned, each for a non-engineering audience
+      (explicitly not wrapping Storyblok/Optimizely — those are
       work-owned IP, not personal sandboxes). See a11y-audit-skill /
-      jira-to-pr-workflow / secret-leak-scanner for the pattern to follow
-      (SKILL.md + real tool + dogfooded example, not a toy demo).
-  - [ ] PM Ticket Readiness Checker — coaching-style repackaging of the
-        jira-to-pr-workflow quality gate, explaining _why_ each section
-        (description/AC/testing plan) matters.
+      jira-to-pr-workflow / secret-leak-scanner / pm-ticket-readiness-checker
+      for the pattern to follow (SKILL.md + real tool + dogfooded example,
+      not a toy demo).
   - [ ] Design-to-Code Fidelity Checker — screenshot diffing between a
         design mockup image and a live implementation (no real Figma
         account required — accepts two arbitrary images).
