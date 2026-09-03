@@ -37,22 +37,31 @@
       before shipping.
 - [x] AI Lab's fourth entry: a PM Ticket Readiness Checker
       (github.com/juan-rome/pm-ticket-readiness-checker) — coaching-style
-      repackaging of the jira-to-pr-workflow quality gate for PMs.
+      repackaging of the jira-to-pr-workflow quality gate for PMs, plus a
+      live Jira label-trigger mode (`claude-ticket-checker`) that
+      comments the verdict on the ticket and removes the label.
       Dogfooded against the exact two real tickets from the Jira sandbox
       run; independently reproduces the same ready/blocked verdict.
+- [x] AI Lab cards now show a colored tool-category badge
+      (Skill/Workflow/Agent/MCP Server) instead of a "Live" status
+      badge, with the category word dropped from card titles now that
+      the badge conveys it.
+- [x] AI Lab's fifth entry: a Design-to-Code Fidelity Checker
+      (github.com/juan-rome/design-fidelity-checker) — pixel-level
+      diffing between a design mockup and a live implementation, no
+      Figma account required. Dogfooded with real rendered fixtures: 0%
+      mismatch on a pixel-identical page, 1.94% on a deliberately
+      drifted button, with a diff image isolating exactly that region.
 
 ## Next
 
 - [ ] Replace `src/app/favicon.ico` — it's still create-next-app's default.
-- [ ] Two more AI Lab entries planned, each for a non-engineering audience
+- [ ] One more AI Lab entry planned, for a non-engineering audience
       (explicitly not wrapping Storyblok/Optimizely — those are
       work-owned IP, not personal sandboxes). See a11y-audit-skill /
-      jira-to-pr-workflow / secret-leak-scanner / pm-ticket-readiness-checker
-      for the pattern to follow (SKILL.md + real tool + dogfooded example,
-      not a toy demo).
-  - [ ] Design-to-Code Fidelity Checker — screenshot diffing between a
-        design mockup image and a live implementation (no real Figma
-        account required — accepts two arbitrary images).
+      jira-to-pr-workflow / secret-leak-scanner / pm-ticket-readiness-checker /
+      design-fidelity-checker for the pattern to follow (SKILL.md + real
+      tool + dogfooded example, not a toy demo).
   - [ ] Cypress Test Generator — analyzes a git diff/branch to generate
         Cypress test skeletons for new/changed UI surface; planned to
         dogfood against jira-pr-demo-target's character counter feature.

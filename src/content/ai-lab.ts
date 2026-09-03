@@ -75,4 +75,16 @@ export const aiLabItems: AiLabItem[] = [
     demoUrl:
       "https://github.com/juan-rome/pm-ticket-readiness-checker/blob/main/README.md",
   },
+  {
+    slug: "design-fidelity-checker",
+    title: "Design-to-Code Fidelity Checker",
+    category: "Skill",
+    status: "live",
+    summary:
+      "Pixel-level diffing between a design mockup and a live implementation — no Figma account required, just two same-size PNGs (or a URL, captured automatically). Dogfooded with real rendered fixtures: a pixel-identical page reports 0% mismatch, and a deliberately drifted button (wrong color + padding) is caught at 1.94%, with a diff image highlighting exactly that region.",
+    stack: ["Claude Code Skill", "Playwright", "pixelmatch", "Node.js"],
+    audiences: ["Designers", "Devs"],
+    githubUrl: "https://github.com/juan-rome/design-fidelity-checker",
+    demoUrl: "https://github.com/juan-rome/design-fidelity-checker/blob/main/README.md",
+  },
 ];
