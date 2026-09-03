@@ -103,6 +103,22 @@
       contrast violation this change introduced (`text-muted-foreground`
       on the per-category "N tools" label, 3.74:1 against a 4.5:1
       requirement) via the a11y-audit-skill scan.
+- [x] AI Lab's eighth entry, and the first visitor-usable **Tool**
+      (a new category, distinct from the dev-facing Skill/Workflow/
+      Agent/MCP Server ones): the Skill Quality Scorecard
+      (github.com/juan-rome/skill-quality-scorecard) scores any public
+      GitHub repo against a real rubric (SKILL.md, README, CI, tests,
+      license, dogfood evidence) via GitHub's public API, entirely
+      client-side. It has a real live page on this site
+      (`/tools/scorecard`) — installed as an actual dependency, not
+      reimplemented for the page — where any visitor can paste a repo
+      and get a real, live-scored result with reasoning. Dogfooded
+      against pr-readiness-agent (scored 75/100, found two real gaps —
+      no LICENSE, no dogfood-evidence file — both fixed on the spot, now
+      100/100) and against octocat/Hello-World (GitHub's own example
+      repo, scored 5/100, correctly identified as barebones). Caught a
+      real bug during development (a URL-trimming order bug that left a
+      trailing `.git` in place) before shipping.
 
 ## Next
 

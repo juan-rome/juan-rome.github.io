@@ -135,3 +135,31 @@ test("AI Lab carousel works at mobile viewport width", async ({ page }) => {
     .poll(() => skillRow.evaluate((el) => el.scrollLeft))
     .toBeGreaterThan(initialScrollLeft);
 });
+
+// Deliberately never triggers an actual score (that fires a real call to
+// GitHub's public API, which would make CI depend on a live, rate-limited
+// external service — flaky and needlessly noisy on every push). The
+// scoring logic itself has its own offline, mocked test suite in the
+// skill-quality-scorecard repo; this only proves the page's own wiring
+// (heading, empty/typed input states, example buttons) is correct.
+test("Skill Quality Scorecard page: real page, real interactive wiring", async ({
+  page,
+}) => {
+  await page.goto("/tools/scorecard/");
+
+  await expect(
+    page.getByRole("heading", { name: "Skill Quality Scorecard", level: 1 })
+  ).toBeVisible();
+
+  const input = page.getByPlaceholder("owner/repo or a GitHub URL");
+  const submitButton = page.getByRole("button", { name: "Score it" });
+  await expect(submitButton).toBeDisabled();
+
+  await input.fill("some-owner/some-repo");
+  await expect(submitButton).toBeEnabled();
+
+  await expect(
+    page.getByRole("button", { name: "juan-rome/pr-readiness-agent" })
+  ).toBeVisible();
+  await expect(page.getByRole("button", { name: "octocat/Hello-World" })).toBeVisible();
+});

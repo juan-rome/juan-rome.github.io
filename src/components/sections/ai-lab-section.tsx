@@ -6,14 +6,22 @@ import { aiLabItems, type AiLabItem, type ToolCategory } from "@/content/ai-lab"
 import { cn } from "@/lib/utils";
 
 const categoryBadgeClasses: Record<ToolCategory, string> = {
+  Tool: "border-emerald-500/30 bg-emerald-500/15 text-emerald-400",
   Skill: "border-indigo-500/30 bg-indigo-500/15 text-indigo-400",
   Workflow: "border-amber-500/30 bg-amber-500/15 text-amber-400",
   Agent: "border-sky-500/30 bg-sky-500/15 text-sky-400",
   "MCP Server": "border-fuchsia-500/30 bg-fuchsia-500/15 text-fuchsia-400",
 };
 
-/** Most complex/newest categories lead; Skill (the most numerous) reads last. */
-const CATEGORY_ORDER: ToolCategory[] = ["Agent", "Workflow", "Skill", "MCP Server"];
+/** Tool leads: it's the one a visitor can actually click and use themselves.
+ *  Then most complex/newest categories; Skill (the most numerous) reads last. */
+const CATEGORY_ORDER: ToolCategory[] = [
+  "Tool",
+  "Agent",
+  "Workflow",
+  "Skill",
+  "MCP Server",
+];
 
 function formatAudiences(audiences: AiLabItem["audiences"]) {
   if (audiences.length <= 1) return audiences.join("");

@@ -1,7 +1,10 @@
 export type Audience = "Devs" | "PMs" | "Designers";
 
-/** What kind of Claude Code tool this is — shown as the card's colored badge. */
-export type ToolCategory = "Skill" | "Workflow" | "Agent" | "MCP Server";
+/** What kind of Claude Code tool this is — shown as the card's colored badge.
+ *  "Tool" is distinct from the rest: those are dev-facing, invoked by
+ *  Claude on request; a "Tool" is a real product a site visitor uses
+ *  directly, with its own live page on this site. */
+export type ToolCategory = "Skill" | "Workflow" | "Agent" | "Tool" | "MCP Server";
 
 export type AiLabItem = {
   slug: string;
@@ -110,5 +113,17 @@ export const aiLabItems: AiLabItem[] = [
     audiences: ["Devs"],
     githubUrl: "https://github.com/juan-rome/pr-readiness-agent",
     demoUrl: "https://github.com/juan-rome/pr-readiness-agent/blob/main/README.md",
+  },
+  {
+    slug: "skill-quality-scorecard",
+    title: "Skill Quality Scorecard",
+    category: "Tool",
+    status: "live",
+    summary:
+      "Paste any public GitHub repo and it's scored live, right here in your browser, against a real rubric: a SKILL.md, a substantial README, CI, real tests, a license, and dogfood evidence. Nothing is sent to a server; it calls GitHub's public API directly and runs entirely client-side. Scoring pr-readiness-agent this way surfaced two real gaps, which got fixed on the spot.",
+    stack: ["GitHub API", "Node.js", "Client-side JS"],
+    audiences: ["Devs", "PMs"],
+    githubUrl: "https://github.com/juan-rome/skill-quality-scorecard",
+    demoUrl: "/tools/scorecard/",
   },
 ];
