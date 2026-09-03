@@ -25,4 +25,14 @@ export const aiLabItems: AiLabItem[] = [
     githubUrl: "https://github.com/juan-rome/a11y-audit-skill",
     demoUrl: "https://github.com/juan-rome/a11y-audit-skill/blob/main/examples/report.md",
   },
+  {
+    slug: "jira-to-pr-workflow",
+    title: "Jira → PR Workflow",
+    status: "live",
+    summary:
+      "A Claude Code workflow that fetches a Jira ticket, refuses to implement it without a real description/AC/testing plan, implements it, and opens a PR with a real embedded screenshot — then closes the loop with an @-mention comment back on the ticket. Run against a real Jira sandbox: one ticket passed the gate and shipped a real PR, one was correctly blocked.",
+    stack: ["Claude Code Skill", "Jira REST API", "Playwright", "GitHub CLI", "Node.js"],
+    githubUrl: "https://github.com/juan-rome/jira-to-pr-workflow",
+    demoUrl: "https://github.com/juan-rome/jira-to-pr-workflow/blob/main/RUNS.md",
+  },
 ];

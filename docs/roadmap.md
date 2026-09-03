@@ -20,15 +20,21 @@
 - [x] AI Lab's first real entry: a Claude Code accessibility-audit skill
       (github.com/juan-rome/a11y-audit-skill) — dogfooded against this
       site, which is also how the two accessibility bugs below were found
+- [x] AI Lab's second entry: a Jira-to-PR workflow
+      (github.com/juan-rome/jira-to-pr-workflow) with a ticket quality
+      gate, a real embedded screenshot, and a Jira @-mention comment —
+      run end to end against a real Jira sandbox (see that repo's
+      RUNS.md): one ticket passed the gate and shipped a real PR
+      (juan-rome/jira-pr-demo-target#1), one was correctly blocked.
 
 ## Next
 
 - [ ] Replace `src/app/favicon.ico` — it's still create-next-app's default.
-- [ ] Two more AI Lab entries planned: an MCP server (leaning toward
+- [ ] One more AI Lab entry planned: an MCP server, leaning toward
       wrapping Optimizely's API — ties directly to the Experimentation
-      Infrastructure story) and a design/screenshot-to-component skill.
-      See the a11y-audit-skill repo for the pattern each should follow
-      (SKILL.md + real scanner/tool + dogfooded example, not a toy demo).
+      Infrastructure story. See a11y-audit-skill / jira-to-pr-workflow for
+      the pattern to follow (SKILL.md + real tool + dogfooded example,
+      not a toy demo).
 - [ ] Lighthouse pass: run against the deployed site and close any gap to
       100 on Performance/Accessibility/Best Practices/SEO.
 - [ ] Structured data (JSON-LD `Person` schema) for the homepage.
