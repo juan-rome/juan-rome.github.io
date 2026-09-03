@@ -32,7 +32,7 @@ export const aiLabItems: AiLabItem[] = [
     category: "Skill",
     status: "live",
     summary:
-      "A Claude Code skill that runs a real axe-core scan and turns raw violations into a prioritized, fix-oriented report. Dogfooded against this site — it found 3 real WCAG issues on the first run, and those exact fixes shipped.",
+      "A Claude Code skill that runs a real axe-core scan and turns raw violations into a prioritized, fix-oriented report. Run against this very site — it found 3 real WCAG issues on the first pass, and those exact fixes shipped.",
     stack: ["Claude Code Skill", "Playwright", "axe-core", "Node.js"],
     audiences: ["Devs", "Designers"],
     githubUrl: "https://github.com/juan-rome/a11y-audit-skill",
@@ -44,7 +44,7 @@ export const aiLabItems: AiLabItem[] = [
     category: "Workflow",
     status: "live",
     summary:
-      "A Claude Code workflow that fetches a Jira ticket, refuses to implement it without a real description/AC/testing plan, implements it, and opens a PR with a real embedded screenshot — then closes the loop with an @-mention comment back on the ticket. Run against a real Jira sandbox: one ticket passed the gate and shipped a real PR, one was correctly blocked.",
+      "A Claude Code workflow that fetches a Jira ticket, refuses to implement it without a real description/AC/testing plan, implements it, and opens a PR with a real embedded screenshot — then closes the loop with an @-mention comment back on the ticket. Also supports a readiness-only mode (no implementation) with its own trigger label, so a quick 'is this ready' check doesn't require running the full pipeline. Run against a real Jira sandbox: one ticket passed the gate and shipped a real PR, one was correctly blocked.",
     stack: ["Claude Code Skill", "Jira REST API", "Playwright", "GitHub CLI", "Node.js"],
     audiences: ["Devs", "PMs"],
     githubUrl: "https://github.com/juan-rome/jira-to-pr-workflow",
@@ -56,7 +56,7 @@ export const aiLabItems: AiLabItem[] = [
     category: "Skill",
     status: "live",
     summary:
-      "A local, offline Claude Code skill that scans a diff's added lines for AWS/GitHub/Slack tokens, private keys, and high-entropy literals before they're pushed. Dogfooded clean against a real 1,300+ line diff and caught its own false-positive bug (unquoted env references) via a fixture regression test before it shipped.",
+      "A local, offline Claude Code skill that scans a diff's added lines for AWS/GitHub/Slack tokens, private keys, and high-entropy literals before they're pushed. Scanned clean against a real 1,300+ line diff, and its own fixture regression test caught a false-positive bug (unquoted env references) before it ever shipped.",
     stack: ["Claude Code Skill", "Node.js", "Shannon Entropy", "Git"],
     audiences: ["Devs"],
     githubUrl: "https://github.com/juan-rome/secret-leak-scanner",
@@ -68,8 +68,8 @@ export const aiLabItems: AiLabItem[] = [
     category: "Skill",
     status: "live",
     summary:
-      "A coaching-style repackaging of the Jira → PR workflow's quality gate for PMs: paste a ticket (or label it claude-ticket-checker in Jira) and it scores Description/AC/Testing Plan, explaining why a thin section costs time downstream instead of just failing silently — then comments the verdict on the ticket and removes the label. Dogfooded against the exact two real tickets from the Jira sandbox run — reproduces the same ready/blocked verdict independently.",
-    stack: ["Claude Code Skill", "Jira REST API", "Node.js"],
+      "A coaching-style repackaging of the Jira → PR workflow's quality gate for PMs: paste any ticket — Jira, Linear, Asana, a doc — and it scores Description/AC/Testing Plan, explaining why a thin section costs time downstream instead of just failing silently. No API or account needed; live Jira automation on the same rubric lives in the Jira → PR workflow instead, to avoid two repos carrying the same Jira plumbing. Checked against the exact two real tickets from the Jira sandbox run — independently reproduces the same ready/blocked verdict.",
+    stack: ["Claude Code Skill", "Node.js"],
     audiences: ["PMs", "Devs"],
     githubUrl: "https://github.com/juan-rome/pm-ticket-readiness-checker",
     demoUrl:
@@ -81,7 +81,7 @@ export const aiLabItems: AiLabItem[] = [
     category: "Skill",
     status: "live",
     summary:
-      "Pixel-level diffing between a design mockup and a live implementation — no Figma account required, just two same-size PNGs (or a URL, captured automatically). Dogfooded with real rendered fixtures: a pixel-identical page reports 0% mismatch, and a deliberately drifted button (wrong color + padding) is caught at 1.94%, with a diff image highlighting exactly that region.",
+      "Pixel-level diffing between a design mockup and a live implementation — no Figma account required, just two same-size PNGs (or a URL, captured automatically). Verified with real rendered fixtures: a pixel-identical page reports 0% mismatch, and a deliberately drifted button (wrong color + padding) fails the tool's own default gate at 1.94%, with a diff image highlighting exactly that region.",
     stack: ["Claude Code Skill", "Playwright", "pixelmatch", "Node.js"],
     audiences: ["Designers", "Devs"],
     githubUrl: "https://github.com/juan-rome/design-fidelity-checker",
@@ -93,7 +93,7 @@ export const aiLabItems: AiLabItem[] = [
     category: "Skill",
     status: "live",
     summary:
-      "Analyzes a diff's added UI surface (element ids, attributes, event listeners, class toggles) and drafts a Cypress test skeleton — real assertions where the diff proves them, explicit TODOs where business logic knowledge is required. Dogfooded against the exact real diff that added jira-pr-demo-target's character counter: correctly resolves an addEventListener and a classList.toggle back to their selectors across separate lines, with zero unresolved TODOs.",
+      "Analyzes a diff's added UI surface (element ids, attributes, event listeners, class toggles) and drafts a Cypress test skeleton — real assertions where the diff proves them, explicit TODOs where business logic knowledge is required. Run against the exact real diff that added jira-pr-demo-target's character counter: correctly resolves an addEventListener and a classList.toggle back to their selectors across separate lines, with zero unresolved TODOs.",
     stack: ["Claude Code Skill", "Node.js", "Cypress"],
     audiences: ["Devs"],
     githubUrl: "https://github.com/juan-rome/cypress-test-generator",

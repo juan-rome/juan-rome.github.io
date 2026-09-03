@@ -18,7 +18,7 @@
       09/2026 resume (corrected Capital One title and all employment
       dates, added the two separate H-E-B roles, added new stats)
 - [x] AI Lab's first real entry: a Claude Code accessibility-audit skill
-      (github.com/juan-rome/a11y-audit-skill) — dogfooded against this
+      (github.com/juan-rome/a11y-audit-skill) — run against this very
       site, which is also how the two accessibility bugs below were found
 - [x] AI Lab's second entry: a Jira-to-PR workflow
       (github.com/juan-rome/jira-to-pr-workflow) with a ticket quality
@@ -32,16 +32,16 @@
 - [x] AI Lab's third entry: a Secret Leak Scanner
       (github.com/juan-rome/secret-leak-scanner) — local/offline diff
       scanner for AWS/GitHub/Slack tokens, private keys, and high-entropy
-      literals. Dogfooded clean against a real 1,300+ line diff and
-      caught its own false-positive bug via a fixture regression test
-      before shipping.
+      literals. Scanned clean against a real 1,300+ line diff, and its
+      own fixture regression test caught a false-positive bug before
+      shipping.
 - [x] AI Lab's fourth entry: a PM Ticket Readiness Checker
       (github.com/juan-rome/pm-ticket-readiness-checker) — coaching-style
-      repackaging of the jira-to-pr-workflow quality gate for PMs, plus a
-      live Jira label-trigger mode (`claude-ticket-checker`) that
-      comments the verdict on the ticket and removes the label.
-      Dogfooded against the exact two real tickets from the Jira sandbox
-      run; independently reproduces the same ready/blocked verdict.
+      repackaging of the jira-to-pr-workflow quality gate for PMs, for
+      any ticket source (Jira, Linear, Asana, a doc) pasted as markdown,
+      no API required. Checked against the exact two real tickets from
+      the Jira sandbox run; independently reproduces the same
+      ready/blocked verdict.
 - [x] AI Lab cards now show a colored tool-category badge
       (Skill/Workflow/Agent/MCP Server) instead of a "Live" status
       badge, with the category word dropped from card titles now that
@@ -49,18 +49,30 @@
 - [x] AI Lab's fifth entry: a Design-to-Code Fidelity Checker
       (github.com/juan-rome/design-fidelity-checker) — pixel-level
       diffing between a design mockup and a live implementation, no
-      Figma account required. Dogfooded with real rendered fixtures: 0%
+      Figma account required. Verified with real rendered fixtures: 0%
       mismatch on a pixel-identical page, 1.94% on a deliberately
-      drifted button, with a diff image isolating exactly that region.
+      drifted button — a real failing exit code under the tool's own
+      default gate, not a number that needs an extra flag to matter.
 - [x] AI Lab's sixth entry: a Cypress Test Generator
       (github.com/juan-rome/cypress-test-generator) — analyzes a diff's
       added UI surface (ids, attributes, event listeners, class toggles)
       and drafts a Cypress test skeleton, with explicit TODOs instead of
       fabricated assertions wherever business logic can't be inferred.
-      Dogfooded against the exact real diff that added
+      Run against the exact real diff that added
       jira-pr-demo-target's character counter: correctly resolves an
       addEventListener and a classList.toggle to their selectors across
       separate lines, zero unresolved TODOs.
+- [x] Cross-tool cleanup pass: moved live Jira label-trigger logic out of
+      pm-ticket-readiness-checker and into jira-to-pr-workflow (which
+      already owned the Jira client/ADF layer/quality gate) as a second
+      label (`claude-ticket-checker` for check-only, `claude-implement`
+      for the full pipeline) rather than two repos each carrying their
+      own copy of the same plumbing. pm-ticket-readiness-checker goes
+      back to its real differentiator — any ticket source, no API
+      required. Also lowered design-fidelity-checker's default
+      `--fail-at` from 2% to 1% so its own flagship example (1.94%
+      mismatch) actually demonstrates a failing gate without an extra
+      flag.
 
 ## Next
 
