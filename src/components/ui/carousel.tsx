@@ -84,7 +84,7 @@ export function Carousel({ children, ariaLabel }: CarouselProps) {
         aria-label={ariaLabel}
         tabIndex={0}
         className={cn(
-          "flex snap-x snap-proximity gap-6 overflow-x-auto scroll-smooth pb-1",
+          "flex snap-x snap-proximity gap-6 overflow-x-auto overflow-y-hidden scroll-smooth pb-1",
           "focus-visible:outline-2 focus-visible:outline-offset-4"
         )}
       >

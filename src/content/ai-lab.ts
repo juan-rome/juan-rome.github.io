@@ -44,7 +44,7 @@ export const aiLabItems: AiLabItem[] = [
     category: "Workflow",
     status: "live",
     summary:
-      "A Claude Code workflow that fetches a Jira ticket, refuses to implement it without a real description, AC, and testing plan, then implements it and opens a PR with a real embedded screenshot. It also supports a readiness-only mode for a quick 'is this ready' check without running the full pipeline. Run against a real Jira sandbox: one ticket passed the gate and shipped a real PR, one was correctly blocked.",
+      "A Claude Code workflow that fetches a Jira ticket, refuses to implement it without a real description, AC, and testing plan, then implements it and opens a PR with a real embedded screenshot. The full pipeline triggers when a ticket is moved to In Development; a separate readiness-only mode gives a quick 'is this ready' check in To Do without running the full pipeline. Run against a real Jira sandbox: one ticket passed the gate and shipped a real PR, one was correctly blocked.",
     stack: ["Claude Code Skill", "Jira REST API", "Playwright", "GitHub CLI", "Node.js"],
     audiences: ["Devs", "PMs"],
     githubUrl: "https://github.com/juan-rome/jira-to-pr-workflow",
