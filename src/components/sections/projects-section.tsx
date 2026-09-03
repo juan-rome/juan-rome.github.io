@@ -20,7 +20,7 @@ export function ProjectsSection() {
       <SectionHeading
         eyebrow="Featured Projects"
         title="A few problems worth explaining properly"
-        description="These are internal Earnest products, so there's no public repo or live demo to link — the write-up is the case study."
+        description="These are internal Earnest products, so there's no public repo or live demo to link: the write-up is the case study."
       />
       <div className="mt-14 space-y-16">
         {projects.map((project, index) => (

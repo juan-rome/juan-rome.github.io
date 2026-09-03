@@ -9,7 +9,7 @@ export function ExperienceSection() {
       <SectionHeading
         eyebrow="Experience"
         title="Eight years, three companies, one thread"
-        description="Full-stack generalist to front-end architect to the engineer who owns experimentation infrastructure — each role built directly on the last."
+        description="Full-stack generalist to front-end architect to the engineer who owns experimentation infrastructure: each role built directly on the last."
       />
       <div className="mt-14 space-y-14">
         {experience.map((entry, index) => (

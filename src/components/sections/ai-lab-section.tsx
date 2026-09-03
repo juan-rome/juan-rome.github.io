@@ -122,15 +122,15 @@ export function AiLabSection() {
       <SectionHeading
         eyebrow="AI Lab"
         title="AI-assisted workflows, in progress"
-        description="Working demos of AI tooling built into real engineering workflows — plugins, integrations, and small products — added here as they ship."
+        description="Working demos of AI tooling built into real engineering workflows: plugins, integrations, and small products, added here as they ship."
       />
       <div className="mt-14 space-y-12">
         {aiLabItems.length === 0 ? (
           <FadeIn>
             <div className="border-border rounded-2xl border border-dashed p-10 text-center">
               <p className="text-muted">
-                Nothing published here yet — this section fills in with real, working
-                demos rather than placeholders.
+                Nothing published here yet: this section fills in with real, working demos
+                rather than placeholders.
               </p>
             </div>
           </FadeIn>

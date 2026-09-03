@@ -17,13 +17,13 @@ const geistMono = Geist_Mono({
 });
 
 const siteUrl = "https://juan-rome.github.io";
-const title = `${site.name} — ${site.role}`;
+const title = `${site.name} | ${site.role}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: title,
-    template: `%s — ${site.name}`,
+    template: `%s | ${site.name}`,
   },
   description: site.tagline,
   openGraph: {

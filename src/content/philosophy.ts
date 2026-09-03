@@ -11,7 +11,7 @@ export const principles: Principle[] = [
   {
     title: "Infrastructure debt doesn't wait for the platform team",
     description:
-      "When the shared nginx config couldn't run two Next.js apps, the fix didn't wait on Cloud team bandwidth — it got learned and shipped directly, then handed back as working infrastructure.",
+      "When the shared nginx config couldn't run two Next.js apps, the fix didn't wait on Cloud team bandwidth: it got learned and shipped directly, then handed back as working infrastructure.",
   },
   {
     title: "An experiment is only as good as its tracking",
@@ -21,16 +21,16 @@ export const principles: Principle[] = [
   {
     title: "Documentation is part of the deliverable",
     description:
-      "Not a follow-up task. Clear write-ups and progress updates are what let cross-functional work — security fixes, bucketing audits, infra migrations — actually land without friction.",
+      "Not a follow-up task. Clear write-ups and progress updates are what let cross-functional work (security fixes, bucketing audits, infra migrations) actually land without friction.",
   },
   {
     title: "Raise a process problem with a fix attached",
     description:
-      "Incomplete ticket requirements were slowing the team down for sprints before it got named directly, with a concrete proposal — not just a complaint — for what to change.",
+      "Incomplete ticket requirements were slowing the team down for sprints before it got named directly, with a concrete proposal (not just a complaint) for what to change.",
   },
   {
     title: "AI tooling multiplies judgment, it doesn't replace it",
     description:
-      "An AI-assisted workflow built an entire program's UI from Figma files faster than a manual build — but every page still went through the same acceptance-criteria review as hand-written code.",
+      "An AI-assisted workflow built an entire program's UI from Figma files faster than a manual build, but every page still went through the same acceptance-criteria review as hand-written code.",
   },
 ];
