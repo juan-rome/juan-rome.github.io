@@ -53,9 +53,12 @@ tests/e2e/       Playwright, homepage-level smoke and accessibility
 
 All color, spacing-adjacent, and typography tokens live in
 `src/app/globals.css` as CSS custom properties consumed through Tailwind
-v4's `@theme inline`. Dark mode is the default and primary designed
-experience (`:root`); light mode is a straightforward token inversion
-rather than a separately art-directed theme, matching the brief.
+v4's `@theme inline`. Dark mode is the unconditional default (`:root`) —
+it deliberately does **not** follow the visitor's OS `prefers-color-scheme`,
+since there's no theme toggle yet and the brief calls for dark mode as the
+primary experience, not "whichever the OS happens to be in." Light mode's
+tokens exist (`:root[data-theme="light"]`) as a straightforward inversion
+ready for a future toggle, but are otherwise unreachable today.
 
 ## Motion
 

@@ -4,6 +4,58 @@ Short-form architecture decision records. Newest first.
 
 ---
 
+## Note: smooth-scroll animations don't render in the dev browser-automation tool
+
+Not an ADR — a debugging note, so this doesn't get rediscovered the hard
+way. While verifying nav clicks, `window.scrollY` appeared stuck at 0 after
+clicking a same-page `#hash` link, with only `window.location.hash`
+updating. That looked like native anchor-scroll was broken, and briefly led
+to building an unnecessary `HashLink` client component to force scrolling
+via explicit JS — which didn't fix anything, because the actual cause is
+narrower: `behavior: "smooth"` (both the CSS `scroll-behavior: smooth` on
+`<html>` and `Element.scrollIntoView({ behavior: "smooth" })`) does not
+visibly animate in the automated browser pane used for local verification.
+Confirmed directly: `location.hash = "..."` with
+`document.documentElement.style.scrollBehavior = "auto"` scrolls correctly
+and immediately in that same pane; only the smooth variant silently no-ops.
+
+Plain `<a href="#...">` tags plus `scroll-smooth` on `<html>` (see
+`globals.css` and `Section`'s `scroll-mt-20`) are correct and sufficient —
+this is standard, broadly-supported browser behavior. If a future
+same-page-scroll bug report shows up, verify with `scroll-behavior: auto`
+locally before assuming the native mechanism itself is broken; the smooth
+animation specifically is unverifiable in this dev tool, not necessarily
+broken for real visitors.
+
+---
+
+## ADR-005: Dark mode ignores `prefers-color-scheme` — it's the fixed default
+
+**Status:** Accepted
+
+**Context:** The initial implementation set dark tokens on `:root` but then
+had a `@media (prefers-color-scheme: light)` block that overrode them back
+to light whenever the visitor's OS was in light mode. Since there's no
+theme toggle in the UI, that media query was the _only_ thing deciding
+which theme rendered — meaning most visitors (anyone on a light-mode OS,
+which is a lot of corporate/default setups) saw light mode, not the dark
+design the brief calls "the primary experience." This surfaced during a
+local browser check: the deployed-looking build rendered fully light with
+no code signaling why.
+
+**Decision:** Removed the `prefers-color-scheme` media query entirely.
+Dark values on `:root` are now the unconditional default regardless of OS
+setting. The light token set still exists at `:root[data-theme="light"]`,
+dormant until a real toggle is built that sets that attribute.
+
+**Consequence:** Every visitor sees dark mode today, full stop — which is
+what "dark mode first" actually requires in the absence of a toggle. When
+a light/dark toggle ships (see `roadmap.md`), it should set `data-theme`
+explicitly rather than reintroducing a `prefers-color-scheme` fallback,
+so the toggle — not the OS — is the source of truth.
+
+---
+
 ## ADR-004: Node 22, not Node 18 or 20
 
 **Status:** Accepted

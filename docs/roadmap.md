@@ -27,8 +27,12 @@
       100 on Performance/Accessibility/Best Practices/SEO.
 - [ ] Structured data (JSON-LD `Person` schema) for the homepage.
 - [ ] OpenGraph image (currently falls back to no image).
-- [ ] Light mode QA pass — token inversion is in place but hasn't been
-      visually reviewed side by side with dark mode.
+- [ ] Build an actual light/dark theme toggle — the light token set exists
+      (`:root[data-theme="light"]`) but nothing sets that attribute yet, so
+      light mode is currently unreachable by design (dark is the fixed
+      default, deliberately ignoring OS `prefers-color-scheme` — see
+      `design-decisions.md`). Once a toggle exists, QA light mode
+      side-by-side with dark.
 - [ ] Expand Playwright coverage: mobile viewport nav menu, keyboard
       traversal through the full nav, reduced-motion behavior.
 

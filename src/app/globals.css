@@ -1,9 +1,12 @@
 @import "tailwindcss";
 
 /*
- * Design tokens — dark mode is the primary, designed-for experience.
- * Light mode is a straightforward inversion, not a separately art-directed
- * theme (per the "dark mode first, light mode optional later" brief).
+ * Design tokens — dark mode is the primary, designed-for experience, and is
+ * the UNCONDITIONAL default: it does not defer to the visitor's OS
+ * prefers-color-scheme. There is no theme toggle yet, so the light tokens
+ * below are dormant until one exists and sets data-theme="light" — per the
+ * "dark mode first, light mode optional later" brief, light mode is not
+ * meant to be reachable at all in this milestone.
  */
 :root {
   --background: #0a0a0c;
@@ -48,21 +51,6 @@
   --color-accent-foreground: var(--accent-foreground);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
-}
-
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --background: #ffffff;
-    --background-elevated: #f6f6f8;
-    --foreground: #101013;
-    --muted: #55565f;
-    --muted-foreground: #8a8b93;
-    --border: #e6e6ea;
-    --border-strong: #d5d5db;
-    --accent: #4338ca;
-    --accent-foreground: #ffffff;
-    --focus-ring: #4338ca;
-  }
 }
 
 * {
