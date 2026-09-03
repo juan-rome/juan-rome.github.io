@@ -59,6 +59,7 @@ tests/
   unit/           # Vitest + Testing Library
   e2e/            # Playwright
 docs/             # Architecture, deployment, design decisions, roadmap
+scripts/          # generate-resume.py — regenerates public/resume.pdf
 ```
 
 ## Content model

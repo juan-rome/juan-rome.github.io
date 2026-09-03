@@ -12,11 +12,14 @@
 - [x] CI: typecheck/lint/format/unit/e2e/build on every push and PR
 - [x] Deploy: GitHub Actions → GitHub Pages on every push to `main`
 - [x] Baseline SEO: metadata, OpenGraph, Twitter cards, sitemap, robots.txt
+- [x] Real `public/resume.pdf`, generated from the 09/2026 resume via
+      `scripts/generate-resume.py`
+- [x] Experience/achievements/expertise content reconciled against the
+      09/2026 resume (corrected Capital One title and all employment
+      dates, added the two separate H-E-B roles, added new stats)
 
 ## Next
 
-- [ ] Add a real `public/resume.pdf` — the Resume section's "Download PDF"
-      button currently points at `/resume.pdf`, which doesn't exist yet.
 - [ ] Replace `src/app/favicon.ico` — it's still create-next-app's default.
 - [ ] Populate `src/content/ai-lab.ts` with real AI workflow/plugin/CRM
       demos as they're built (planned this week — see project chat).
