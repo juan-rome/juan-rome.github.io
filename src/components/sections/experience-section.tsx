@@ -12,18 +12,24 @@ export function ExperienceSection() {
         description="Full-stack generalist to front-end architect to the engineer who owns experimentation infrastructure — each role built directly on the last."
       />
       <div className="mt-14 space-y-14">
-        {experience.map((role, index) => (
-          <FadeIn key={`${role.company}-${role.period}`} delay={index * 0.05}>
+        {experience.map((entry, index) => (
+          <FadeIn key={`${entry.company}-${entry.titles[0].period}`} delay={index * 0.05}>
             <div className="border-border grid gap-6 border-t pt-8 sm:grid-cols-[14rem_1fr]">
               <div>
-                <h3 className="text-lg font-semibold">{role.company}</h3>
-                <p className="text-muted mt-1 text-sm">{role.role}</p>
-                <p className="text-muted-foreground mt-1 text-sm">{role.period}</p>
+                <h3 className="text-lg font-semibold">{entry.company}</h3>
+                <div className="mt-3 space-y-3">
+                  {entry.titles.map((title) => (
+                    <div key={`${title.role}-${title.period}`}>
+                      <p className="text-muted text-sm">{title.role}</p>
+                      <p className="text-muted-foreground text-sm">{title.period}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
               <div>
-                <p className="text-foreground/90 text-pretty">{role.summary}</p>
+                <p className="text-foreground/90 text-pretty">{entry.summary}</p>
                 <ul className="mt-5 space-y-3">
-                  {role.highlights.map((highlight) => (
+                  {entry.highlights.map((highlight) => (
                     <li
                       key={highlight}
                       className="text-muted-foreground flex gap-3 text-sm text-pretty"
@@ -34,7 +40,7 @@ export function ExperienceSection() {
                   ))}
                 </ul>
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {role.stack.map((tech) => (
+                  {entry.stack.map((tech) => (
                     <span
                       key={tech}
                       className="border-border text-muted rounded-full border px-2.5 py-1 text-xs"

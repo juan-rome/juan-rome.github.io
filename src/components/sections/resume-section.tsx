@@ -30,17 +30,22 @@ export function ResumeSection() {
       </div>
 
       <ol className="border-border mt-16 space-y-6 border-l pl-6">
-        {experience.map((role, index) => (
-          <FadeIn key={`${role.company}-${role.period}`} delay={index * 0.03}>
-            <li className="relative">
-              <span className="bg-accent absolute top-1.5 -left-[1.6rem] h-2 w-2 rounded-full" />
-              <p className="text-muted-foreground text-sm">{role.period}</p>
-              <p className="text-foreground font-medium">
-                {role.role} · {role.company}
-              </p>
-            </li>
-          </FadeIn>
-        ))}
+        {experience.flatMap((entry) =>
+          entry.titles.map((title, index) => (
+            <FadeIn
+              key={`${entry.company}-${title.role}-${title.period}`}
+              delay={index * 0.03}
+            >
+              <li className="relative">
+                <span className="bg-accent absolute top-1.5 -left-[1.6rem] h-2 w-2 rounded-full" />
+                <p className="text-muted-foreground text-sm">{title.period}</p>
+                <p className="text-foreground font-medium">
+                  {title.role} · {entry.company}
+                </p>
+              </li>
+            </FadeIn>
+          ))
+        )}
       </ol>
     </Section>
   );

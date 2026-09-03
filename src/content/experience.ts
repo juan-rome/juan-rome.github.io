@@ -1,7 +1,11 @@
+export type Title = { role: string; period: string };
+
 export type Experience = {
   company: string;
-  role: string;
-  period: string;
+  /** Usually one title. More than one means an internal promotion at the
+   *  same company — shown stacked under one company heading, sharing a
+   *  single summary/stack/highlights rather than splitting bullets by title. */
+  titles: Title[];
   summary: string;
   stack: string[];
   highlights: string[];
@@ -11,16 +15,16 @@ export type Experience = {
  * Career history, expanded from resume bullets into outcomes + engineering
  * decisions. Sourced from the 09/2026 resume and Earnest performance
  * reviews (2024 year-end, 2025 year-end, 2026 mid-year) — not invented.
- * Dates/titles here must match the resume exactly; it's the source of
- * truth for employment history.
  */
 export const experience: Experience[] = [
   {
     company: "Earnest",
-    role: "Senior Software Engineer",
-    period: "Apr 2024 — Present",
+    titles: [
+      { role: "Senior Software Engineer", period: "Oct 2025 — Present" },
+      { role: "Software Engineer II", period: "Apr 2024 — Oct 2025" },
+    ],
     summary:
-      "Own the front-end architecture and experimentation infrastructure behind Earnest's student loan rate-check and application funnels, spanning product delivery, platform infrastructure, and developer experience. Promoted from Software Engineer II in Q3 2025.",
+      "Own the front-end architecture and experimentation infrastructure behind Earnest's student loan rate-check and application funnels, spanning product delivery, platform infrastructure, and developer experience. Promoted to Senior in October 2025.",
     stack: [
       "React",
       "Next.js",
@@ -47,8 +51,7 @@ export const experience: Experience[] = [
   },
   {
     company: "Capital One",
-    role: "Senior Software Engineer",
-    period: "May 2022 — Oct 2023",
+    titles: [{ role: "Senior Software Engineer", period: "May 2022 — Oct 2023" }],
     summary:
       "Led frontend redesigns and integrations across Capital One's micro-frontend applications, working in Lit web components.",
     stack: ["Lit", "TypeScript", "Micro-Frontends"],
@@ -60,8 +63,7 @@ export const experience: Experience[] = [
   },
   {
     company: "H-E-B",
-    role: "Full Stack Software Engineer II",
-    period: "Apr 2020 — May 2022",
+    titles: [{ role: "Full Stack Software Engineer II", period: "Apr 2020 — May 2022" }],
     summary:
       "Promoted within H-E-B's engineering team; built customer-facing features and owned production reliability for a grocery-retail platform.",
     stack: ["Angular", "RxJS", "TypeScript"],
@@ -73,8 +75,7 @@ export const experience: Experience[] = [
   },
   {
     company: "H-E-B",
-    role: "Full Stack Software Engineer",
-    period: "Jun 2018 — Apr 2020",
+    titles: [{ role: "Full Stack Software Engineer", period: "Jun 2018 — Apr 2020" }],
     summary:
       "Started full-stack, working across customer-facing features and backend batch processing before promotion to Software Engineer II.",
     stack: ["Spring Boot", "Spring Batch", "Java", "MySQL"],
