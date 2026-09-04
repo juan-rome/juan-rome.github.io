@@ -198,6 +198,29 @@
       scan (0 violations) and rewritten e2e coverage for the new
       spotlight/disclosure/mobile-grid behavior, replacing the four tests
       that exercised the old carousel's scroll arrows.
+- [x] Redesigned Experience and Projects, and added a shared
+      `AnimatedCollapse` primitive (Framer Motion `height: "auto"`,
+      respecting `prefers-reduced-motion`) used by every expand/collapse
+      control on the site, including AI Lab's existing "+N more skills"
+      toggle. Experience now opens the current role (Earnest) by default —
+      first 5 highlights and the 9 most-used stack tags visible, the rest
+      behind their own "+N more" disclosures — while past roles (Capital
+      One, H-E-B) stay collapsed behind a "Show role details" toggle.
+      Projects moved from always-expanded write-ups to an expandable
+      case-study pattern: summary, impact, and stack visible by default,
+      Problem/Architecture/Tradeoffs/Challenges/Lessons behind "Read the
+      full case study". Merged H-E-B's two resume entries into one card
+      with stacked titles (matching how Earnest's own promotion is shown)
+      and restored a real highlight and the "Spring Batch" tag that had
+      been dropped while drafting; added real stack tags confirmed against
+      actual work history (GitHub Actions/PagerDuty/Cypress/Figma/Jira/
+      GitHub/New Relic/Storybook/Storyblok CMS/Amplitude/FullStory across
+      the three companies, PostgreSQL for H-E-B). Verified with new e2e
+      coverage for both sections' disclosure behavior (default state,
+      expand/collapse, focus return, collapse-control positioning) and a
+      manual mobile pass that also fixed the role/period text
+      right-aligning awkwardly once it wrapped under the card title on
+      narrow viewports.
 
 ## Next
 

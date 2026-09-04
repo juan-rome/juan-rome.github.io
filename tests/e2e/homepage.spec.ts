@@ -99,6 +99,96 @@ test("AI Lab: extra skills are collapsed behind a toggle by default, with a matc
   await expect(page.getByRole("button", { name: "+4 more skills" })).toBeFocused();
 });
 
+test("Experience: current role is open by default, past roles are collapsed", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(page.getByRole("heading", { name: "Earnest", level: 3 })).toBeVisible();
+  await expect(
+    page.getByText("Led the front-end migration of Earnest's Unified Application Flow")
+  ).toBeVisible();
+  await expect(
+    page.getByText("Built and scaled shared experimentation")
+  ).not.toBeVisible();
+
+  await expect(
+    page.getByText("Led development of three major integrations")
+  ).not.toBeVisible();
+
+  const moreHighlights = page.getByRole("button", { name: "+6 more highlights" });
+  await moreHighlights.scrollIntoViewIfNeeded();
+  await expect(moreHighlights).toHaveAttribute("aria-expanded", "false");
+  await moreHighlights.click();
+  await expect(page.getByText("Built and scaled shared experimentation")).toBeVisible();
+
+  const fewerHighlights = page.getByRole("button", { name: "Show fewer highlights" });
+  await expect(fewerHighlights).toHaveAttribute("aria-expanded", "true");
+  await fewerHighlights.click();
+  await expect(
+    page.getByText("Built and scaled shared experimentation")
+  ).not.toBeVisible();
+  await expect(moreHighlights).toBeFocused();
+});
+
+test("Experience: a past role expands to its own details, collapse control appears after them", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const expandButtons = page.getByRole("button", { name: "Show role details" });
+  const capitalOneExpand = expandButtons.first();
+  await capitalOneExpand.scrollIntoViewIfNeeded();
+  await expect(
+    page.getByText("Led development of three major integrations")
+  ).not.toBeVisible();
+
+  await capitalOneExpand.click();
+  const detail = page.locator('[id$="-detail"]').first();
+  const collapseButton = page.getByRole("button", { name: "Show less" }).first();
+  await expect(
+    page.getByText("Led development of three major integrations")
+  ).toBeVisible();
+
+  const [detailBox, collapseBox] = await Promise.all([
+    detail.boundingBox(),
+    collapseButton.boundingBox(),
+  ]);
+  expect(detailBox).not.toBeNull();
+  expect(collapseBox).not.toBeNull();
+  expect(collapseBox!.y).toBeGreaterThan(detailBox!.y);
+
+  await collapseButton.click();
+  await expect(
+    page.getByText("Led development of three major integrations")
+  ).not.toBeVisible();
+  await expect(capitalOneExpand).toBeFocused();
+});
+
+test("Projects: case studies are collapsed by default and expand into the full write-up", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const expandButton = page
+    .getByRole("button", { name: "Read the full case study" })
+    .first();
+  await expandButton.scrollIntoViewIfNeeded();
+  await expect(
+    page.getByText("Now part of standing working knowledge")
+  ).not.toBeVisible();
+
+  await expandButton.click();
+  await expect(page.getByText("Now part of standing working knowledge")).toBeVisible();
+  await expect(
+    page.getByText("learning nginx internals", { exact: false })
+  ).toBeVisible();
+
+  const collapseButton = page.getByRole("button", { name: "Show less" }).first();
+  await collapseButton.click();
+  await expect(
+    page.getByText("Now part of standing working knowledge")
+  ).not.toBeVisible();
+  await expect(expandButton).toBeFocused();
+});
+
 test("mobile nav menu closes after selecting a link", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto("/");
