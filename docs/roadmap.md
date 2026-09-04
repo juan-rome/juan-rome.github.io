@@ -237,6 +237,11 @@
       it's currently unconditional. Likely an IntersectionObserver on that
       heading (same pattern as `useActiveSection`), toggling the dot's
       visibility in `Header`/`Nav`.
+- [ ] Make the Experience section's highlight-list bullet markers purple
+      (`bg-accent-text`) instead of grey (`bg-muted`) — currently
+      `experience-section.tsx`'s `HighlightList` span, unchanged from
+      before the Experience redesign. The review mockup used purple there
+      (`var(--accent-text)`); the shipped version never picked that up.
 - [ ] Replace `src/app/favicon.ico` — it's still create-next-app's default.
 - [ ] Lighthouse pass: run against the deployed site and close any gap to
       100 on Performance/Accessibility/Best Practices/SEO.
