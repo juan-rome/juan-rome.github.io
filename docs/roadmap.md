@@ -148,6 +148,25 @@
       workflow diagram" (the Workflow Builder). Recognizing a shipped
       feature isn't earning its place and cutting it is itself worth
       recording, not just quietly deleting the evidence it existed.
+- [x] AI Lab's real tenth entry: jira-to-pr-workflow-mcp
+      (github.com/juan-rome/jira-to-pr-workflow-mcp), the MCP-native
+      sibling of jira-to-pr-workflow. Same imported quality gate; Jira and
+      GitHub access go through the connected Atlassian and GitHub MCP
+      servers instead of a personal API token and the gh CLI. Built as a
+      separate repo rather than a v1 rewrite, specifically so v1's own
+      real dogfood evidence wasn't put at risk for an approach that
+      hadn't been proven yet. A real run against a live Jira sandbox
+      ticket confirmed the full pipeline end to end, including the one
+      thing genuinely unconfirmed at build time: the Atlassian MCP
+      server's tool surface does support attaching a file and commenting
+      back on a ticket (a real two-phase `uploadAttachmentToJiraIssue`
+      tool). That same run found two real integration bugs before they
+      could surprise anyone else running this: GitHub's MCP endpoint
+      doesn't support OAuth's dynamic client registration and needs a
+      scoped PAT instead, and a module-resolution failure when the
+      ticket-normalizing script ran from outside its own repo directory
+      (fixed with a proper CLI wrapper and a regression test that
+      deliberately runs it from an unrelated working directory).
 
 ## Next
 

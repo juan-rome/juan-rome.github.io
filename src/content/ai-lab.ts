@@ -108,7 +108,7 @@ export const aiLabItems: AiLabItem[] = [
     category: "Agent",
     status: "live",
     summary:
-      "Checks a pull request's code changes using the four skills below (secret leaks, accessibility, design fidelity, and test coverage) as real inputs, then gives one clear verdict: block, approve, or flag concerns, with plain-language reasoning. A leaked secret always blocks the PR; everything else is weighed together into a single score, and anything it couldn't check is called out honestly rather than assumed fine.",
+      "Checks a pull request's code changes using the four skills below (secret leaks, accessibility, design fidelity, and test coverage) as real inputs, then gives one clear verdict: block, approve, or flag concerns, with plain-language reasoning. A leaked secret always blocks the PR; everything else is weighed together into a single score, and anything it couldn't check is called out honestly rather than assumed fine. Composes those checks as git-dependency scripts rather than MCP servers, since each only needs a one-shot local read; a standing, shared connection to something like Jira or Slack across multiple tools is the case MCP is actually built for.",
     stack: ["Claude Code Agent", "Node.js", "Git"],
     audiences: ["Devs"],
     githubUrl: "https://github.com/juan-rome/pr-readiness-agent",
@@ -137,5 +137,17 @@ export const aiLabItems: AiLabItem[] = [
     audiences: ["Devs", "PMs"],
     githubUrl: "https://github.com/juan-rome/skill-workflow-builder",
     demoUrl: "/tools/workflow-builder/",
+  },
+  {
+    slug: "jira-to-pr-workflow-mcp",
+    title: "Jira → PR (MCP-native)",
+    category: "Workflow",
+    status: "live",
+    summary:
+      "The MCP-native sibling of Jira → PR: same imported quality gate, but Jira and GitHub access go through the connected Atlassian and GitHub MCP servers instead of a personal API token and the gh CLI. Run against a real Jira sandbox ticket, it correctly found an existing PR instead of duplicating it, and confirmed the Atlassian MCP server actually supports attaching a file and commenting back on the ticket. That same run surfaced two real integration bugs (GitHub's MCP endpoint needing a token instead of OAuth, a module-resolution failure calling its own git dependency), both fixed on the spot.",
+    stack: ["Claude Code Skill", "Atlassian MCP Server", "GitHub MCP Server", "Node.js"],
+    audiences: ["Devs", "PMs"],
+    githubUrl: "https://github.com/juan-rome/jira-to-pr-workflow-mcp",
+    demoUrl: "https://github.com/juan-rome/jira-to-pr-workflow-mcp/blob/main/RUNS.md",
   },
 ];
