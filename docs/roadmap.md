@@ -226,7 +226,7 @@
 
 - [ ] Redo the hero corner-glow (reverted for now — see the "Revert" commit
       on top of `feat: add a one-time corner-tracing glow to the hero on
-    load`): it was too large, and got clipped into a hard half-circle at
+load`): it was too large, and got clipped into a hard half-circle at
       each corner since the blob was centered exactly on the corner point
       with the section clipping via `overflow-hidden`. Fix: smaller blob,
       and/or corner waypoints inset from the actual edges so the full blob
