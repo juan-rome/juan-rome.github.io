@@ -33,7 +33,7 @@ export const projects: Project[] = [
     lessons:
       "Now part of standing working knowledge: diagnosing deployment and environment issues without needing to route every problem through the platform team.",
     impact: [
-      "Made UAF deployable to staging and production at all",
+      "Made the new frontend project deployable to staging and production at all",
       "Directly enabled Phase 1 launch of the new applicant flow",
       "Fixed a broken next/image optimizer bug caused by the same routing ambiguity",
     ],
