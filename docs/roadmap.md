@@ -224,6 +224,19 @@
 
 ## Next
 
+- [ ] Redo the hero corner-glow (reverted for now — see the "Revert" commit
+      on top of `feat: add a one-time corner-tracing glow to the hero on
+    load`): it was too large, and got clipped into a hard half-circle at
+      each corner since the blob was centered exactly on the corner point
+      with the section clipping via `overflow-hidden`. Fix: smaller blob,
+      and/or corner waypoints inset from the actual edges so the full blob
+      always stays within bounds — should read as one continuous glide,
+      not four flat-edged pops.
+- [ ] Header wordmark's purple pulsing dot should only show once the
+      hero's "Juan Romero" `<h1>` has scrolled out of view, not always —
+      it's currently unconditional. Likely an IntersectionObserver on that
+      heading (same pattern as `useActiveSection`), toggling the dot's
+      visibility in `Header`/`Nav`.
 - [ ] Replace `src/app/favicon.ico` — it's still create-next-app's default.
 - [ ] Lighthouse pass: run against the deployed site and close any gap to
       100 on Performance/Accessibility/Best Practices/SEO.
