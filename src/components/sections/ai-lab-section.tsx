@@ -2,6 +2,7 @@ import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn } from "@/components/ui/fade-in";
 import { AiLabMoreSkills } from "@/components/sections/ai-lab-more-skills";
+import { PulsingDot } from "@/components/ui/pulsing-dot";
 import { aiLabItems, type AiLabItem, type ToolCategory } from "@/content/ai-lab";
 import { cn } from "@/lib/utils";
 
@@ -82,7 +83,7 @@ function AiLabSpotlightCard({ item }: { item: AiLabItem }) {
   return (
     <div className="h-full rounded-xl border border-emerald-500/25 bg-gradient-to-br from-emerald-500/[0.07] to-transparent p-4">
       <p className="flex items-center gap-1.5 text-[0.65rem] font-semibold tracking-wide text-emerald-400 uppercase">
-        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+        <PulsingDot />
         Live in your browser
       </p>
       <h4 className="mt-1.5 text-sm font-semibold">{item.title}</h4>
