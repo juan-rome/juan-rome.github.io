@@ -14,7 +14,7 @@ export function Header() {
           <PulsingDot
             colorClassName="bg-accent-text"
             glowClassName="shadow-[0_0_8px_rgba(129,140,248,0.8)]"
-            ringSizeClassName="h-3.5 w-3.5"
+            ringSizeClassName="h-[7px] w-[7px]"
             className="shrink-0"
           />
           {site.name}
