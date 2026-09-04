@@ -1,6 +1,7 @@
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn } from "@/components/ui/fade-in";
+import { AiLabMoreSkills } from "@/components/sections/ai-lab-more-skills";
 import { aiLabItems, type AiLabItem, type ToolCategory } from "@/content/ai-lab";
 import { cn } from "@/lib/utils";
 
@@ -95,7 +96,7 @@ function AiLabSpotlightCard({ item }: { item: AiLabItem }) {
   );
 }
 
-function AiLabCompactCard({ item }: { item: AiLabItem }) {
+export function AiLabCompactCard({ item }: { item: AiLabItem }) {
   return (
     <div className="border-border h-full rounded-xl border p-4">
       <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between">
@@ -185,37 +186,7 @@ export function AiLabSection() {
             </div>
 
             {hiddenSkillItems.length > 0 ? (
-              <details className="group mt-3">
-                <summary className="border-border-strong text-muted hover:text-foreground hover:bg-background-elevated flex cursor-pointer list-none items-center justify-center gap-2 rounded-xl border border-dashed p-3 text-sm font-medium transition-colors [&::-webkit-details-marker]:hidden">
-                  <span className="group-open:hidden">
-                    +{hiddenSkillItems.length} more skills
-                  </span>
-                  <span className="hidden group-open:inline">Show fewer skills</span>
-                  <svg
-                    width="11"
-                    height="7"
-                    viewBox="0 0 11 7"
-                    fill="none"
-                    aria-hidden="true"
-                    className="text-muted-foreground transition-transform group-open:rotate-180"
-                  >
-                    <path
-                      d="M1 1L5.5 5.5L10 1"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </summary>
-                <div className="mt-3 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
-                  {hiddenSkillItems.map((item, index) => (
-                    <FadeIn key={item.slug} delay={index * 0.04}>
-                      <AiLabCompactCard item={item} />
-                    </FadeIn>
-                  ))}
-                </div>
-              </details>
+              <AiLabMoreSkills items={hiddenSkillItems} />
             ) : null}
           </div>
         </div>

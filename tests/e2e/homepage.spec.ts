@@ -61,7 +61,7 @@ test("AI Lab: Tool entries get a distinct spotlight treatment", async ({ page })
   ).toBeVisible();
 });
 
-test("AI Lab: extra skills are collapsed behind a toggle by default", async ({
+test("AI Lab: extra skills are collapsed behind a toggle by default, with a matching collapse control after them", async ({
   page,
 }) => {
   await page.goto("/");
@@ -70,20 +70,33 @@ test("AI Lab: extra skills are collapsed behind a toggle by default", async ({
   ).toBeVisible();
   await expect(page.getByText("Secret Leak Scanner")).not.toBeVisible();
 
-  const toggle = page
-    .locator("details")
-    .filter({ hasText: "more skills" })
-    .locator("summary");
-  await toggle.scrollIntoViewIfNeeded();
-  await expect(toggle).toContainText("+4 more skills");
-
-  await toggle.click();
+  const expandButton = page.getByRole("button", { name: "+4 more skills" });
+  await expandButton.scrollIntoViewIfNeeded();
+  await expect(expandButton).toHaveAttribute("aria-expanded", "false");
+  await expandButton.click();
 
   await expect(page.getByText("Secret Leak Scanner")).toBeVisible();
   await expect(page.getByText("PM Ticket Readiness Checker")).toBeVisible();
   await expect(page.getByText("Design-to-Code Fidelity Checker")).toBeVisible();
   await expect(page.getByText("Cypress Test Generator")).toBeVisible();
-  await expect(toggle).toContainText("Show fewer skills");
+
+  // The collapse control is a second, real button rendered after the
+  // revealed cards, not the same element relabeled in place.
+  const revealedCards = page.locator("#ai-lab-more-skills");
+  const collapseButton = page.getByRole("button", { name: "Show fewer skills" });
+  const [cardsBox, collapseBox] = await Promise.all([
+    revealedCards.boundingBox(),
+    collapseButton.boundingBox(),
+  ]);
+  expect(cardsBox).not.toBeNull();
+  expect(collapseBox).not.toBeNull();
+  expect(collapseBox!.y).toBeGreaterThan(cardsBox!.y);
+  await expect(collapseButton).toHaveAttribute("aria-expanded", "true");
+
+  await collapseButton.click();
+  await expect(page.getByText("Secret Leak Scanner")).not.toBeVisible();
+  // Focus returns to the expand control rather than being dropped.
+  await expect(page.getByRole("button", { name: "+4 more skills" })).toBeFocused();
 });
 
 test("mobile nav menu closes after selecting a link", async ({ page }) => {
