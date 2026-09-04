@@ -47,70 +47,50 @@ test("nav highlights the section currently in view while scrolling", async ({ pa
   await expect(experienceLink).toHaveAttribute("aria-current", "location");
 });
 
-test("AI Lab carousel: only overflowing category rows show scroll arrows", async ({
-  page,
-}) => {
+test("AI Lab: Tool entries get a distinct spotlight treatment", async ({ page }) => {
   await page.goto("/");
-  const skillRow = page.locator('[role="region"][aria-label="Skill tools"]');
-  const agentRow = page.locator('[role="region"][aria-label="Agent tools"]');
-
-  // Skill has 5 cards and overflows a normal desktop viewport; Agent has 1
-  // and fits without scrolling, so it should render no arrow buttons at all.
   await expect(
-    skillRow.locator("..").getByRole("button", { name: "Scroll right" })
+    page.getByRole("heading", { name: "Try it yourself", level: 3 })
+  ).toBeVisible();
+  await expect(page.getByText("Live in your browser").first()).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Skill Quality Scorecard", level: 4 })
   ).toBeVisible();
   await expect(
-    agentRow.locator("..").getByRole("button", { name: "Scroll right" })
-  ).toHaveCount(0);
+    page.getByRole("heading", { name: "Skill Workflow Builder", level: 4 })
+  ).toBeVisible();
 });
 
-test("AI Lab carousel: a lone card fills its row instead of leaving a gap", async ({
+test("AI Lab: extra skills are collapsed behind a toggle by default", async ({
   page,
 }) => {
   await page.goto("/");
-  const agentRow = page.locator('[role="region"][aria-label="Agent tools"]');
-  const card = agentRow.locator(":scope > div").first();
+  await expect(
+    page.getByRole("heading", { name: "Accessibility Audit", level: 4 })
+  ).toBeVisible();
+  await expect(page.getByText("Secret Leak Scanner")).not.toBeVisible();
 
-  const [rowBox, cardBox] = await Promise.all([
-    agentRow.boundingBox(),
-    card.boundingBox(),
-  ]);
-  expect(rowBox).not.toBeNull();
-  expect(cardBox).not.toBeNull();
-  // A couple pixels of slack for borders/rounding, not a meaningful gap.
-  expect(rowBox!.width - cardBox!.width).toBeLessThan(4);
-});
+  const toggle = page
+    .locator("details")
+    .filter({ hasText: "more skills" })
+    .locator("summary");
+  await toggle.scrollIntoViewIfNeeded();
+  await expect(toggle).toContainText("+4 more skills");
 
-test("AI Lab carousel: right arrow scrolls the row and left arrow scrolls back", async ({
-  page,
-}) => {
-  await page.goto("/");
-  const skillRow = page.locator('[role="region"][aria-label="Skill tools"]');
-  const container = skillRow.locator("..");
-  const rightButton = container.getByRole("button", { name: "Scroll right" });
-  const leftButton = container.getByRole("button", { name: "Scroll left" });
+  await toggle.click();
 
-  await skillRow.scrollIntoViewIfNeeded();
-  await expect(leftButton).toBeDisabled();
-
-  const initialScrollLeft = await skillRow.evaluate((el) => el.scrollLeft);
-  await rightButton.click();
-  await expect
-    .poll(() => skillRow.evaluate((el) => el.scrollLeft))
-    .toBeGreaterThan(initialScrollLeft);
-  await expect(leftButton).toBeEnabled();
-
-  await leftButton.click();
-  await expect
-    .poll(() => skillRow.evaluate((el) => el.scrollLeft))
-    .toBe(initialScrollLeft);
+  await expect(page.getByText("Secret Leak Scanner")).toBeVisible();
+  await expect(page.getByText("PM Ticket Readiness Checker")).toBeVisible();
+  await expect(page.getByText("Design-to-Code Fidelity Checker")).toBeVisible();
+  await expect(page.getByText("Cypress Test Generator")).toBeVisible();
+  await expect(toggle).toContainText("Show fewer skills");
 });
 
 test("mobile nav menu closes after selecting a link", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto("/");
 
-  const details = page.locator("details");
+  const details = page.locator("header details");
   await page.locator('summary[aria-label="Open navigation menu"]').click();
   await expect(details).toHaveJSProperty("open", true);
 
@@ -118,22 +98,28 @@ test("mobile nav menu closes after selecting a link", async ({ page }) => {
   await expect(details).toHaveJSProperty("open", false);
 });
 
-test("AI Lab carousel works at mobile viewport width", async ({ page }) => {
+test("AI Lab compact grid stays two columns at mobile viewport width", async ({
+  page,
+}) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto("/");
 
-  const skillRow = page.locator('[role="region"][aria-label="Skill tools"]');
-  await skillRow.scrollIntoViewIfNeeded();
-  const rightButton = skillRow
-    .locator("..")
-    .getByRole("button", { name: "Scroll right" });
-  await expect(rightButton).toBeVisible();
+  const prCard = page.getByRole("heading", { name: "PR Readiness Agent", level: 4 });
+  const jiraCard = page.getByRole("heading", {
+    name: "Jira → PR",
+    exact: true,
+    level: 4,
+  });
+  await prCard.scrollIntoViewIfNeeded();
 
-  const initialScrollLeft = await skillRow.evaluate((el) => el.scrollLeft);
-  await rightButton.click();
-  await expect
-    .poll(() => skillRow.evaluate((el) => el.scrollLeft))
-    .toBeGreaterThan(initialScrollLeft);
+  const [prBox, jiraBox] = await Promise.all([
+    prCard.boundingBox(),
+    jiraCard.boundingBox(),
+  ]);
+  expect(prBox).not.toBeNull();
+  expect(jiraBox).not.toBeNull();
+  // Two-column grid on mobile: the two cards should sit in the same row.
+  expect(Math.abs(prBox!.y - jiraBox!.y)).toBeLessThan(4);
 });
 
 // Deliberately never triggers an actual score (that fires a real call to

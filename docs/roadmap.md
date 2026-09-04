@@ -183,6 +183,21 @@
       resolves a real GitHub connection end to end was left unconfirmed,
       since testing it would have meant disturbing the already-working
       manual MCP entries this repo's first real run was proven against.
+- [x] Redesigned the AI Lab section: the two "Tool" entries (the ones a
+      visitor can actually click and use) now get a distinct spotlight
+      treatment with a live-status indicator, replacing the old per-
+      category horizontal-scroll carousel entirely. Agent, Workflow, and
+      the first Skill entry stay visible by default; the remaining four
+      Skill entries sit behind a "+4 more skills" disclosure (a native
+      `<details>`/`<summary>`, the same pattern the mobile nav menu
+      already used) instead of requiring a scroll-and-click per row.
+      Trimmed three descriptions (Jira → PR, Jira → PR MCP-native, PR
+      Readiness Agent) that had grown longer than the rest across edits,
+      for consistent card height. The now-unused `Carousel` component was
+      deleted outright rather than left dead. Verified with a real a11y
+      scan (0 violations) and rewritten e2e coverage for the new
+      spotlight/disclosure/mobile-grid behavior, replacing the four tests
+      that exercised the old carousel's scroll arrows.
 
 ## Next
 

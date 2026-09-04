@@ -47,7 +47,7 @@ export const aiLabItems: AiLabItem[] = [
     category: "Workflow",
     status: "live",
     summary:
-      "A Claude Code workflow that fetches a Jira ticket, refuses to implement it without a real description, AC, and testing plan, then implements it and opens a PR with a real embedded screenshot. The full pipeline triggers when a ticket is moved to In Development; a separate readiness-only mode gives a quick 'is this ready' check in To Do without running the full pipeline. Run against a real Jira sandbox: one ticket passed the gate and shipped a real PR, one was correctly blocked.",
+      "A Claude Code workflow that fetches a Jira ticket, refuses to implement it without a real description, AC, and testing plan, then implements it and opens a PR with a real embedded screenshot. Run against a real Jira sandbox: one ticket passed the gate and shipped a real PR, one was correctly blocked.",
     stack: ["Claude Code Skill", "Jira REST API", "Playwright", "GitHub CLI", "Node.js"],
     audiences: ["Devs", "PMs"],
     githubUrl: "https://github.com/juan-rome/jira-to-pr-workflow",
@@ -108,7 +108,7 @@ export const aiLabItems: AiLabItem[] = [
     category: "Agent",
     status: "live",
     summary:
-      "Checks a pull request's code changes using the four skills below (secret leaks, accessibility, design fidelity, and test coverage) as real inputs, then gives one clear verdict: block, approve, or flag concerns, with plain-language reasoning. A leaked secret always blocks the PR; everything else is weighed together into a single score, and anything it couldn't check is called out honestly rather than assumed fine. Composes those checks as git-dependency scripts rather than MCP servers, since each only needs a one-shot local read; a standing, shared connection to something like Jira or Slack across multiple tools is the case MCP is actually built for.",
+      "Checks a pull request's code changes using the four skills below (secret leaks, accessibility, design fidelity, and test coverage) as real inputs, then gives one clear verdict: block, approve, or flag concerns. A leaked secret always blocks the PR; anything it couldn't check is called out honestly rather than assumed fine.",
     stack: ["Claude Code Agent", "Node.js", "Git"],
     audiences: ["Devs"],
     githubUrl: "https://github.com/juan-rome/pr-readiness-agent",
@@ -144,7 +144,7 @@ export const aiLabItems: AiLabItem[] = [
     category: "Workflow",
     status: "live",
     summary:
-      "The MCP-native sibling of Jira → PR, packaged as a real installable Claude Code plugin: two commands (claude plugin marketplace add, claude plugin install) instead of a git clone and a remembered file path, verified with claude plugin validate --strict passing clean in CI. Jira and GitHub access go through the connected Atlassian and GitHub MCP servers instead of a personal API token and the gh CLI. Run against a real Jira sandbox ticket, it correctly found an existing PR instead of duplicating it, and confirmed the Atlassian MCP server actually supports attaching a file and commenting back on the ticket. That same run surfaced two real integration bugs (GitHub's MCP endpoint needing a token instead of OAuth, a module-resolution failure calling its own git dependency), both fixed on the spot.",
+      "The MCP-native sibling of Jira → PR, packaged as a real installable Claude Code plugin: two commands instead of a git clone and a remembered file path. Jira and GitHub access go through connected MCP servers instead of a personal token. Run against a real sandbox ticket, it correctly found an existing PR instead of duplicating it, surfacing two real integration bugs fixed on the spot.",
     stack: ["Claude Code Plugin", "Atlassian MCP Server", "GitHub MCP Server", "Node.js"],
     audiences: ["Devs", "PMs"],
     githubUrl: "https://github.com/juan-rome/jira-to-pr-workflow-mcp",
