@@ -95,45 +95,6 @@ body {
   border-radius: 2px;
 }
 
-/* Traces the hero's four corners once on load, then fades out back at the
-   top-left. Percentages are relative to the hero section itself (which is
-   already bounded top and bottom by real border lines — the header's and
-   the next section's), not the viewport. */
-@keyframes hero-glow-loop {
-  0% {
-    top: 0%;
-    left: 0%;
-    opacity: 0;
-    animation-timing-function: ease-in-out;
-  }
-  8% {
-    opacity: 0.85;
-  }
-  25% {
-    top: 100%;
-    left: 0%;
-    opacity: 0.85;
-    animation-timing-function: ease-in-out;
-  }
-  50% {
-    top: 100%;
-    left: 100%;
-    opacity: 0.85;
-    animation-timing-function: ease-in-out;
-  }
-  75% {
-    top: 0%;
-    left: 100%;
-    opacity: 0.85;
-    animation-timing-function: ease-out;
-  }
-  100% {
-    top: 0%;
-    left: 0%;
-    opacity: 0;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
