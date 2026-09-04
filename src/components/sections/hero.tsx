@@ -5,8 +5,15 @@ import { site } from "@/content/site";
 
 export function Hero() {
   return (
-    <section id="top" className="pt-24 pb-20 text-center sm:pt-32 sm:pb-28">
-      <Container className="flex flex-col items-center">
+    <section
+      id="top"
+      className="relative overflow-hidden pt-24 pb-20 text-center sm:pt-32 sm:pb-28"
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-0 left-0 h-72 w-72 -translate-x-1/2 -translate-y-1/2 [animation:hero-glow-loop_7s_1_both] rounded-full opacity-0 blur-3xl [background:radial-gradient(circle,rgba(129,140,248,0.55),rgba(217,70,239,0.35)_45%,rgba(56,189,248,0.25)_70%,transparent_78%)]"
+      />
+      <Container className="relative flex flex-col items-center">
         <FadeIn>
           <span className="border-border-strong text-muted mb-5 inline-flex rounded-full border px-3.5 py-1.5 text-xs">
             {site.location}
