@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { NavLinks } from "@/components/layout/nav-links";
 import { useActiveSection } from "@/hooks/use-active-section";
 
@@ -8,6 +8,17 @@ import { useActiveSection } from "@/hooks/use-active-section";
 export function Nav() {
   const activeHref = useActiveSection();
   const detailsRef = useRef<HTMLDetailsElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      const details = detailsRef.current;
+      if (!details || !details.open) return;
+      if (details.contains(event.target as Node)) return;
+      details.open = false;
+    }
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
 
   return (
     <>

@@ -201,6 +201,18 @@ test("mobile nav menu closes after selecting a link", async ({ page }) => {
   await expect(details).toHaveJSProperty("open", false);
 });
 
+test("mobile nav menu closes when clicking outside it", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/");
+
+  const details = page.locator("header details");
+  await page.locator('summary[aria-label="Open navigation menu"]').click();
+  await expect(details).toHaveJSProperty("open", true);
+
+  await page.mouse.click(20, 700);
+  await expect(details).toHaveJSProperty("open", false);
+});
+
 test("AI Lab compact grid stays two columns at mobile viewport width", async ({
   page,
 }) => {
