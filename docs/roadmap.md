@@ -167,6 +167,22 @@
       ticket-normalizing script ran from outside its own repo directory
       (fixed with a proper CLI wrapper and a regression test that
       deliberately runs it from an unrelated working directory).
+- [x] Repackaged jira-to-pr-workflow-mcp as a real installable Claude
+      Code plugin instead of a clone-and-remember-a-file-path repo: the
+      same repo doubles as its own self-hosted marketplace
+      (`.claude-plugin/plugin.json` + `marketplace.json`), collapsing
+      setup to `claude plugin marketplace add` + `claude plugin install`.
+      Verified locally before shipping, not just written to a spec:
+      `claude plugin validate --strict` passes with zero errors (now
+      enforced in CI on every push), and a real local install correctly
+      registered the skill and both declared MCP servers. The GitHub PAT
+      is set via `--config`/`/plugin configure` against a declared
+      `userConfig` schema rather than typed into a raw header string.
+      Documented honestly what wasn't re-verified through this specific
+      path: whether the plugin's own `.mcp.json` header substitution
+      resolves a real GitHub connection end to end was left unconfirmed,
+      since testing it would have meant disturbing the already-working
+      manual MCP entries this repo's first real run was proven against.
 
 ## Next
 

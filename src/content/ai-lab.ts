@@ -144,10 +144,10 @@ export const aiLabItems: AiLabItem[] = [
     category: "Workflow",
     status: "live",
     summary:
-      "The MCP-native sibling of Jira → PR: same imported quality gate, but Jira and GitHub access go through the connected Atlassian and GitHub MCP servers instead of a personal API token and the gh CLI. Run against a real Jira sandbox ticket, it correctly found an existing PR instead of duplicating it, and confirmed the Atlassian MCP server actually supports attaching a file and commenting back on the ticket. That same run surfaced two real integration bugs (GitHub's MCP endpoint needing a token instead of OAuth, a module-resolution failure calling its own git dependency), both fixed on the spot.",
-    stack: ["Claude Code Skill", "Atlassian MCP Server", "GitHub MCP Server", "Node.js"],
+      "The MCP-native sibling of Jira → PR, packaged as a real installable Claude Code plugin: two commands (claude plugin marketplace add, claude plugin install) instead of a git clone and a remembered file path, verified with claude plugin validate --strict passing clean in CI. Jira and GitHub access go through the connected Atlassian and GitHub MCP servers instead of a personal API token and the gh CLI. Run against a real Jira sandbox ticket, it correctly found an existing PR instead of duplicating it, and confirmed the Atlassian MCP server actually supports attaching a file and commenting back on the ticket. That same run surfaced two real integration bugs (GitHub's MCP endpoint needing a token instead of OAuth, a module-resolution failure calling its own git dependency), both fixed on the spot.",
+    stack: ["Claude Code Plugin", "Atlassian MCP Server", "GitHub MCP Server", "Node.js"],
     audiences: ["Devs", "PMs"],
     githubUrl: "https://github.com/juan-rome/jira-to-pr-workflow-mcp",
-    demoUrl: "https://github.com/juan-rome/jira-to-pr-workflow-mcp/blob/main/RUNS.md",
+    demoUrl: "https://github.com/juan-rome/jira-to-pr-workflow-mcp#install",
   },
 ];
