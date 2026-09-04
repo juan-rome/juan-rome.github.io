@@ -2,7 +2,7 @@ export const site = {
   name: "Juan Romero",
   role: "Senior Software Engineer",
   tagline:
-    "I build product experiences and the experimentation infrastructure behind them.",
+    "I build product experiences and the infrastructure behind them, increasingly with AI in the loop.",
   location: "San Diego, CA",
   links: {
     github: "https://github.com/juan-rome",
