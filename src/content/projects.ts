@@ -33,7 +33,7 @@ export const projects: Project[] = [
     lessons:
       "Now part of standing working knowledge: diagnosing deployment and environment issues without needing to route every problem through the platform team.",
     impact: [
-      "Re-architected shared server routing so the new frontend project could deploy to staging and production at all",
+      "Re-architected shared server routing so the new frontend project could deploy to staging and production for the first time without being blocked",
       "Directly enabled Phase 1 launch of the new applicant flow",
       "Fixed a broken next/image optimizer bug caused by the same routing ambiguity",
     ],
