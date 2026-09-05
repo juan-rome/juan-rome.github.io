@@ -20,13 +20,21 @@ export type AiLabItem = {
   audiences: Audience[];
   githubUrl?: string;
   demoUrl?: string;
+  /** Overrides the demo link's default "See it in action" label, for tools
+   *  where that link isn't literally an interactive demo (e.g. a request-it
+   *  email link for a downloadable app with no in-browser demo). */
+  demoLabel?: string;
+  /** Overrides a spotlight ("Tool" category) card's default "Live in your
+   *  browser" caption — that phrase is literally wrong for a native app
+   *  that only runs after being downloaded, not in-browser. */
+  spotlightLabel?: string;
 };
 
 /**
  * AI Engineering demos — real, working things only, added as they ship
  * (see docs/roadmap.md). Each one should have a public repo a visitor can
  * actually clone and run; that's what separates this section from the
- * Featured Projects case studies, which are proprietary Earnest work.
+ * Featured Engineering Work case studies, which are proprietary Earnest work.
  */
 export const aiLabItems: AiLabItem[] = [
   {

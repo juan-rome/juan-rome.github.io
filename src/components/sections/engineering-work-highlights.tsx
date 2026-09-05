@@ -5,7 +5,7 @@ import { projects } from "@/content/projects";
 
 /**
  * Scannable highlight strip right after the hero — three concrete outcomes,
- * each linking down to its full case study in the Featured Projects section.
+ * each linking down to its full case study in the Featured Engineering Work section.
  */
 export function EngineeringWorkHighlights() {
   const highlights = projects.slice(0, 3);

@@ -1,5 +1,3 @@
-import { Section } from "@/components/ui/section";
-import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn } from "@/components/ui/fade-in";
 import { AiLabMoreSkills } from "@/components/sections/ai-lab-more-skills";
 import { PulsingDot } from "@/components/ui/pulsing-dot";
@@ -53,7 +51,7 @@ function CardLinks({ item }: { item: AiLabItem }) {
           target="_blank"
           rel="noreferrer"
         >
-          See it in action
+          {item.demoLabel ?? "See it in action"}
         </a>
       ) : null}
     </div>
@@ -78,13 +76,14 @@ function CardTags({ item }: { item: AiLabItem }) {
 /** The Tool category is the one a visitor can actually click and use
  *  themselves — a distinct card with a live-status indicator, kept close
  *  in scale to the compact cards below it rather than a much bigger hero
- *  treatment. */
-function AiLabSpotlightCard({ item }: { item: AiLabItem }) {
+ *  treatment. Also reused by the Gadgets subsection, whose items aren't
+ *  AiLabItems but share the same shape. */
+export function AiLabSpotlightCard({ item }: { item: AiLabItem }) {
   return (
     <div className="h-full rounded-xl border border-emerald-500/25 bg-gradient-to-br from-emerald-500/[0.07] to-transparent p-4">
       <p className="flex items-center gap-1.5 text-[0.65rem] font-semibold tracking-wide text-emerald-400 uppercase">
         <PulsingDot />
-        Live in your browser
+        {item.spotlightLabel ?? "Live in your browser"}
       </p>
       <h4 className="mt-1.5 text-sm font-semibold">{item.title}</h4>
       <p className="text-accent-text mt-1 text-[0.64rem] font-medium tracking-wide uppercase">
@@ -128,7 +127,11 @@ export function AiLabCompactCard({ item }: { item: AiLabItem }) {
   );
 }
 
-export function AiLabSection() {
+/** AI Lab used to be its own top-level page section; it's now nested inside
+ *  Side Projects alongside Gadgets, so it renders its own sub-heading
+ *  (matching Gadgets') instead of a full SectionHeading, but keeps the
+ *  #ai-lab anchor so the nav link still lands here specifically. */
+export function AiLabSubsection() {
   const spotlightItems = aiLabItems.filter((item) => item.category === "Tool");
 
   const orderedOtherItems = VISIBLE_CATEGORY_ORDER.flatMap((category) =>
@@ -141,16 +144,20 @@ export function AiLabSection() {
   const visibleItems = [...nonSkillItems, ...visibleSkillItems];
 
   return (
-    <Section id="ai-lab" className="bg-background-elevated/40">
-      <SectionHeading
-        eyebrow="AI Lab"
-        title="AI-assisted workflows, in progress"
-        description="Working demos of AI tooling built into real engineering workflows: plugins, integrations, and small products, added here as they ship."
-      />
+    <div id="ai-lab" className="scroll-mt-20">
+      <FadeIn className="max-w-2xl">
+        <h3 className="text-2xl font-semibold tracking-tight text-balance sm:text-[1.75rem]">
+          AI Lab
+        </h3>
+        <p className="text-muted mt-3 text-pretty">
+          Working demos of AI tooling built into real engineering workflows: plugins,
+          integrations, and small products, added here as they ship.
+        </p>
+      </FadeIn>
 
       {aiLabItems.length === 0 ? (
         <FadeIn>
-          <div className="border-border mt-14 rounded-2xl border border-dashed p-10 text-center">
+          <div className="border-border mt-10 rounded-2xl border border-dashed p-10 text-center">
             <p className="text-muted">
               Nothing published here yet: this section fills in with real, working demos
               rather than placeholders.
@@ -158,12 +165,12 @@ export function AiLabSection() {
           </div>
         </FadeIn>
       ) : (
-        <div className="mt-14 space-y-10">
+        <div className="mt-10 space-y-10">
           {spotlightItems.length > 0 ? (
             <div>
-              <h3 className="text-muted text-sm font-semibold tracking-wide uppercase">
+              <h4 className="text-muted text-sm font-semibold tracking-wide uppercase">
                 Try it yourself
-              </h3>
+              </h4>
               <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {spotlightItems.map((item, index) => (
                   <FadeIn key={item.slug} delay={index * 0.04}>
@@ -175,9 +182,9 @@ export function AiLabSection() {
           ) : null}
 
           <div>
-            <h3 className="text-muted text-sm font-semibold tracking-wide uppercase">
+            <h4 className="text-muted text-sm font-semibold tracking-wide uppercase">
               Agents, workflows & skills
-            </h3>
+            </h4>
             <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
               {visibleItems.map((item, index) => (
                 <FadeIn key={item.slug} delay={index * 0.04}>
@@ -192,6 +199,6 @@ export function AiLabSection() {
           </div>
         </div>
       )}
-    </Section>
+    </div>
   );
 }

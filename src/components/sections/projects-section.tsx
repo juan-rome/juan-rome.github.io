@@ -110,7 +110,7 @@ export function ProjectsSection() {
   return (
     <Section id="projects">
       <SectionHeading
-        eyebrow="Featured Projects"
+        eyebrow="Featured Engineering Work"
         title="A few problems worth explaining properly"
         description="These are internal Earnest products, so there's no public repo or live demo to link: the write-up is the case study."
       />
