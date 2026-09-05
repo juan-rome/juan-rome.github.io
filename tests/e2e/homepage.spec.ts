@@ -50,14 +50,14 @@ test("nav highlights the section currently in view while scrolling", async ({ pa
 test("AI Lab: Tool entries get a distinct spotlight treatment", async ({ page }) => {
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { name: "Try it yourself", level: 3 })
+    page.getByRole("heading", { name: "Try it yourself", level: 4 })
   ).toBeVisible();
   await expect(page.getByText("Live in your browser").first()).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "Skill Quality Scorecard", level: 4 })
+    page.getByRole("heading", { name: "Skill Quality Scorecard", level: 5 })
   ).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "Skill Workflow Builder", level: 4 })
+    page.getByRole("heading", { name: "Skill Workflow Builder", level: 5 })
   ).toBeVisible();
 });
 
@@ -66,7 +66,7 @@ test("AI Lab: extra skills are collapsed behind a toggle by default, with a matc
 }) => {
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { name: "Accessibility Audit", level: 4 })
+    page.getByRole("heading", { name: "Accessibility Audit", level: 5 })
   ).toBeVisible();
   await expect(page.getByText("Secret Leak Scanner")).not.toBeVisible();
 
@@ -219,11 +219,11 @@ test("AI Lab compact grid stays two columns at mobile viewport width", async ({
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto("/");
 
-  const prCard = page.getByRole("heading", { name: "PR Readiness Agent", level: 4 });
+  const prCard = page.getByRole("heading", { name: "PR Readiness Agent", level: 5 });
   const jiraCard = page.getByRole("heading", {
     name: "Jira → PR",
     exact: true,
-    level: 4,
+    level: 5,
   });
   await prCard.scrollIntoViewIfNeeded();
 

@@ -85,7 +85,7 @@ export function AiLabSpotlightCard({ item }: { item: AiLabItem }) {
         <PulsingDot />
         {item.spotlightLabel ?? "Live in your browser"}
       </p>
-      <h4 className="mt-1.5 text-sm font-semibold">{item.title}</h4>
+      <h5 className="mt-1.5 text-sm font-semibold">{item.title}</h5>
       <p className="text-accent-text mt-1 text-[0.64rem] font-medium tracking-wide uppercase">
         For {formatAudiences(item.audiences)}
       </p>
@@ -100,7 +100,7 @@ export function AiLabCompactCard({ item }: { item: AiLabItem }) {
   return (
     <div className="border-border h-full rounded-xl border p-4">
       <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between">
-        <h4 className="text-sm font-semibold">{item.title}</h4>
+        <h5 className="text-sm font-semibold">{item.title}</h5>
         <div className="flex shrink-0 items-center gap-1.5">
           {item.status !== "live" ? (
             <span className="border-border-strong text-muted rounded-full border px-2 py-0.5 text-[0.6rem] font-medium capitalize">
