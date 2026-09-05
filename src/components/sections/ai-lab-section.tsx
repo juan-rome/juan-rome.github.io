@@ -77,14 +77,23 @@ function CardTags({ item }: { item: AiLabItem }) {
  *  themselves — a distinct card with a live-status indicator, kept close
  *  in scale to the compact cards below it rather than a much bigger hero
  *  treatment. Also reused by the Gadgets subsection, whose items aren't
- *  AiLabItems but share the same shape. */
-export function AiLabSpotlightCard({ item }: { item: AiLabItem }) {
+ *  AiLabItems but share the same shape; `badge` lets a caller outside AI
+ *  Lab's own category system (e.g. Gadgets' platform) label the card the
+ *  same way AiLabCompactCard's category pill does. */
+export function AiLabSpotlightCard({ item, badge }: { item: AiLabItem; badge?: string }) {
   return (
     <div className="h-full rounded-xl border border-emerald-500/25 bg-gradient-to-br from-emerald-500/[0.07] to-transparent p-4">
-      <p className="flex items-center gap-1.5 text-[0.65rem] font-semibold tracking-wide text-emerald-400 uppercase">
-        <PulsingDot />
-        {item.spotlightLabel ?? "Live in your browser"}
-      </p>
+      <div className="flex items-center justify-between gap-2">
+        <p className="flex items-center gap-1.5 text-[0.65rem] font-semibold tracking-wide text-emerald-400 uppercase">
+          <PulsingDot />
+          {item.spotlightLabel ?? "Live in your browser"}
+        </p>
+        {badge ? (
+          <span className="rounded-full border border-blue-400/30 bg-blue-400/15 px-2 py-0.5 text-[0.62rem] font-medium text-blue-300">
+            {badge}
+          </span>
+        ) : null}
+      </div>
       <h5 className="mt-1.5 text-sm font-semibold">{item.title}</h5>
       <p className="text-accent-text mt-1 text-[0.64rem] font-medium tracking-wide uppercase">
         For {formatAudiences(item.audiences)}
@@ -151,7 +160,7 @@ export function AiLabSubsection() {
         </h3>
         <p className="text-muted mt-3 text-pretty">
           Working demos of AI tooling built into real engineering workflows: plugins,
-          integrations, and small products, added here as they ship.
+          integrations, and small products.
         </p>
       </FadeIn>
 

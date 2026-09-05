@@ -30,17 +30,12 @@ export function SideProjectsSection() {
             </p>
           </FadeIn>
 
-          <div className="mt-10">
-            <h4 className="text-muted text-sm font-semibold tracking-wide uppercase">
-              macOS
-            </h4>
-            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {gadgetItems.map((item, index) => (
-                <FadeIn key={item.slug} delay={index * 0.04}>
-                  <AiLabSpotlightCard item={item} />
-                </FadeIn>
-              ))}
-            </div>
+          <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {gadgetItems.map((item, index) => (
+              <FadeIn key={item.slug} delay={index * 0.04}>
+                <AiLabSpotlightCard item={item} badge={item.platform} />
+              </FadeIn>
+            ))}
           </div>
         </div>
       </div>
