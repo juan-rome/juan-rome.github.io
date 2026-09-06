@@ -153,7 +153,7 @@ export const aiLabItems: AiLabItem[] = [
     status: "live",
     summary:
       "The MCP-native sibling of Jira → PR, packaged as a real installable Claude Code plugin: two commands instead of a git clone and a remembered file path. Jira and GitHub access go through connected MCP servers instead of a personal token. Run against a real sandbox ticket, it correctly found an existing PR instead of duplicating it, surfacing two real integration bugs fixed on the spot.",
-    stack: ["Claude Code Plugin", "Atlassian MCP Server", "GitHub MCP Server", "Node.js"],
+    stack: ["Claude Code Plugin", "Atlassian MCP", "GitHub MCP", "Node.js"],
     audiences: ["Devs", "PMs"],
     githubUrl: "https://github.com/juan-rome/jira-to-pr-workflow-mcp",
     demoUrl: "https://github.com/juan-rome/jira-to-pr-workflow-mcp#install",

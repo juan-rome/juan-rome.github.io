@@ -1,10 +1,11 @@
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn } from "@/components/ui/fade-in";
+import { AiLabSubsection } from "@/components/sections/ai-lab-section";
 import {
-  AiLabSubsection,
-  AiLabSpotlightCard,
-} from "@/components/sections/ai-lab-section";
+  GadgetSpotlightCard,
+  GadgetComingSoonCard,
+} from "@/components/sections/gadget-spotlight-card";
 import { gadgetItems } from "@/content/gadgets";
 
 export function SideProjectsSection() {
@@ -25,17 +26,20 @@ export function SideProjectsSection() {
               Gadgets
             </h3>
             <p className="text-muted mt-3 text-pretty">
-              Small, everyday tools that aren&apos;t about AI tooling at all — just things
+              Small, everyday tools that aren&apos;t about AI tooling at all, just things
               I needed and built.
             </p>
           </FadeIn>
 
-          <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div className="mt-10 space-y-4">
             {gadgetItems.map((item, index) => (
               <FadeIn key={item.slug} delay={index * 0.04}>
-                <AiLabSpotlightCard item={item} badge={item.platform} />
+                <GadgetSpotlightCard item={item} />
               </FadeIn>
             ))}
+            <FadeIn delay={gadgetItems.length * 0.04}>
+              <GadgetComingSoonCard />
+            </FadeIn>
           </div>
         </div>
       </div>

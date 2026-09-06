@@ -1,6 +1,7 @@
 import { FadeIn } from "@/components/ui/fade-in";
 import { AiLabMoreSkills } from "@/components/sections/ai-lab-more-skills";
 import { PulsingDot } from "@/components/ui/pulsing-dot";
+import { Button } from "@/components/ui/button";
 import { aiLabItems, type AiLabItem, type ToolCategory } from "@/content/ai-lab";
 import { cn } from "@/lib/utils";
 
@@ -33,26 +34,28 @@ function formatAudiences(audiences: AiLabItem["audiences"]) {
 function CardLinks({ item }: { item: AiLabItem }) {
   if (!item.githubUrl && !item.demoUrl) return null;
   return (
-    <div className="mt-3 flex gap-4 text-sm">
+    <div className="mt-3 flex flex-col gap-2">
       {item.githubUrl ? (
-        <a
+        <Button
           href={item.githubUrl}
-          className="text-accent-text hover:underline"
+          variant="secondary"
           target="_blank"
           rel="noreferrer"
+          className="w-full px-3 py-2 text-xs"
         >
           GitHub
-        </a>
+        </Button>
       ) : null}
       {item.demoUrl ? (
-        <a
+        <Button
           href={item.demoUrl}
-          className="text-accent-text hover:underline"
+          variant="primary"
           target="_blank"
           rel="noreferrer"
+          className="w-full px-3 py-2 text-xs"
         >
           {item.demoLabel ?? "See it in action"}
-        </a>
+        </Button>
       ) : null}
     </div>
   );
@@ -76,24 +79,14 @@ function CardTags({ item }: { item: AiLabItem }) {
 /** The Tool category is the one a visitor can actually click and use
  *  themselves — a distinct card with a live-status indicator, kept close
  *  in scale to the compact cards below it rather than a much bigger hero
- *  treatment. Also reused by the Gadgets subsection, whose items aren't
- *  AiLabItems but share the same shape; `badge` lets a caller outside AI
- *  Lab's own category system (e.g. Gadgets' platform) label the card the
- *  same way AiLabCompactCard's category pill does. */
-export function AiLabSpotlightCard({ item, badge }: { item: AiLabItem; badge?: string }) {
+ *  treatment. */
+export function AiLabSpotlightCard({ item }: { item: AiLabItem }) {
   return (
     <div className="h-full rounded-xl border border-emerald-500/25 bg-gradient-to-br from-emerald-500/[0.07] to-transparent p-4">
-      <div className="flex items-center justify-between gap-2">
-        <p className="flex items-center gap-1.5 text-[0.65rem] font-semibold tracking-wide text-emerald-400 uppercase">
-          <PulsingDot />
-          {item.spotlightLabel ?? "Live in your browser"}
-        </p>
-        {badge ? (
-          <span className="rounded-full border border-blue-400/30 bg-blue-400/15 px-2 py-0.5 text-[0.62rem] font-medium text-blue-300">
-            {badge}
-          </span>
-        ) : null}
-      </div>
+      <p className="flex items-center gap-1.5 text-[0.65rem] font-semibold tracking-wide text-emerald-400 uppercase">
+        <PulsingDot />
+        {item.spotlightLabel ?? "Live in your browser"}
+      </p>
       <h5 className="mt-1.5 text-sm font-semibold">{item.title}</h5>
       <p className="text-accent-text mt-1 text-[0.64rem] font-medium tracking-wide uppercase">
         For {formatAudiences(item.audiences)}
@@ -107,7 +100,7 @@ export function AiLabSpotlightCard({ item, badge }: { item: AiLabItem; badge?: s
 
 export function AiLabCompactCard({ item }: { item: AiLabItem }) {
   return (
-    <div className="border-border h-full rounded-xl border p-4">
+    <div className="flex h-full flex-col rounded-xl border border-violet-400/25 bg-gradient-to-br from-violet-400/[0.06] to-transparent p-4">
       <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between">
         <h5 className="text-sm font-semibold">{item.title}</h5>
         <div className="flex shrink-0 items-center gap-1.5">
@@ -130,8 +123,10 @@ export function AiLabCompactCard({ item }: { item: AiLabItem }) {
         For {formatAudiences(item.audiences)}
       </p>
       <p className="text-muted mt-1.5 text-[0.79rem] text-pretty">{item.summary}</p>
-      <CardTags item={item} />
-      <CardLinks item={item} />
+      <div className="mt-auto">
+        <CardTags item={item} />
+        <CardLinks item={item} />
+      </div>
     </div>
   );
 }
