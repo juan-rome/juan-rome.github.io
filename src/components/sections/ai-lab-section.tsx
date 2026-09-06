@@ -2,6 +2,7 @@ import { FadeIn } from "@/components/ui/fade-in";
 import { AiLabMoreSkills } from "@/components/sections/ai-lab-more-skills";
 import { PulsingDot } from "@/components/ui/pulsing-dot";
 import { Button } from "@/components/ui/button";
+import { TiltCard } from "@/components/ui/tilt-card";
 import { aiLabItems, type AiLabItem, type ToolCategory } from "@/content/ai-lab";
 import { cn } from "@/lib/utils";
 
@@ -82,52 +83,62 @@ function CardTags({ item }: { item: AiLabItem }) {
  *  treatment. */
 export function AiLabSpotlightCard({ item }: { item: AiLabItem }) {
   return (
-    <div className="h-full rounded-xl border border-emerald-500/25 bg-gradient-to-br from-emerald-500/[0.07] to-transparent p-4">
-      <p className="flex items-center gap-1.5 text-[0.65rem] font-semibold tracking-wide text-emerald-400 uppercase">
-        <PulsingDot />
-        {item.spotlightLabel ?? "Live in your browser"}
-      </p>
-      <h5 className="mt-1.5 text-sm font-semibold">{item.title}</h5>
-      <p className="text-accent-text mt-1 text-[0.64rem] font-medium tracking-wide uppercase">
-        For {formatAudiences(item.audiences)}
-      </p>
-      <p className="text-muted mt-1.5 text-[0.79rem] text-pretty">{item.summary}</p>
-      <CardTags item={item} />
-      <CardLinks item={item} />
-    </div>
+    <TiltCard
+      glowColor="#10b981"
+      className="rounded-xl border border-emerald-500/25 bg-gradient-to-br from-emerald-500/[0.07] to-transparent"
+    >
+      <div className="p-4">
+        <p className="flex items-center gap-1.5 text-[0.65rem] font-semibold tracking-wide text-emerald-400 uppercase">
+          <PulsingDot />
+          {item.spotlightLabel ?? "Live in your browser"}
+        </p>
+        <h5 className="mt-1.5 text-sm font-semibold">{item.title}</h5>
+        <p className="text-accent-text mt-1 text-[0.64rem] font-medium tracking-wide uppercase">
+          For {formatAudiences(item.audiences)}
+        </p>
+        <p className="text-muted mt-1.5 text-[0.79rem] text-pretty">{item.summary}</p>
+        <CardTags item={item} />
+        <CardLinks item={item} />
+      </div>
+    </TiltCard>
   );
 }
 
 export function AiLabCompactCard({ item }: { item: AiLabItem }) {
   return (
-    <div className="flex h-full flex-col rounded-xl border border-violet-400/25 bg-gradient-to-br from-violet-400/[0.06] to-transparent p-4">
-      <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between">
-        <h5 className="text-sm font-semibold">{item.title}</h5>
-        <div className="flex shrink-0 items-center gap-1.5">
-          {item.status !== "live" ? (
-            <span className="border-border-strong text-muted rounded-full border px-2 py-0.5 text-[0.6rem] font-medium capitalize">
-              {item.status.replace("-", " ")}
+    <TiltCard
+      glowColor="#a78bfa"
+      className="flex flex-col rounded-xl border border-violet-400/25 bg-gradient-to-br from-violet-400/[0.06] to-transparent"
+    >
+      <div className="flex h-full flex-col p-4">
+        <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between">
+          <h5 className="text-sm font-semibold">{item.title}</h5>
+          <div className="flex shrink-0 items-center gap-1.5">
+            {item.status !== "live" ? (
+              <span className="border-border-strong text-muted rounded-full border px-2 py-0.5 text-[0.6rem] font-medium capitalize">
+                {item.status.replace("-", " ")}
+              </span>
+            ) : null}
+            <span
+              className={cn(
+                "rounded-full border px-2 py-0.5 text-[0.62rem] font-medium",
+                categoryBadgeClasses[item.category]
+              )}
+            >
+              {item.category}
             </span>
-          ) : null}
-          <span
-            className={cn(
-              "rounded-full border px-2 py-0.5 text-[0.62rem] font-medium",
-              categoryBadgeClasses[item.category]
-            )}
-          >
-            {item.category}
-          </span>
+          </div>
+        </div>
+        <p className="text-accent-text mt-1.5 text-[0.62rem] font-medium tracking-wide uppercase">
+          For {formatAudiences(item.audiences)}
+        </p>
+        <p className="text-muted mt-1.5 text-[0.79rem] text-pretty">{item.summary}</p>
+        <div className="mt-auto">
+          <CardTags item={item} />
+          <CardLinks item={item} />
         </div>
       </div>
-      <p className="text-accent-text mt-1.5 text-[0.62rem] font-medium tracking-wide uppercase">
-        For {formatAudiences(item.audiences)}
-      </p>
-      <p className="text-muted mt-1.5 text-[0.79rem] text-pretty">{item.summary}</p>
-      <div className="mt-auto">
-        <CardTags item={item} />
-        <CardLinks item={item} />
-      </div>
-    </div>
+    </TiltCard>
   );
 }
 

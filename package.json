@@ -40,7 +40,8 @@
     "react-dom": "19.2.8",
     "skill-quality-scorecard": "github:juan-rome/skill-quality-scorecard",
     "skill-workflow-builder": "github:juan-rome/skill-workflow-builder",
-    "tailwind-merge": "^3.6.0"
+    "tailwind-merge": "^3.6.0",
+    "three": "^0.185.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.7",
@@ -52,6 +53,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.185.4",
     "@vitejs/plugin-react": "^6.1.1",
     "eslint": "^9",
     "eslint-config-next": "^15.5.25",
