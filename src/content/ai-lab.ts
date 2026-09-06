@@ -1,3 +1,5 @@
+import type { NodeFlowStep } from "@/components/ui/node-flow";
+
 export type Audience = "Devs" | "PMs" | "Designers";
 
 /** What kind of Claude Code tool this is — shown as the card's colored badge.
@@ -28,6 +30,11 @@ export type AiLabItem = {
    *  browser" caption — that phrase is literally wrong for a native app
    *  that only runs after being downloaded, not in-browser. */
   spotlightLabel?: string;
+  /** A spotlight card's real step-by-step pipeline, shown as a small
+   *  animated node diagram between the summary and the tags. Optional:
+   *  only Tool-category entries with one defined get the diagram instead
+   *  of going straight from summary to tags. */
+  nodeFlow?: NodeFlowStep[];
 };
 
 /**
@@ -133,6 +140,24 @@ export const aiLabItems: AiLabItem[] = [
     audiences: ["Devs", "PMs"],
     githubUrl: "https://github.com/juan-rome/skill-quality-scorecard",
     demoUrl: "/tools/scorecard/",
+    nodeFlow: [
+      {
+        icon: "github",
+        label: "Repo URL pasted",
+        sub: "owner/repo, entirely client-side",
+      },
+      {
+        icon: "shield-check",
+        label: "Scored against the rubric",
+        sub: "SKILL.md, README, CI, tests, license, dogfood evidence",
+        analyzing: true,
+      },
+      {
+        icon: "score",
+        label: "Score, live in your browser",
+        sub: "With the reasoning behind it",
+      },
+    ],
   },
   {
     slug: "skill-workflow-builder",
@@ -145,6 +170,20 @@ export const aiLabItems: AiLabItem[] = [
     audiences: ["Devs", "PMs"],
     githubUrl: "https://github.com/juan-rome/skill-workflow-builder",
     demoUrl: "/tools/workflow-builder/",
+    nodeFlow: [
+      { icon: "graph", label: "Steps drawn on canvas", sub: "Connected as a real graph" },
+      {
+        icon: "sort",
+        label: "Topological sort",
+        sub: "Real dependency order, not draw order",
+        analyzing: true,
+      },
+      {
+        icon: "file",
+        label: "SKILL.md + Mermaid diagram",
+        sub: "Generated together, matching",
+      },
+    ],
   },
   {
     slug: "jira-to-pr-workflow-mcp",

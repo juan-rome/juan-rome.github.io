@@ -95,6 +95,36 @@ body {
   border-radius: 2px;
 }
 
+/* NodeFlow (src/components/ui/node-flow.tsx): a small pulse travels down
+   each connector line, and the one "processing" step per flow gets a soft
+   breathing glow ring. */
+@keyframes node-pulse {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes node-breathe {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+  50% {
+    box-shadow: 0 0 0 4px var(--glow, transparent);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

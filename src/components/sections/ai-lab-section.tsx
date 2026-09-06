@@ -3,6 +3,7 @@ import { AiLabMoreSkills } from "@/components/sections/ai-lab-more-skills";
 import { PulsingDot } from "@/components/ui/pulsing-dot";
 import { Button } from "@/components/ui/button";
 import { TiltCard } from "@/components/ui/tilt-card";
+import { NodeFlow } from "@/components/ui/node-flow";
 import { aiLabItems, type AiLabItem, type ToolCategory } from "@/content/ai-lab";
 import { cn } from "@/lib/utils";
 
@@ -97,6 +98,7 @@ export function AiLabSpotlightCard({ item }: { item: AiLabItem }) {
           For {formatAudiences(item.audiences)}
         </p>
         <p className="text-muted mt-1.5 text-[0.79rem] text-pretty">{item.summary}</p>
+        {item.nodeFlow ? <NodeFlow steps={item.nodeFlow} color="#10b981" /> : null}
         <CardTags item={item} />
         <CardLinks item={item} />
       </div>
