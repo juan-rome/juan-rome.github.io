@@ -73,7 +73,7 @@ export function GadgetSpotlightCard({ item }: { item: GadgetItem }) {
  *  ship. */
 export function GadgetComingSoonCard() {
   return (
-    <div className="border-border/60 flex flex-row items-center justify-center gap-3 rounded-xl border border-dashed p-6 text-center">
+    <div className="border-border/60 flex h-full flex-row items-center justify-center gap-3 rounded-xl border border-dashed p-6 text-center">
       <span className="border-border-strong text-muted flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-dashed text-base">
         +
       </span>

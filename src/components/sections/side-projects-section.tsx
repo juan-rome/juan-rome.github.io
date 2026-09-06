@@ -31,7 +31,7 @@ export function SideProjectsSection() {
             </p>
           </FadeIn>
 
-          <div className="mt-10 space-y-4">
+          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {gadgetItems.map((item, index) => (
               <FadeIn key={item.slug} delay={index * 0.04}>
                 <GadgetSpotlightCard item={item} />
