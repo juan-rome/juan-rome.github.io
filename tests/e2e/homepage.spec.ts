@@ -213,7 +213,7 @@ test("mobile nav menu closes when clicking outside it", async ({ page }) => {
   await expect(details).toHaveJSProperty("open", false);
 });
 
-test("AI Lab compact grid stays two columns at mobile viewport width", async ({
+test("AI Lab compact grid stacks to a single column at mobile viewport width", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 375, height: 812 });
@@ -233,8 +233,9 @@ test("AI Lab compact grid stays two columns at mobile viewport width", async ({
   ]);
   expect(prBox).not.toBeNull();
   expect(jiraBox).not.toBeNull();
-  // Two-column grid on mobile: the two cards should sit in the same row.
-  expect(Math.abs(prBox!.y - jiraBox!.y)).toBeLessThan(4);
+  // Single-column grid on mobile: the two cards should stack, not sit side
+  // by side in the same row.
+  expect(jiraBox!.y - prBox!.y).toBeGreaterThan(4);
 });
 
 // Deliberately never triggers an actual score (that fires a real call to

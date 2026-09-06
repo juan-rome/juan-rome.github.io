@@ -202,7 +202,7 @@ export function AiLabSubsection() {
             <h4 className="text-muted text-sm font-semibold tracking-wide uppercase">
               Agents, workflows & skills
             </h4>
-            <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {visibleItems.map((item, index) => (
                 <FadeIn key={item.slug} delay={index * 0.04}>
                   <AiLabCompactCard item={item} />
