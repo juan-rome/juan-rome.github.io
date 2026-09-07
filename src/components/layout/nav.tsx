@@ -28,7 +28,7 @@ export function Nav({ condensed }: { condensed: boolean }) {
   return (
     <>
       <GlassPillNav activeHref={activeHref} condensed={condensed} />
-      <div className="relative sm:hidden">
+      <div className="relative lg:hidden">
         <button
           ref={toggleRef}
           type="button"

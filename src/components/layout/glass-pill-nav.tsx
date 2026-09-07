@@ -9,8 +9,9 @@ import { cn } from "@/lib/utils";
  * an accent-colored indicator that slides to whichever link matches
  * activeHref (from useActiveSection, tracked by scroll position — not a
  * click handler, so it stays in sync even when the user scrolls past a
- * section without clicking its link). Hidden below sm; the mobile
- * hamburger + glass sheet in Nav takes over there instead.
+ * section without clicking its link). Hidden below lg, where the full
+ * link list would collide with the name badge; the mobile hamburger +
+ * glass sheet in Nav takes over there instead.
  */
 export function GlassPillNav({
   activeHref,
@@ -68,7 +69,7 @@ export function GlassPillNav({
       aria-label="Primary"
       ref={pillRef}
       className={cn(
-        "glass-surface glass-pill hidden items-center gap-0.5 rounded-full p-1.5 transition-transform duration-[400ms] ease-out sm:flex",
+        "glass-surface glass-pill hidden items-center gap-0.5 rounded-full p-1.5 transition-transform duration-[400ms] ease-out lg:flex",
         condensed && "is-condensed"
       )}
     >

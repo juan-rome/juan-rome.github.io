@@ -25,12 +25,12 @@ export function Header() {
 
   return (
     <header className={cn("glass-nav-stage", condensed && "is-condensed")}>
-      <Container className="relative flex h-auto items-center justify-between py-4 sm:justify-center">
+      <Container className="relative flex h-auto items-center justify-between py-4 lg:justify-center">
         <a
           href="#top"
           className={cn(
             "glass-surface glass-brand text-foreground flex shrink-0 items-center gap-2 rounded-full py-2.5 pr-4 pl-3 text-[0.85rem] font-semibold",
-            "sm:absolute sm:top-1/2 sm:left-6 sm:-translate-y-1/2",
+            "lg:absolute lg:top-1/2 lg:left-6 lg:-translate-y-1/2",
             condensed && "is-condensed"
           )}
         >
