@@ -4,8 +4,16 @@ import type { AiLabItem } from "@/content/ai-lab";
  *  its cards, the way AI Lab groups by tool category. */
 export type GadgetPlatform = "macOS";
 
+/** What a gadget card's back face shows once flipped: a looping demo video,
+ *  or a switchable carousel of labeled stills/gifs (Claude Sidekick's five
+ *  characters, each in the same state). */
+export type GadgetDemoMedia =
+  | { type: "video"; src: string }
+  | { type: "carousel"; items: { label: string; src: string }[] };
+
 export type GadgetItem = AiLabItem & {
   platform: GadgetPlatform;
+  demoMedia?: GadgetDemoMedia;
 };
 
 /**
@@ -30,6 +38,7 @@ export const gadgetItems: GadgetItem[] = [
       "mailto:jjromee05@gmail.com?subject=Standup%20Drafter%20-%20Install%20Request&body=Hi%2C%20I%27d%20like%20to%20try%20the%20Standup%20Drafter%20app%20locally.",
     demoLabel: "Request the app",
     spotlightLabel: "Runs on your Mac",
+    demoMedia: { type: "video", src: "/gadgets/standup-drafter/demo.mp4" },
     nodeFlow: [
       {
         icon: "github",
@@ -69,6 +78,16 @@ export const gadgetItems: GadgetItem[] = [
       "mailto:jjromee05@gmail.com?subject=Claude%20Sidekick%20-%20Install%20Request&body=Hi%2C%20I%27d%20like%20to%20try%20the%20Claude%20Sidekick%20app%20locally.",
     demoLabel: "Request the app",
     spotlightLabel: "Runs on your Mac",
+    demoMedia: {
+      type: "carousel",
+      items: [
+        { label: "Blob", src: "/gadgets/claude-sidekick/blob-working.gif" },
+        { label: "Ghost", src: "/gadgets/claude-sidekick/ghost-working.gif" },
+        { label: "Bunny", src: "/gadgets/claude-sidekick/bunny-working.gif" },
+        { label: "Jellyfish", src: "/gadgets/claude-sidekick/jellyfish-working.gif" },
+        { label: "Gadget", src: "/gadgets/claude-sidekick/gadget-working.gif" },
+      ],
+    },
     nodeFlow: [
       {
         icon: "bolt",

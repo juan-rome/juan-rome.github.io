@@ -128,9 +128,9 @@ export function TimelineFlipCard({
       const rect = outer!.getBoundingClientRect();
       const px = (e.clientX - rect.left) / rect.width;
       const py = (e.clientY - rect.top) / rect.height;
-      const rotY = (px - 0.5) * 6;
-      const rotX = (0.5 - py) * 6;
-      outer!.style.transform = `perspective(1400px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.01, 1.01, 1.01)`;
+      const rotY = (px - 0.5) * 10;
+      const rotX = (0.5 - py) * 10;
+      outer!.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.015, 1.015, 1.015)`;
     }
     function handleLeave() {
       outer!.style.transform = "";
@@ -170,7 +170,7 @@ export function TimelineFlipCard({
           if ((e.target as HTMLElement).closest("button")) return;
           onToggleFlip();
         }}
-        className="relative w-full cursor-pointer transition-transform duration-500 ease-out will-change-transform [perspective:1600px]"
+        className="relative w-full cursor-pointer transition-transform duration-[400ms] ease-out will-change-transform [perspective:1600px]"
       >
         <div
           className="relative h-full transition-transform duration-700 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] [transform-style:preserve-3d]"
@@ -184,6 +184,7 @@ export function TimelineFlipCard({
               accent.border,
               accent.wash
             )}
+            style={{ backgroundColor: "var(--background-elevated)" }}
           >
             <div className="flex items-start gap-3">
               <div
@@ -198,14 +199,7 @@ export function TimelineFlipCard({
                 />
               </div>
               <div>
-                <h3 className="text-lg font-bold">
-                  {entry.company}
-                  {isCurrent ? (
-                    <span className="ml-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 align-text-top text-[0.62rem] font-bold tracking-wide text-emerald-400 uppercase">
-                      Current
-                    </span>
-                  ) : null}
-                </h3>
+                <h3 className="text-lg font-bold">{entry.company}</h3>
                 <div className="mt-0.5 grid gap-0.5">
                   {entry.titles.map((title) => (
                     <p key={title.role} className="text-muted text-sm leading-tight">
@@ -214,6 +208,11 @@ export function TimelineFlipCard({
                   ))}
                 </div>
               </div>
+              {isCurrent ? (
+                <span className="ml-auto shrink-0 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 text-[0.62rem] font-bold tracking-wide text-emerald-400 uppercase">
+                  Current
+                </span>
+              ) : null}
             </div>
             <p className="text-muted mt-4 text-sm text-pretty">{entry.summary}</p>
             <p className="text-muted-foreground mt-4 flex items-center gap-1.5 text-xs">
@@ -231,6 +230,7 @@ export function TimelineFlipCard({
               accent.border,
               accent.wash
             )}
+            style={{ backgroundColor: "var(--background-elevated)" }}
           >
             <div className="flex items-center justify-between gap-3">
               <h4 className="text-accent-text text-[0.68rem] font-bold tracking-wide uppercase">

@@ -45,8 +45,21 @@ export function ExperienceSection() {
     }
 
     equalize();
-    window.addEventListener("resize", equalize);
-    return () => window.removeEventListener("resize", equalize);
+
+    // Only re-run on an actual width change. Mobile browsers fire resize
+    // events as the address bar shows/hides during scroll (a height-only
+    // change); re-measuring on every one of those reset every card's
+    // height to auto mid-scroll, which is what was causing the page to
+    // visibly jump around while scrolling past this section.
+    let lastWidth = window.innerWidth;
+    function handleResize() {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      equalize();
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [tagsExpanded]);
 
   return (
