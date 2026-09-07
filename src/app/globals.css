@@ -127,9 +127,10 @@ body {
 
 /* TimelineFlipCard (src/components/ui/timeline-flip-card.tsx): a
    perspective(...)-based 3D flip between a front summary and a scrollable
-   back highlights list, plus a company-tinted corner sheen. Left as plain
-   CSS rather than Tailwind utilities because backface-visibility,
-   transform-style, and the ::after sheen aren't expressible as utilities. */
+   back highlights list. Left as plain CSS rather than Tailwind utilities
+   because backface-visibility and transform-style aren't expressible as
+   utilities; the border/background-wash tint itself is plain Tailwind
+   classes, matching the AI Lab cards' treatment. */
 @keyframes pulse-ring {
   0% {
     transform: scale(0.6);
@@ -147,31 +148,8 @@ body {
   -webkit-backface-visibility: hidden;
 }
 
-.timeline-flip-face::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  opacity: 0.26;
-  background: radial-gradient(
-    circle 340px at 12% 12%,
-    var(--tilt-color, transparent) 0%,
-    transparent 78%
-  );
-}
-
 .timeline-flip-face--back {
   transform: rotateY(180deg);
-}
-
-.timeline-flip-face--back::after {
-  background: radial-gradient(
-    circle 340px at 88% 12%,
-    var(--tilt-color, transparent) 0%,
-    transparent 78%
-  );
 }
 
 .highlights-scroll {

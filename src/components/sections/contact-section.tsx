@@ -8,7 +8,10 @@ export function ContactSection() {
   return (
     <Section id="contact">
       <FadeIn>
-        <TiltCard glowColor="#10b981" className="border-border rounded-3xl border">
+        <TiltCard
+          glowColor="#10b981"
+          className="rounded-3xl border border-emerald-500/25 bg-gradient-to-br from-emerald-500/[0.07] to-transparent"
+        >
           <div className="p-10 text-center sm:p-16">
             <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
               Let&apos;s talk about the role

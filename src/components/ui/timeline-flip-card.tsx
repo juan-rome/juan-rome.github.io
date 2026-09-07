@@ -1,14 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { getOverallPeriod, type Experience } from "@/content/experience";
 
-function hexToRgb(hex: string) {
-  const value = parseInt(hex.replace("#", ""), 16);
-  return `${(value >> 16) & 255}, ${(value >> 8) & 255}, ${value & 255}`;
-}
+/** Matches the AI Lab spotlight/agent cards' border + background-wash
+ *  treatment, keyed by the same named accent so every section reads as one
+ *  system rather than each card inventing its own color handling. */
+const ACCENT_STYLES: Record<Experience["accent"], { border: string; wash: string }> = {
+  emerald: { border: "border-emerald-400/25", wash: "from-emerald-400/[0.07]" },
+  blue: { border: "border-blue-400/25", wash: "from-blue-400/[0.07]" },
+  rose: { border: "border-rose-400/25", wash: "from-rose-400/[0.07]" },
+};
 
 function CycleIcon() {
   return (
@@ -43,7 +47,7 @@ function TagList({
   const visible = entry.stack.slice(0, entry.visibleTagCount);
   const hidden = entry.stack.slice(entry.visibleTagCount);
   return (
-    <div className="mt-4 flex flex-wrap gap-2 pt-0">
+    <div className="mt-4 flex flex-wrap gap-2">
       {visible.map((tag) => (
         <span
           key={tag}
@@ -83,45 +87,41 @@ function TagList({
  * summary, and a truncated tag list; a click flips it to the full
  * highlights list (word for word what's in the resume-derived data),
  * which scrolls internally rather than stretching the card to match. Also
- * tilts toward the pointer and carries a company-tinted corner sheen —
- * both skipped under reduced motion.
+ * tilts toward the pointer — skipped under reduced motion.
+ *
+ * Height is driven by the parent (ExperienceSection): on desktop, every
+ * card in the row is set to the same height (the tallest front face's own
+ * content) so the three don't look mismatched, with any leftover space
+ * pushed below the "Click to see all N highlights" line via the flex
+ * spacer, so the tag row still sits at the bottom of every card. `frontRef`
+ * and `outerRef` let the parent read/set each card's real DOM height
+ * directly instead of duplicating the measurement logic per card.
  */
 export function TimelineFlipCard({
   entry,
   isCurrent,
+  flipped,
+  onToggleFlip,
+  tagsExpanded,
+  onToggleTags,
+  frontRef,
+  outerRef,
 }: {
   entry: Experience;
   isCurrent: boolean;
+  flipped: boolean;
+  onToggleFlip: () => void;
+  tagsExpanded: boolean;
+  onToggleTags: () => void;
+  frontRef: (el: HTMLDivElement | null) => void;
+  outerRef: (el: HTMLDivElement | null) => void;
 }) {
-  const outerRef = useRef<HTMLDivElement>(null);
-  const frontRef = useRef<HTMLDivElement>(null);
-  const [flipped, setFlipped] = useState(false);
-  const [tagsExpanded, setTagsExpanded] = useState(false);
+  const localOuterRef = useRef<HTMLDivElement | null>(null);
   const shouldReduceMotion = useReducedMotion();
-  const rgb = hexToRgb(entry.accent);
-  const borderColor = `rgba(${rgb}, 0.35)`;
+  const accent = ACCENT_STYLES[entry.accent];
 
   useEffect(() => {
-    const outer = outerRef.current;
-    const front = frontRef.current;
-    if (!outer || !front) return;
-
-    function measure() {
-      // The front face is absolutely positioned (inset-0) and inherits the
-      // outer element's current height, so reading scrollHeight without
-      // releasing that height first just echoes back whatever was already
-      // applied instead of the content's real, possibly-shrunk size.
-      outer!.style.height = "auto";
-      outer!.style.height = `${front!.scrollHeight}px`;
-    }
-
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, [tagsExpanded]);
-
-  useEffect(() => {
-    const outer = outerRef.current;
+    const outer = localOuterRef.current;
     if (!outer || shouldReduceMotion) return;
 
     function handleMove(e: PointerEvent) {
@@ -161,11 +161,14 @@ export function TimelineFlipCard({
         ) : null}
       </div>
       <div
-        ref={outerRef}
+        ref={(el) => {
+          localOuterRef.current = el;
+          outerRef(el);
+        }}
         data-flipped={flipped}
         onClick={(e) => {
           if ((e.target as HTMLElement).closest("button")) return;
-          setFlipped((f) => !f);
+          onToggleFlip();
         }}
         className="relative w-full cursor-pointer transition-transform duration-500 ease-out will-change-transform [perspective:1600px]"
       >
@@ -176,8 +179,11 @@ export function TimelineFlipCard({
           {/* Front */}
           <div
             ref={frontRef}
-            className="bg-background-elevated timeline-flip-face absolute inset-0 flex flex-col rounded-2xl border p-6"
-            style={{ borderColor, ["--tilt-color" as string]: entry.accent }}
+            className={cn(
+              "timeline-flip-face absolute inset-0 flex flex-col rounded-2xl border bg-gradient-to-br to-transparent p-6",
+              accent.border,
+              accent.wash
+            )}
           >
             <div className="flex items-start gap-3">
               <div
@@ -214,17 +220,17 @@ export function TimelineFlipCard({
               <CycleIcon />
               Click to see all {entry.highlights.length} highlights
             </p>
-            <TagList
-              entry={entry}
-              expanded={tagsExpanded}
-              onToggle={() => setTagsExpanded((v) => !v)}
-            />
+            <div className="flex-1" />
+            <TagList entry={entry} expanded={tagsExpanded} onToggle={onToggleTags} />
           </div>
 
           {/* Back */}
           <div
-            className="bg-background-elevated timeline-flip-face timeline-flip-face--back absolute inset-0 flex flex-col rounded-2xl border p-6"
-            style={{ borderColor, ["--tilt-color" as string]: entry.accent }}
+            className={cn(
+              "timeline-flip-face timeline-flip-face--back absolute inset-0 flex flex-col rounded-2xl border bg-gradient-to-br to-transparent p-6",
+              accent.border,
+              accent.wash
+            )}
           >
             <div className="flex items-center justify-between gap-3">
               <h4 className="text-accent-text text-[0.68rem] font-bold tracking-wide uppercase">

@@ -9,10 +9,11 @@ export type Experience = {
    *  backdrop enough. */
   logoBackground?: string;
   logoFit?: "cover" | "contain";
-  /** Company-tinted accent for the card border and corner sheen. Unrelated
-   *  to the current/past dot color, which is always emerald for "current"
-   *  and neutral for past roles regardless of this. */
-  accent: string;
+  /** Company-tinted accent for the card's border and background wash,
+   *  matching the AI Lab spotlight/agent cards' treatment. Unrelated to the
+   *  current/past dot color, which is always emerald for "current" and
+   *  neutral for past roles regardless of this. */
+  accent: "emerald" | "blue" | "rose";
   /** Usually one title. More than one means an internal promotion at the
    *  same company — shown stacked under one company heading, sharing a
    *  single summary/stack/highlights rather than splitting bullets by title. */
@@ -36,7 +37,7 @@ export const experience: Experience[] = [
     company: "Earnest",
     logo: "/logos/earnest.png",
     logoFit: "cover",
-    accent: "#34d399",
+    accent: "emerald",
     titles: [
       { role: "Senior Software Engineer", period: "Oct 2025 - Present" },
       { role: "Software Engineer II", period: "Apr 2024 - Oct 2025" },
@@ -86,7 +87,7 @@ export const experience: Experience[] = [
     logo: "/logos/capital-one.webp",
     logoBackground: "#ffffff",
     logoFit: "contain",
-    accent: "#60a5fa",
+    accent: "blue",
     titles: [{ role: "Senior Software Engineer", period: "May 2022 - Oct 2023" }],
     summary:
       "Led frontend redesigns for Capital One's Auto Navigator, a Lit-based micro-frontend embedded directly into dealership partners' own sites. Consolidated a legacy codebase's repeated components into a shared component library, introduced Storybook, and set new engineering standards along the way.",
@@ -111,7 +112,7 @@ export const experience: Experience[] = [
     company: "H-E-B",
     logo: "/logos/heb.png",
     logoFit: "cover",
-    accent: "#fb7185",
+    accent: "rose",
     titles: [
       { role: "Full Stack Software Engineer II", period: "Apr 2020 - May 2022" },
       { role: "Full Stack Software Engineer", period: "Jun 2018 - Apr 2020" },
