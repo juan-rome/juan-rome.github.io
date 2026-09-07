@@ -19,7 +19,7 @@ function DemoBack({ item }: { item: GadgetItem }) {
     return (
       <video
         src={media.src}
-        className="mt-8 h-full w-full flex-1 rounded-lg object-cover"
+        className="mt-8 h-full w-full flex-1 rounded-lg object-contain"
         autoPlay
         loop
         muted

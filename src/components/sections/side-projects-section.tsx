@@ -35,17 +35,23 @@ export function SideProjectsSection() {
       });
     }
 
-    equalize();
+    // Deferred one frame: running this synchronously during mount raced
+    // with the FadeIn wrappers' own mount-time viewport check (both fire
+    // from a useEffect around the same moment), and setting a height
+    // here was enough to make that check land on the wrong side for one
+    // card, leaving it stuck at its pre-reveal opacity/scale. Waiting a
+    // frame lets that check settle first.
+    const raf = requestAnimationFrame(equalize);
 
-    // A one-time measurement can go stale if a front face's own content
-    // changes size after mount (an image finishing layout, a web font
-    // swapping in) — watch the fronts directly instead of only redoing
-    // this on window resize, so height stays in sync regardless of what
-    // caused a face to grow or shrink.
-    const observer = new ResizeObserver(() => equalize());
-    fronts.forEach((front) => {
-      if (front) observer.observe(front);
-    });
+    // Re-check once more after everything (fonts, the NodeFlow icons)
+    // has finished loading, in case that changed either card's natural
+    // height. Deliberately not a ResizeObserver on the fronts: equalize()
+    // itself changes a front's rendered size by setting the outer's
+    // height, so observing the fronts turns into a self-triggering
+    // resize loop, which is what was actually behind the cards going
+    // out of sync (the loop starves the page's other mount-time work,
+    // including the scroll-reveal animation on one of the cards).
+    window.addEventListener("load", equalize);
 
     // Still guard against mobile's resize-on-scroll (address bar
     // show/hide is a height-only change) causing the same jump-while-
@@ -59,7 +65,8 @@ export function SideProjectsSection() {
     window.addEventListener("resize", handleResize);
 
     return () => {
-      observer.disconnect();
+      cancelAnimationFrame(raf);
+      window.removeEventListener("load", equalize);
       window.removeEventListener("resize", handleResize);
     };
   }, []);
