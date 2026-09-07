@@ -95,7 +95,7 @@ export function GadgetSpotlightCard({
           {/* Front */}
           <div
             ref={frontRef}
-            className="absolute inset-0 flex flex-col rounded-xl p-4 [backface-visibility:hidden]"
+            className="absolute inset-0 flex flex-col rounded-xl p-4 pb-6 [backface-visibility:hidden]"
           >
             {item.demoMedia ? (
               <FlipCornerButton
@@ -153,7 +153,7 @@ export function GadgetSpotlightCard({
           </div>
 
           {/* Back */}
-          <div className="absolute inset-0 flex [transform:rotateY(180deg)] flex-col rounded-xl p-4 [backface-visibility:hidden]">
+          <div className="absolute inset-0 flex [transform:rotateY(180deg)] flex-col rounded-xl p-4 pb-8 [backface-visibility:hidden]">
             <FlipCornerButton label="Back" onToggleFlip={onToggleFlip} />
             <p className="flex items-center gap-1.5 text-[0.65rem] font-semibold tracking-wide text-blue-400 uppercase">
               {item.title}

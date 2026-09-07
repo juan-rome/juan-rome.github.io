@@ -12,6 +12,17 @@ export function SideProjectsSection() {
   const frontRefs = useRef<(HTMLDivElement | null)[]>([]);
   const outerRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [flipped, setFlipped] = useState<boolean[]>(() => gadgetItems.map(() => false));
+  const flippedRef = useRef(flipped);
+  const equalizeRef = useRef<() => void>(() => {});
+
+  // Re-run the sizing whenever a card flips: flippedRef keeps equalize()
+  // (defined once, below) reading the current flip state without having
+  // to rebuild the whole effect, and thus its resize/load listeners,
+  // every time a card is toggled.
+  useEffect(() => {
+    flippedRef.current = flipped;
+    equalizeRef.current();
+  }, [flipped]);
 
   useEffect(() => {
     const outers = outerRefs.current;
@@ -27,13 +38,30 @@ export function SideProjectsSection() {
         if (outer) outer.style.height = "auto";
       });
 
+      // scrollHeight is measured on the front face while it's absolutely
+      // positioned inside a momentarily height:auto ancestor, and that
+      // read comes out a couple of pixels short of what the same content
+      // actually needs once laid out normally, so the tallest card's own
+      // CTA row was clipped by the card's rounded corner with zero slack
+      // to round out. A small fixed buffer absorbs that gap for whichever
+      // card ends up tallest, on top of the real slack shorter cards get.
       const heights = fronts.map((front) => front?.scrollHeight ?? 0);
-      const target = Math.max(...heights, 0);
+      const target = Math.max(...heights, 0) + 8;
 
-      outers.forEach((outer) => {
-        if (outer) outer.style.height = `${target}px`;
+      // A flipped card shows its demo (a looping video, or a character
+      // carousel) instead of the summary text, and that demo reads
+      // better with some breathing room below it than stretched flush
+      // to the card's own edge, so give whichever card is currently
+      // flipped extra height on top of what the two cards would
+      // otherwise share equally.
+      outers.forEach((outer, i) => {
+        if (!outer) return;
+        const extra = flippedRef.current[i] ? 56 : 0;
+        outer.style.height = `${target + extra}px`;
       });
     }
+
+    equalizeRef.current = equalize;
 
     // Deferred one frame: running this synchronously during mount raced
     // with the FadeIn wrappers' own mount-time viewport check (both fire
