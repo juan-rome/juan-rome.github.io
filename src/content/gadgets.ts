@@ -54,4 +54,43 @@ export const gadgetItems: GadgetItem[] = [
       },
     ],
   },
+  {
+    slug: "claude-sidekick",
+    title: "Claude Sidekick",
+    platform: "macOS",
+    category: "Tool",
+    status: "live",
+    summary:
+      "A floating desktop companion that reacts in real time to Claude Code sessions: it perks up on a tool call, celebrates on success, and looks worried on an error, all wired through Claude Code's own hooks. Five swappable characters, two rendered live with Three.js and WebGPU instead of static art.",
+    stack: ["Electron", "Three.js", "WebGPU", "Node.js"],
+    audiences: ["Devs"],
+    githubUrl: "https://github.com/juan-rome/claude-sidekick",
+    demoUrl:
+      "mailto:jjromee05@gmail.com?subject=Claude%20Sidekick%20-%20Install%20Request&body=Hi%2C%20I%27d%20like%20to%20try%20the%20Claude%20Sidekick%20app%20locally.",
+    demoLabel: "Request the app",
+    spotlightLabel: "Runs on your Mac",
+    nodeFlow: [
+      {
+        icon: "bolt",
+        label: "Claude Code fires a hook",
+        sub: "Session start, a tool call, success, or error",
+      },
+      {
+        icon: "sparkle",
+        label: "Character reacts instantly",
+        sub: "Perks up, celebrates, or looks worried",
+        analyzing: true,
+      },
+      {
+        icon: "burst",
+        label: "Effects layer on top",
+        sub: "Confetti, sparkles, or worried drops via WebGPU",
+      },
+      {
+        icon: "cursor",
+        label: "Click to bring back your app",
+        sub: "Jumps back to Terminal, VS Code, whatever you left",
+      },
+    ],
+  },
 ];

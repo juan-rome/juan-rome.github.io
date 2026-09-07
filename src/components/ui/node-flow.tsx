@@ -9,7 +9,11 @@ export type NodeFlowIcon =
   | "score"
   | "graph"
   | "sort"
-  | "file";
+  | "file"
+  | "bolt"
+  | "sparkle"
+  | "burst"
+  | "cursor";
 
 export type NodeFlowStep = {
   icon: NodeFlowIcon;
@@ -127,6 +131,51 @@ function StepIcon({ icon }: { icon: NodeFlowIcon }) {
             stroke="currentColor"
             strokeWidth="1.6"
             strokeLinecap="round"
+          />
+        </svg>
+      );
+    case "bolt":
+      return (
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    case "sparkle":
+      return (
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    case "burst":
+      return (
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+          />
+        </svg>
+      );
+    case "cursor":
+      return (
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M5 3l14 6.5-6 2-2 6L5 3Z"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinejoin="round"
           />
         </svg>
       );
