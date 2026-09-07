@@ -5,21 +5,9 @@ import { PulsingDot } from "@/components/ui/pulsing-dot";
 import { Button } from "@/components/ui/button";
 import { TiltCard } from "@/components/ui/tilt-card";
 import { NodeFlow } from "@/components/ui/node-flow";
+import { FlipCornerButton } from "@/components/ui/flip-corner-button";
+import { cn } from "@/lib/utils";
 import type { GadgetItem } from "@/content/gadgets";
-
-function CarouselIcon({ direction }: { direction: "prev" | "next" }) {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d={direction === "prev" ? "M15 5l-7 7 7 7" : "M9 5l7 7-7 7"}
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 function DemoBack({ item }: { item: GadgetItem }) {
   const media = item.demoMedia;
@@ -31,7 +19,7 @@ function DemoBack({ item }: { item: GadgetItem }) {
     return (
       <video
         src={media.src}
-        className="h-full w-full flex-1 rounded-lg object-cover"
+        className="mt-8 h-full w-full flex-1 rounded-lg object-cover"
         autoPlay
         loop
         muted
@@ -42,36 +30,33 @@ function DemoBack({ item }: { item: GadgetItem }) {
 
   const current = media.items[index];
   return (
-    <div className="flex flex-1 flex-col items-center justify-center gap-2">
-      <img
-        src={current.src}
-        alt={`${current.label} character, working state`}
-        className="w-full max-w-[220px] rounded-lg"
-      />
-      <div className="flex items-center gap-3">
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            setIndex((i) => (i - 1 + media.items.length) % media.items.length);
-          }}
-          aria-label="Previous character"
-          className="text-muted hover:text-foreground cursor-pointer p-1"
-        >
-          <CarouselIcon direction="prev" />
-        </button>
-        <span className="text-muted w-16 text-center text-xs">{current.label}</span>
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            setIndex((i) => (i + 1) % media.items.length);
-          }}
-          aria-label="Next character"
-          className="text-muted hover:text-foreground cursor-pointer p-1"
-        >
-          <CarouselIcon direction="next" />
-        </button>
+    <div className="mt-8 flex flex-1 flex-col">
+      <div className="bg-background flex flex-1 items-center justify-center rounded-lg">
+        <img src={current.src} alt={`${current.label}, working state`} className="w-40" />
+      </div>
+      <div className="mt-3 flex flex-wrap gap-1.5">
+        {media.items.map((character, i) => (
+          <button
+            key={character.label}
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIndex(i);
+            }}
+            className={cn(
+              "flex cursor-pointer items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium",
+              i === index
+                ? "border-accent-text text-foreground"
+                : "border-border-strong text-muted hover:text-foreground"
+            )}
+          >
+            <span
+              className="h-2 w-2 shrink-0 rounded-full"
+              style={{ background: character.color }}
+            />
+            {character.label}
+          </button>
+        ))}
       </div>
     </div>
   );
@@ -79,11 +64,11 @@ function DemoBack({ item }: { item: GadgetItem }) {
 
 /** A text + node-flow card for Gadgets: the tool's real pipeline as a small
  *  animated diagram in place of a screenshot, then the pitch below. A
- *  button flips the card to a real demo (a looping video, or a character
- *  carousel for Sidekick) instead of navigating away. Kept separate from
- *  AiLabSpotlightCard/AiLabCompactCard since Gadgets aren't AI tooling and
- *  want their own visual identity, not AI Lab's category pill language,
- *  though it shares the same tilt-and-glow treatment. */
+ *  corner button flips the card to a real demo (a looping video, or a
+ *  character picker for Sidekick) instead of navigating away. Kept
+ *  separate from AiLabSpotlightCard/AiLabCompactCard since Gadgets aren't
+ *  AI tooling and want their own visual identity, not AI Lab's category
+ *  pill language, though it shares the same tilt-and-glow treatment. */
 export function GadgetSpotlightCard({
   item,
   flipped,
@@ -112,6 +97,12 @@ export function GadgetSpotlightCard({
             ref={frontRef}
             className="absolute inset-0 flex flex-col rounded-xl p-4 [backface-visibility:hidden]"
           >
+            {item.demoMedia ? (
+              <FlipCornerButton
+                label={item.flipLabel ?? "Demo"}
+                onToggleFlip={onToggleFlip}
+              />
+            ) : null}
             <p className="flex items-center gap-1.5 text-[0.65rem] font-semibold tracking-wide text-blue-400 uppercase">
               <PulsingDot
                 colorClassName="bg-blue-400"
@@ -159,38 +150,15 @@ export function GadgetSpotlightCard({
                 </Button>
               ) : null}
             </div>
-            {item.demoMedia ? (
-              <Button
-                type="button"
-                variant="ghost"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onToggleFlip();
-                }}
-                className="mt-2 w-full cursor-pointer justify-center px-3 py-2 text-xs"
-              >
-                Watch a live demo
-              </Button>
-            ) : null}
           </div>
 
           {/* Back */}
           <div className="absolute inset-0 flex [transform:rotateY(180deg)] flex-col rounded-xl p-4 [backface-visibility:hidden]">
+            <FlipCornerButton label="Back" onToggleFlip={onToggleFlip} />
             <p className="flex items-center gap-1.5 text-[0.65rem] font-semibold tracking-wide text-blue-400 uppercase">
               {item.title}
             </p>
             <DemoBack item={item} />
-            <Button
-              type="button"
-              variant="ghost"
-              onClick={(e) => {
-                e.stopPropagation();
-                onToggleFlip();
-              }}
-              className="mt-2 w-full cursor-pointer justify-center px-3 py-2 text-xs"
-            >
-              Back to overview
-            </Button>
           </div>
         </div>
       </TiltCard>

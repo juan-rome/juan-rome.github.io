@@ -9,11 +9,15 @@ export type GadgetPlatform = "macOS";
  *  characters, each in the same state). */
 export type GadgetDemoMedia =
   | { type: "video"; src: string }
-  | { type: "carousel"; items: { label: string; src: string }[] };
+  | { type: "carousel"; items: { label: string; src: string; color: string }[] };
 
 export type GadgetItem = AiLabItem & {
   platform: GadgetPlatform;
   demoMedia?: GadgetDemoMedia;
+  /** Label on the corner button that flips the card to demoMedia — kept
+   *  per-item since "Demo" doesn't always fit (Sidekick's back is a
+   *  character picker, not a single demo). */
+  flipLabel?: string;
 };
 
 /**
@@ -23,46 +27,6 @@ export type GadgetItem = AiLabItem & {
  * `category` stays "Tool" for type compatibility but isn't rendered here.
  */
 export const gadgetItems: GadgetItem[] = [
-  {
-    slug: "standup-drafter",
-    title: "Standup Drafter",
-    platform: "macOS",
-    category: "Tool",
-    status: "live",
-    summary:
-      "A macOS menu bar app that turns yesterday's GitHub activity into a standup draft, grouped by Jira ticket with live status, and posts it straight to Slack, all without leaving your menu bar.",
-    stack: ["Electron", "GitHub API", "Slack API", "Jira API"],
-    audiences: ["Devs"],
-    githubUrl: "https://github.com/juan-rome/standup-drafter",
-    demoUrl:
-      "mailto:jjromee05@gmail.com?subject=Standup%20Drafter%20-%20Install%20Request&body=Hi%2C%20I%27d%20like%20to%20try%20the%20Standup%20Drafter%20app%20locally.",
-    demoLabel: "Request the app",
-    spotlightLabel: "Runs on your Mac",
-    demoMedia: { type: "video", src: "/gadgets/standup-drafter/demo.mp4" },
-    nodeFlow: [
-      {
-        icon: "github",
-        label: "Yesterday's GitHub activity",
-        sub: "PRs, reviews, and commits, pulled automatically",
-      },
-      {
-        icon: "group",
-        label: "Grouped by Jira ticket",
-        sub: "Live status shown next to each one",
-      },
-      {
-        icon: "draft",
-        label: "Standup draft written",
-        sub: "Reviewable in the menu bar popover",
-        analyzing: true,
-      },
-      {
-        icon: "send",
-        label: "Posted to Slack",
-        sub: "One click, once you've reviewed it",
-      },
-    ],
-  },
   {
     slug: "claude-sidekick",
     title: "Claude Sidekick",
@@ -81,13 +45,34 @@ export const gadgetItems: GadgetItem[] = [
     demoMedia: {
       type: "carousel",
       items: [
-        { label: "Blob", src: "/gadgets/claude-sidekick/blob-working.gif" },
-        { label: "Ghost", src: "/gadgets/claude-sidekick/ghost-working.gif" },
-        { label: "Bunny", src: "/gadgets/claude-sidekick/bunny-working.gif" },
-        { label: "Jellyfish", src: "/gadgets/claude-sidekick/jellyfish-working.gif" },
-        { label: "Gadget", src: "/gadgets/claude-sidekick/gadget-working.gif" },
+        {
+          label: "Blob",
+          src: "/gadgets/claude-sidekick/blob-working.gif",
+          color: "#5eead4",
+        },
+        {
+          label: "Ghost",
+          src: "/gadgets/claude-sidekick/ghost-working.gif",
+          color: "#c4b5fd",
+        },
+        {
+          label: "Bunny",
+          src: "/gadgets/claude-sidekick/bunny-working.gif",
+          color: "#f9a8d4",
+        },
+        {
+          label: "Jellyfish",
+          src: "/gadgets/claude-sidekick/jellyfish-working.gif",
+          color: "#a78bfa",
+        },
+        {
+          label: "Gadget",
+          src: "/gadgets/claude-sidekick/gadget-working.gif",
+          color: "#fbbf24",
+        },
       ],
     },
+    flipLabel: "View Sidekicks",
     nodeFlow: [
       {
         icon: "bolt",
@@ -109,6 +94,47 @@ export const gadgetItems: GadgetItem[] = [
         icon: "cursor",
         label: "Click to bring back your app",
         sub: "Jumps back to Terminal, VS Code, whatever you left",
+      },
+    ],
+  },
+  {
+    slug: "standup-drafter",
+    title: "Standup Drafter",
+    platform: "macOS",
+    category: "Tool",
+    status: "live",
+    summary:
+      "A macOS menu bar app that turns yesterday's GitHub activity into a standup draft, grouped by Jira ticket with live status, and posts it straight to Slack, all without leaving your menu bar.",
+    stack: ["Electron", "GitHub API", "Slack API", "Jira API"],
+    audiences: ["Devs"],
+    githubUrl: "https://github.com/juan-rome/standup-drafter",
+    demoUrl:
+      "mailto:jjromee05@gmail.com?subject=Standup%20Drafter%20-%20Install%20Request&body=Hi%2C%20I%27d%20like%20to%20try%20the%20Standup%20Drafter%20app%20locally.",
+    demoLabel: "Request the app",
+    spotlightLabel: "Runs on your Mac",
+    demoMedia: { type: "video", src: "/gadgets/standup-drafter/demo.mp4" },
+    flipLabel: "Demo",
+    nodeFlow: [
+      {
+        icon: "github",
+        label: "Yesterday's GitHub activity",
+        sub: "PRs, reviews, and commits, pulled automatically",
+      },
+      {
+        icon: "group",
+        label: "Grouped by Jira ticket",
+        sub: "Live status shown next to each one",
+      },
+      {
+        icon: "draft",
+        label: "Standup draft written",
+        sub: "Reviewable in the menu bar popover",
+        analyzing: true,
+      },
+      {
+        icon: "send",
+        label: "Posted to Slack",
+        sub: "One click, once you've reviewed it",
       },
     ],
   },
