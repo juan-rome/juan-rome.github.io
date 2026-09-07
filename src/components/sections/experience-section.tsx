@@ -67,7 +67,7 @@ export function ExperienceSection() {
       <SectionHeading
         eyebrow="Experience"
         title="Eight years, three companies, one thread"
-        description="Full-stack generalist to front-end architect to the engineer who owns experimentation infrastructure: each role built directly on the last. Click a card to see its full highlights."
+        description="Full-stack generalist to front-end architect to engineer shaping and building AI-assisted engineering workflows: each role built directly on the last. Click a card to see its full highlights."
       />
       <div className="mt-14 grid gap-8 lg:grid-cols-3 lg:items-start lg:gap-7">
         {experience.map((entry, index) => (

@@ -43,7 +43,7 @@ export const experience: Experience[] = [
       { role: "Software Engineer II", period: "Apr 2024 - Oct 2025" },
     ],
     summary:
-      "Leading the front-end architecture and experimentation infrastructure behind Earnest's student loan rate-check and application funnels, spanning product delivery, platform infrastructure, and developer experience.",
+      "Leading the front-end architecture behind Earnest's student loan rate-check and application funnels, with meaningful contributions to the experimentation infrastructure and platform behind them. Now shaping and building AI-assisted engineering workflows and Claude Code skills.",
     stack: [
       "React",
       "TypeScript",
