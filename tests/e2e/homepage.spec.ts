@@ -166,24 +166,25 @@ test("mobile nav menu closes after selecting a link", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto("/");
 
-  const details = page.locator("header details");
-  await page.locator('summary[aria-label="Open navigation menu"]').click();
-  await expect(details).toHaveJSProperty("open", true);
+  const toggle = page.locator('button[aria-label="Open navigation menu"]');
+  await toggle.click();
+  await expect(toggle).toHaveAttribute("aria-expanded", "true");
 
-  await details.getByRole("link", { name: "Experience" }).click();
-  await expect(details).toHaveJSProperty("open", false);
+  const sheet = page.locator('header nav[aria-label="Primary"]').last();
+  await sheet.getByRole("link", { name: "Experience" }).click();
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
 });
 
 test("mobile nav menu closes when clicking outside it", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto("/");
 
-  const details = page.locator("header details");
-  await page.locator('summary[aria-label="Open navigation menu"]').click();
-  await expect(details).toHaveJSProperty("open", true);
+  const toggle = page.locator('button[aria-label="Open navigation menu"]');
+  await toggle.click();
+  await expect(toggle).toHaveAttribute("aria-expanded", "true");
 
   await page.mouse.click(20, 700);
-  await expect(details).toHaveJSProperty("open", false);
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
 });
 
 test("AI Lab compact grid stacks to a single column at mobile viewport width", async ({
