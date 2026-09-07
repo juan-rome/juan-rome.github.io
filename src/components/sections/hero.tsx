@@ -6,7 +6,7 @@ import { site } from "@/content/site";
 
 export function Hero() {
   return (
-    <section id="top" className="pt-24 pb-20 sm:pt-32 sm:pb-28">
+    <section id="top" className="pt-24 pb-20 sm:pt-32 sm:pb-28 lg:py-20">
       <Container className="flex justify-center">
         <FadeIn>
           <LavaTiltCard
@@ -31,7 +31,12 @@ export function Hero() {
                 {site.tagline}
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-3">
-                <Button href="#work">View engineering work</Button>
+                <Button
+                  href="#work"
+                  className="bg-[linear-gradient(135deg,#e9d5ff,#f0abfc)] text-[#1a0a2e] hover:bg-[linear-gradient(135deg,#e9d5ff,#f0abfc)] hover:brightness-110"
+                >
+                  View engineering work
+                </Button>
                 <Button
                   href="#resume"
                   variant="secondary"
