@@ -125,6 +125,61 @@ body {
   }
 }
 
+/* TimelineFlipCard (src/components/ui/timeline-flip-card.tsx): a
+   perspective(...)-based 3D flip between a front summary and a scrollable
+   back highlights list, plus a company-tinted corner sheen. Left as plain
+   CSS rather than Tailwind utilities because backface-visibility,
+   transform-style, and the ::after sheen aren't expressible as utilities. */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.timeline-flip-face {
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.timeline-flip-face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.26;
+  background: radial-gradient(
+    circle 340px at 12% 12%,
+    var(--tilt-color, transparent) 0%,
+    transparent 78%
+  );
+}
+
+.timeline-flip-face--back {
+  transform: rotateY(180deg);
+}
+
+.timeline-flip-face--back::after {
+  background: radial-gradient(
+    circle 340px at 88% 12%,
+    var(--tilt-color, transparent) 0%,
+    transparent 78%
+  );
+}
+
+.highlights-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

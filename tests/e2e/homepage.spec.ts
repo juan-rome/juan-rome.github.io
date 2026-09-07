@@ -99,68 +99,41 @@ test("AI Lab: extra skills are collapsed behind a toggle by default, with a matc
   await expect(page.getByRole("button", { name: "+4 more skills" })).toBeFocused();
 });
 
-test("Experience: current role is open by default, past roles are collapsed", async ({
+test("Experience: a card flips to reveal its full highlights and flips back", async ({
   page,
 }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: "Earnest", level: 3 })).toBeVisible();
-  await expect(
-    page.getByText("Led the front-end migration of Earnest's Unified Application Flow")
-  ).toBeVisible();
-  await expect(
-    page.getByText("Built and scaled shared experimentation")
-  ).not.toBeVisible();
+  const heading = page.getByRole("heading", { name: "Earnest", level: 3 });
+  await expect(heading).toBeVisible();
+  const card = page.locator("[data-flipped]").filter({ has: heading });
+  await expect(card).toHaveAttribute("data-flipped", "false");
+  await expect(page.getByText("+16 more")).toBeVisible();
 
-  await expect(
-    page.getByText("Led development of three major integrations")
-  ).not.toBeVisible();
+  const flipHint = card.getByText(/Click to see all \d+ highlights/);
+  await flipHint.scrollIntoViewIfNeeded();
+  await flipHint.click();
+  await expect(card).toHaveAttribute("data-flipped", "true");
 
-  const moreHighlights = page.getByRole("button", { name: "+6 more highlights" });
-  await moreHighlights.scrollIntoViewIfNeeded();
-  await expect(moreHighlights).toHaveAttribute("aria-expanded", "false");
-  await moreHighlights.click();
-  await expect(page.getByText("Built and scaled shared experimentation")).toBeVisible();
-
-  const fewerHighlights = page.getByRole("button", { name: "Show fewer highlights" });
-  await expect(fewerHighlights).toHaveAttribute("aria-expanded", "true");
-  await fewerHighlights.click();
-  await expect(
-    page.getByText("Built and scaled shared experimentation")
-  ).not.toBeVisible();
-  await expect(moreHighlights).toBeFocused();
+  await card.getByText("Back to summary").click();
+  await expect(card).toHaveAttribute("data-flipped", "false");
 });
 
-test("Experience: a past role expands to its own details, collapse control appears after them", async ({
+test("Experience: a card's tag list expands to show the rest of the stack", async ({
   page,
 }) => {
   await page.goto("/");
-  const expandButtons = page.getByRole("button", { name: "Show role details" });
-  const capitalOneExpand = expandButtons.first();
-  await capitalOneExpand.scrollIntoViewIfNeeded();
-  await expect(
-    page.getByText("Led development of three major integrations")
-  ).not.toBeVisible();
+  const heading = page.getByRole("heading", { name: "Capital One", level: 3 });
+  await heading.scrollIntoViewIfNeeded();
+  const card = page.locator("[data-flipped]").filter({ has: heading });
 
-  await capitalOneExpand.click();
-  const detail = page.locator('[id$="-detail"]').first();
-  const collapseButton = page.getByRole("button", { name: "Show less" }).first();
-  await expect(
-    page.getByText("Led development of three major integrations")
-  ).toBeVisible();
+  await expect(card.getByText("Jira")).not.toBeVisible();
+  const moreTags = card.getByRole("button", { name: "+2 more" });
+  await moreTags.click();
+  await expect(card.getByText("Jira")).toBeVisible();
 
-  const [detailBox, collapseBox] = await Promise.all([
-    detail.boundingBox(),
-    collapseButton.boundingBox(),
-  ]);
-  expect(detailBox).not.toBeNull();
-  expect(collapseBox).not.toBeNull();
-  expect(collapseBox!.y).toBeGreaterThan(detailBox!.y);
-
-  await collapseButton.click();
-  await expect(
-    page.getByText("Led development of three major integrations")
-  ).not.toBeVisible();
-  await expect(capitalOneExpand).toBeFocused();
+  const fewerTags = card.getByRole("button", { name: "Show less" });
+  await fewerTags.click();
+  await expect(card.getByText("Jira")).not.toBeVisible();
 });
 
 test("Projects: case studies are collapsed by default and expand into the full write-up", async ({

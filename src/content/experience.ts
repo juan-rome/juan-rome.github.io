@@ -2,12 +2,27 @@ export type Title = { role: string; period: string };
 
 export type Experience = {
   company: string;
+  logo: string;
+  /** Solid backdrop behind the logo image, for a logo with transparency or
+   *  dark ink that needs a light card to read against (Capital One's mark
+   *  is dark-on-transparent). Omitted when the badge's own accent color is
+   *  backdrop enough. */
+  logoBackground?: string;
+  logoFit?: "cover" | "contain";
+  /** Company-tinted accent for the card border and corner sheen. Unrelated
+   *  to the current/past dot color, which is always emerald for "current"
+   *  and neutral for past roles regardless of this. */
+  accent: string;
   /** Usually one title. More than one means an internal promotion at the
    *  same company — shown stacked under one company heading, sharing a
    *  single summary/stack/highlights rather than splitting bullets by title. */
   titles: Title[];
   summary: string;
   stack: string[];
+  /** How many of `stack` show up front before the rest fold behind a
+   *  "+N more" toggle. Ordered so the most representative tags for the
+   *  role lead the list. */
+  visibleTagCount: number;
   highlights: string[];
 };
 
@@ -19,22 +34,25 @@ export type Experience = {
 export const experience: Experience[] = [
   {
     company: "Earnest",
+    logo: "/logos/earnest.png",
+    logoFit: "cover",
+    accent: "#34d399",
     titles: [
       { role: "Senior Software Engineer", period: "Oct 2025 - Present" },
       { role: "Software Engineer II", period: "Apr 2024 - Oct 2025" },
     ],
     summary:
-      "Own the front-end architecture and experimentation infrastructure behind Earnest's student loan rate-check and application funnels, spanning product delivery, platform infrastructure, and developer experience. Promoted to Senior in October 2025.",
+      "Leading the front-end architecture and experimentation infrastructure behind Earnest's student loan rate-check and application funnels, spanning product delivery, platform infrastructure, and developer experience.",
     stack: [
-      "TypeScript",
       "React",
+      "TypeScript",
       "Next.js",
+      "New Relic",
+      "Claude Code",
       "nginx",
       "GitHub Actions",
-      "New Relic",
       "PagerDuty",
       "Optimizely",
-      "Claude Code",
       "K6",
       "Cypress",
       "Storybook",
@@ -48,6 +66,7 @@ export const experience: Experience[] = [
       "Figma MCP",
       "Jira MCP",
     ],
+    visibleTagCount: 5,
     highlights: [
       "Led the front-end migration of Earnest's Unified Application Flow (Amount, Citizenship, Address, Primer pages) from a legacy service into a single unified codebase: the critical path that unblocked Phase 1 launch of the new applicant flow.",
       "Led integration of Verified's phone-based identity verification platform into the refinance rate-check funnel, partnering across internal and external engineering teams to deliver a secure, scalable onboarding experience that increased conversion from rate check start to submission by +17%.",
@@ -64,9 +83,13 @@ export const experience: Experience[] = [
   },
   {
     company: "Capital One",
+    logo: "/logos/capital-one.webp",
+    logoBackground: "#ffffff",
+    logoFit: "contain",
+    accent: "#60a5fa",
     titles: [{ role: "Senior Software Engineer", period: "May 2022 - Oct 2023" }],
     summary:
-      "Led frontend redesigns and integrations across Capital One's micro-frontend applications, working in Lit web components.",
+      "Led frontend redesigns for Capital One's Auto Navigator, a Lit-based micro-frontend embedded directly into dealership partners' own sites. Consolidated a legacy codebase's repeated components into a shared component library, introduced Storybook, and set new engineering standards along the way.",
     stack: [
       "TypeScript",
       "Lit",
@@ -77,6 +100,7 @@ export const experience: Experience[] = [
       "Jira",
       "Figma",
     ],
+    visibleTagCount: 6,
     highlights: [
       "Led development of three major integrations and frontend redesigns using Lit web components, improving user adoption by +35% and overall user experience metrics by +65%.",
       "Partnered cross-functionally with Engineering, QA, and Operations to resolve complex production issues, reducing application errors by 30% and improving platform reliability.",
@@ -85,26 +109,31 @@ export const experience: Experience[] = [
   },
   {
     company: "H-E-B",
+    logo: "/logos/heb.png",
+    logoFit: "cover",
+    accent: "#fb7185",
     titles: [
       { role: "Full Stack Software Engineer II", period: "Apr 2020 - May 2022" },
       { role: "Full Stack Software Engineer", period: "Jun 2018 - Apr 2020" },
     ],
     summary:
-      "Promoted from Full Stack Software Engineer to Software Engineer II at H-E-B: built customer-facing features and automated batch-processing systems before taking on production reliability for a grocery-retail platform.",
+      "Built customer-facing features and automated batch-processing systems for H-E-B's grocery-retail platform. Owned the assortment application: a decision-tree tool that let internal teams and vendor partners model shelf changes (adding, removing, or recategorizing products) and project the sales impact using real product metrics.",
     stack: [
-      "Java",
       "Angular",
-      "RxJS",
+      "TypeScript",
+      "Java",
       "Spring Boot",
+      "Cypress",
+      "PostgreSQL",
+      "RxJS",
       "Spring Batch",
       "MySQL",
-      "PostgreSQL",
-      "Cypress",
       "New Relic",
       "GitHub",
       "Jira",
       "Figma",
     ],
+    visibleTagCount: 6,
     highlights: [
       "Diagnosed and resolved production issues, sustaining 99% uptime and reducing incident resolution time by 40% through proactive monitoring and alerting.",
       "Collaborated with designers, stakeholders, and engineers to deliver customer-facing features using Angular, RxJS, TypeScript, HTML, and CSS.",
@@ -114,3 +143,12 @@ export const experience: Experience[] = [
     ],
   },
 ];
+
+/** The pill above each card spans every title's dates: oldest title's
+ *  start through the newest title's end (often "Present"), rather than
+ *  just the current title's own range. */
+export function getOverallPeriod(titles: Title[]): string {
+  const start = titles[titles.length - 1].period.split(" - ")[0];
+  const end = titles[0].period.split(" - ")[1];
+  return `${start} - ${end}`;
+}
