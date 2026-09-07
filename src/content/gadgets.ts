@@ -34,7 +34,7 @@ export const gadgetItems: GadgetItem[] = [
     category: "Tool",
     status: "live",
     summary:
-      "A floating desktop companion that reacts in real time to Claude Code sessions: it perks up on a tool call, celebrates on success, and looks worried on an error, all wired through Claude Code's own hooks. Five swappable characters, two rendered live with Three.js and WebGPU instead of static art.",
+      "A floating desktop companion that reacts in real time to Claude Code sessions, perking up on a tool call, celebrating on success, and looking worried on an error, all wired through Claude Code's own hooks. Five swappable characters, two rendered live with Three.js and WebGPU instead of static art.",
     stack: ["Electron", "Three.js", "WebGPU", "Node.js"],
     audiences: ["Devs"],
     githubUrl: "https://github.com/juan-rome/claude-sidekick",
