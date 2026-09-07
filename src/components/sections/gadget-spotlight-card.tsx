@@ -32,7 +32,7 @@ function DemoBack({ item }: { item: GadgetItem }) {
   return (
     <div className="mt-8 flex flex-1 flex-col">
       <div className="bg-background flex flex-1 items-center justify-center rounded-lg">
-        <img src={current.src} alt={`${current.label}, working state`} className="w-40" />
+        <img src={current.src} alt={`${current.label}, working state`} className="w-64" />
       </div>
       <div className="mt-3 flex flex-wrap gap-1.5">
         {media.items.map((character, i) => (

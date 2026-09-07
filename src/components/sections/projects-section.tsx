@@ -114,7 +114,7 @@ export function ProjectsSection() {
         title="A few problems worth explaining properly"
         description="These are internal Earnest products, so there's no public repo or live demo to link: the write-up is the case study."
       />
-      <div className="mt-14 space-y-8">
+      <div className="mt-14 grid gap-8 lg:grid-cols-2 lg:items-start">
         {projects.map((project, index) => (
           <ProjectCard key={project.slug} project={project} index={index} />
         ))}

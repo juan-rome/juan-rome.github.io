@@ -127,7 +127,7 @@ test("Experience: a card's tag list expands to show the rest of the stack", asyn
   const card = page.locator("[data-flipped]").filter({ has: heading });
 
   await expect(card.getByText("Jira")).not.toBeVisible();
-  const moreTags = card.getByRole("button", { name: "+2 more" });
+  const moreTags = card.getByRole("button", { name: "+3 more" });
   await moreTags.click();
   await expect(card.getByText("Jira")).toBeVisible();
 

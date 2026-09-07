@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
-import { FlipCornerButton } from "@/components/ui/flip-corner-button";
 import { cn } from "@/lib/utils";
 import { getOverallPeriod, type Experience } from "@/content/experience";
 
@@ -187,10 +186,6 @@ export function TimelineFlipCard({
             )}
             style={{ backgroundColor: "var(--background-elevated)" }}
           >
-            <FlipCornerButton
-              label={`${entry.highlights.length} Highlights`}
-              onToggleFlip={onToggleFlip}
-            />
             <div className="flex items-start gap-3">
               <div
                 className="h-11 w-11 shrink-0 overflow-hidden rounded-xl"
@@ -214,7 +209,7 @@ export function TimelineFlipCard({
                 </div>
               </div>
               {isCurrent ? (
-                <span className="mt-6 ml-auto shrink-0 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 text-[0.62rem] font-bold tracking-wide text-emerald-400 uppercase">
+                <span className="ml-auto shrink-0 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 text-[0.62rem] font-bold tracking-wide text-emerald-400 uppercase">
                   Current
                 </span>
               ) : null}
@@ -237,8 +232,7 @@ export function TimelineFlipCard({
             )}
             style={{ backgroundColor: "var(--background-elevated)" }}
           >
-            <FlipCornerButton label="Back" onToggleFlip={onToggleFlip} />
-            <div className="mt-6 flex items-center justify-between gap-3">
+            <div className="flex items-center justify-between gap-3">
               <h4 className="text-accent-text text-[0.68rem] font-bold tracking-wide uppercase">
                 Highlights
               </h4>

@@ -14,10 +14,10 @@ export function SideProjectsSection() {
   const [flipped, setFlipped] = useState<boolean[]>(() => gadgetItems.map(() => false));
 
   useEffect(() => {
-    function equalize() {
-      const outers = outerRefs.current;
-      const fronts = frontRefs.current;
+    const outers = outerRefs.current;
+    const fronts = frontRefs.current;
 
+    function equalize() {
       // Release every card's height first: each front face is absolutely
       // positioned (inset-0) and inherits its outer element's current
       // height, so reading scrollHeight without releasing it first just
@@ -37,19 +37,31 @@ export function SideProjectsSection() {
 
     equalize();
 
-    // Only re-run on an actual width change: mobile browsers fire resize
-    // events as the address bar shows/hides during scroll (a height-only
-    // change), and re-measuring on every one of those made the page jump
-    // around mid-scroll on the Experience section's equivalent cards.
+    // A one-time measurement can go stale if a front face's own content
+    // changes size after mount (an image finishing layout, a web font
+    // swapping in) — watch the fronts directly instead of only redoing
+    // this on window resize, so height stays in sync regardless of what
+    // caused a face to grow or shrink.
+    const observer = new ResizeObserver(() => equalize());
+    fronts.forEach((front) => {
+      if (front) observer.observe(front);
+    });
+
+    // Still guard against mobile's resize-on-scroll (address bar
+    // show/hide is a height-only change) causing the same jump-while-
+    // scrolling bug the Experience section's equivalent cards had.
     let lastWidth = window.innerWidth;
     function handleResize() {
       if (window.innerWidth === lastWidth) return;
       lastWidth = window.innerWidth;
       equalize();
     }
-
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (

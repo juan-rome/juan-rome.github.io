@@ -101,7 +101,7 @@ export const experience: Experience[] = [
       "Jira",
       "Figma",
     ],
-    visibleTagCount: 6,
+    visibleTagCount: 5,
     highlights: [
       "Led development of three major integrations and frontend redesigns using Lit web components, improving user adoption by +35% and overall user experience metrics by +65%.",
       "Partnered cross-functionally with Engineering, QA, and Operations to resolve complex production issues, reducing application errors by 30% and improving platform reliability.",
@@ -134,7 +134,7 @@ export const experience: Experience[] = [
       "Jira",
       "Figma",
     ],
-    visibleTagCount: 6,
+    visibleTagCount: 5,
     highlights: [
       "Diagnosed and resolved production issues, sustaining 99% uptime and reducing incident resolution time by 40% through proactive monitoring and alerting.",
       "Collaborated with designers, stakeholders, and engineers to deliver customer-facing features using Angular, RxJS, TypeScript, HTML, and CSS.",
