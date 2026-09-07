@@ -21,7 +21,10 @@ export function Hero() {
               <p className="text-sm font-medium text-white [text-shadow:0_1px_12px_rgba(0,0,0,0.6)]">
                 {site.role}
               </p>
-              <h1 className="mt-3 text-3xl font-semibold tracking-tight text-balance text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.55)] sm:text-4xl">
+              <h1
+                id="hero-name"
+                className="mt-3 text-3xl font-semibold tracking-tight text-balance text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.55)] sm:text-4xl"
+              >
                 {site.name}
               </h1>
               <p className="mt-4 max-w-[26ch] text-pretty text-white/90 [text-shadow:0_2px_16px_rgba(0,0,0,0.55)]">

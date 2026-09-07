@@ -104,7 +104,7 @@ export const gadgetItems: GadgetItem[] = [
     category: "Tool",
     status: "live",
     summary:
-      "A macOS menu bar app that turns yesterday's GitHub activity into a standup draft, grouped by Jira ticket with live status, and posts it straight to Slack, all without leaving your menu bar.",
+      "A macOS menu bar app that drafts your standup from yesterday's GitHub activity, grouped by Jira ticket, and posts it straight to Slack.",
     stack: ["Electron", "GitHub API", "Slack API", "Jira API"],
     audiences: ["Devs"],
     githubUrl: "https://github.com/juan-rome/standup-drafter",
