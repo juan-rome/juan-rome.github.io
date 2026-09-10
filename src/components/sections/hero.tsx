@@ -8,13 +8,13 @@ export function Hero() {
   return (
     <section id="top" className="pt-24 pb-20 sm:pt-32 sm:pb-28 lg:py-20">
       <Container className="flex justify-center">
-        <FadeIn>
+        <FadeIn className="w-full max-w-[420px] lg:max-w-[640px]">
           <LavaTiltCard
             background={[0.09, 0.03, 0.16]}
             lava={[1.5, 0.35, 2.1]}
-            className="aspect-square w-full max-w-[420px]"
+            className="aspect-square w-full lg:aspect-[640/417]"
           >
-            <div className="flex flex-col items-center px-8 text-center">
+            <div className="flex flex-col items-center px-8 py-10 text-center lg:px-16 lg:py-14">
               <span className="mb-5 inline-flex rounded-full border border-white/25 bg-black/40 px-3.5 py-1.5 text-xs text-white backdrop-blur-sm">
                 {site.location}
               </span>
