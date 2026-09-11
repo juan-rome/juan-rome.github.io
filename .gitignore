@@ -29,7 +29,8 @@
 *.pem
 
 # local dev tooling config (machine-specific absolute paths)
-/.claude
+/.claude/*
+!/.claude/skills
 
 # debug
 npm-debug.log*
