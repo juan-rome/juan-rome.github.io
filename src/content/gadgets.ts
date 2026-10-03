@@ -4,20 +4,18 @@ import type { AiLabItem } from "@/content/ai-lab";
  *  its cards, the way AI Lab groups by tool category. */
 export type GadgetPlatform = "macOS";
 
-/** What a gadget card's back face shows once flipped: a looping demo video,
- *  or a switchable carousel of labeled stills/gifs (Claude Sidekick's five
- *  characters, each in the same state). */
-export type GadgetDemoMedia =
-  | { type: "video"; src: string }
-  | { type: "carousel"; items: { label: string; src: string; color: string }[] };
-
 export type GadgetItem = AiLabItem & {
   platform: GadgetPlatform;
-  demoMedia?: GadgetDemoMedia;
-  /** Label on the corner button that flips the card to demoMedia — kept
-   *  per-item since "Demo" doesn't always fit (Sidekick's back is a
-   *  character picker, not a single demo). */
-  flipLabel?: string;
+  /** A logo image used as the card's title in place of plain text; the
+   *  title text stays as its alt. */
+  titleLogo?: string;
+  /** Small print under the stack tags, for what a visitor needs to run it. */
+  requirements?: string;
+  /** Character stickers: tucked into the top-right corner beside the title
+   *  on narrow screens, standing next to the CTA on wide ones. `height` is
+   *  each one's size relative to the others (the characters aren't drawn
+   *  at the same scale), in px at the wide layout's size. */
+  stickers?: { src: string; height: number }[];
 };
 
 /**
@@ -28,113 +26,45 @@ export type GadgetItem = AiLabItem & {
  */
 export const gadgetItems: GadgetItem[] = [
   {
-    slug: "claude-sidekick",
-    title: "Claude Sidekick",
+    slug: "burrow",
+    title: "Burrow",
+    titleLogo: "/gadgets/burrow/burrow-wordmark.svg",
     platform: "macOS",
     category: "Tool",
-    status: "live",
+    status: "in-progress",
     summary:
-      "A desktop companion that reacts live to Claude Code's own hooks. Five swappable characters, two rendered live with Three.js and WebGPU.",
-    stack: ["Electron", "Three.js", "WebGPU", "Node.js"],
+      "A tiny buddy that lives at the top of your MacBook's screen and watches Claude Code for you. It works while Claude works and taps you when it's done.",
+    stack: ["Swift", "SwiftUI", "SceneKit", "AppKit"],
     audiences: ["Devs"],
-    githubUrl: "https://github.com/juan-rome/claude-sidekick",
-    demoUrl:
-      "mailto:jjromee05@gmail.com?subject=Claude%20Sidekick%20-%20Install%20Request&body=Hi%2C%20I%27d%20like%20to%20try%20the%20Claude%20Sidekick%20app%20locally.",
-    demoLabel: "Request the app",
-    spotlightLabel: "Runs on your Mac",
-    demoMedia: {
-      type: "carousel",
-      items: [
-        {
-          label: "Blob",
-          src: "/gadgets/claude-sidekick/blob-working.gif",
-          color: "#5eead4",
-        },
-        {
-          label: "Ghost",
-          src: "/gadgets/claude-sidekick/ghost-working.gif",
-          color: "#c4b5fd",
-        },
-        {
-          label: "Bunny",
-          src: "/gadgets/claude-sidekick/bunny-working.gif",
-          color: "#f9a8d4",
-        },
-        {
-          label: "Jellyfish",
-          src: "/gadgets/claude-sidekick/jellyfish-working.gif",
-          color: "#a78bfa",
-        },
-        {
-          label: "Gadget",
-          src: "/gadgets/claude-sidekick/gadget-working.gif",
-          color: "#fbbf24",
-        },
-      ],
-    },
-    flipLabel: "View Sidekicks",
+    demoUrl: "https://meetburrow.com",
+    demoLabel: "Visit Burrow",
+    spotlightLabel: "Free to try on Oct 13",
+    requirements: "Works on any MacBook, notch or not. macOS 14 or later.",
+    stickers: [
+      { src: "/gadgets/burrow/burrow-wave.png", height: 132 },
+      { src: "/gadgets/burrow/pixel-wave.png", height: 110 },
+    ],
     nodeFlow: [
       {
         icon: "bolt",
-        label: "Claude Code fires a hook",
-        sub: "Session start, a tool call, success, or error",
+        label: "Claude Code starts working",
+        sub: "Burrow hears it through Claude Code's own hooks",
       },
       {
         icon: "sparkle",
-        label: "Character reacts instantly",
-        sub: "Perks up, celebrates, or looks worried",
+        label: "Your buddy gets to work",
+        sub: "Goggles down, an experiment starts bubbling in the notch",
         analyzing: true,
-      },
-      {
-        icon: "burst",
-        label: "Effects layer on top",
-        sub: "Confetti, sparkles, or worried drops via WebGPU",
       },
       {
         icon: "cursor",
-        label: "Click to bring back your app",
-        sub: "Jumps back to Terminal, VS Code, whatever you left",
-      },
-    ],
-  },
-  {
-    slug: "standup-drafter",
-    title: "Standup Drafter",
-    platform: "macOS",
-    category: "Tool",
-    status: "live",
-    summary:
-      "A macOS menu bar app that drafts your standup from yesterday's GitHub activity, grouped by Jira ticket, and posts it straight to Slack.",
-    stack: ["Electron", "GitHub API", "Slack API", "Jira API"],
-    audiences: ["Devs"],
-    githubUrl: "https://github.com/juan-rome/standup-drafter",
-    demoUrl:
-      "mailto:jjromee05@gmail.com?subject=Standup%20Drafter%20-%20Install%20Request&body=Hi%2C%20I%27d%20like%20to%20try%20the%20Standup%20Drafter%20app%20locally.",
-    demoLabel: "Request the app",
-    spotlightLabel: "Runs on your Mac",
-    demoMedia: { type: "video", src: "/gadgets/standup-drafter/demo.mp4" },
-    flipLabel: "Demo",
-    nodeFlow: [
-      {
-        icon: "github",
-        label: "Yesterday's GitHub activity",
-        sub: "PRs, reviews, and commits, pulled automatically",
+        label: "Claude needs you, Burrow asks",
+        sub: "Allow or deny a request right from the notch",
       },
       {
-        icon: "group",
-        label: "Grouped by Jira ticket",
-        sub: "Live status shown next to each one",
-      },
-      {
-        icon: "draft",
-        label: "Standup draft written",
-        sub: "Reviewable in the menu bar popover",
-        analyzing: true,
-      },
-      {
-        icon: "send",
-        label: "Posted to Slack",
-        sub: "One click, once you've reviewed it",
+        icon: "burst",
+        label: "Done? You get a tap",
+        sub: "A little cheer in the notch when Claude finishes",
       },
     ],
   },
