@@ -31,14 +31,14 @@ export const gadgetItems: GadgetItem[] = [
     titleLogo: "/gadgets/burrow/burrow-wordmark.svg",
     platform: "macOS",
     category: "Tool",
-    status: "in-progress",
+    status: "live",
     summary:
       "A tiny buddy that lives at the top of your MacBook's screen and watches Claude Code for you. It works while Claude works and taps you when it's done.",
     stack: ["Swift", "SwiftUI", "SceneKit", "AppKit"],
     audiences: ["Devs"],
     demoUrl: "https://meetburrow.com",
     demoLabel: "Visit Burrow",
-    spotlightLabel: "Free to try on Oct 13",
+    spotlightLabel: "Out now, free to try",
     requirements: "Works on any MacBook, notch or not. macOS 14 or later.",
     stickers: [
       { src: "/gadgets/burrow/burrow-wave.png", height: 132 },
